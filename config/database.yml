@@ -1,0 +1,14 @@
+development: &default
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: golfsnack_development
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+test:
+  <<: *default
+  database: golfsnack_test
+
+production:
+  <<: *default
+  database: golfsnack_production
