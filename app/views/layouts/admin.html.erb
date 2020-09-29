@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golfsnack.se - Av golfare för golfare</title>
+    <link rel="icon" href="/favicon.ico" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <div class="container px-6 py-12 mx-auto">
+    <h1 class="mb-12 text-4xl font-extrabold">Golfsnack Admin</h1>
+    <%= render partial: 'flashes'%>
+    <%= yield %>
+  </div>
+</body>
+</html>

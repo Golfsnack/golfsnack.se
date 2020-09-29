@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!
-
-  def index; end
+  def index
+    @latest_guides = Guide.latest
+  end
 end

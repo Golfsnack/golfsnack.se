@@ -1,0 +1,6 @@
+<h1 class="m-12 text-2xl font-extrabold leading-snug text-golfsnack-800">
+<%=@guide["title"]%></h1>
+<img src="http://cms.golfsnack.se<%= @guide["image"]["url"] %>">
+
+<%=Kramdown::Document.new(@guide["body"]).to_html.html_safe%>
+
