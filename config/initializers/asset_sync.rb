@@ -11,7 +11,7 @@ if defined?(AssetSync)
     # config.aws_signature_version = 4
     #
     # Change host option in fog (only if you need to)
-    # config.fog_host = "s3.amazonaws.com"
+    config.fog_host = ENV['DO_HOST']
     #
     # Change port option in fog (only if you need to)
     # config.fog_port = "9000"
@@ -62,5 +62,15 @@ if defined?(AssetSync)
     # If you have an asset with name `app.0ba4d3.js`, only `app.0ba4d3` will need to be matched
     # config.cache_asset_regexps = [ /\.[a-f0-9]{8}$/i, /\.[a-f0-9]{20}$/i ]
     # config.cache_asset_regexp = /\.[a-f0-9]{8}$/i
+
+    config.run_on_precompile = false
+    config.add_local_file_paths do
+      # Support webpacker assets
+      public_root = Rails.root.join("public")
+      Dir.chdir(public_root) do
+        packs_dir = Webpacker.config.public_output_path.relative_path_from(public_root)
+        Dir[File.join(packs_dir, '/**/**')]
+      end
+    end
   end
 end

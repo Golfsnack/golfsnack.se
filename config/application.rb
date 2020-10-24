@@ -20,7 +20,5 @@ module Golfsnack
 
     config.generators.assets = false
     config.generators.helper = false
-
-    config.serve_static_assets = true
   end
 end
