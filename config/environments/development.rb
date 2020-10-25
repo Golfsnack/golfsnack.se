@@ -65,4 +65,10 @@ Rails.application.configure do
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   config.middleware.use(Rack::LiveReload)
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+    Bullet.console = false
+  end
 end

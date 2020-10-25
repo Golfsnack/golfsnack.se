@@ -10,14 +10,19 @@
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-    <%= render partial: 'header', locals: {pages: %i(Nyheter Bloggar Leaderboard Klubbar)} %>
-    <% if current_user %>
-      <%= render partial: 'feed' %>
-      <%#= render partial: 'subheader' %>
-    <% end %>
-    <%= render partial: 'flashes'%>
-    <%= yield %>
+  <body class="bg-fairway-100">
+    <%= render partial: 'header' %>
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <div class="col-span-12 md:col-span-8 lg:col-span-9">
+          <%= render partial: 'flashes'%>
+          <%= yield %>
+        </div>
+        <div class="hidden md:block md:col-span-4 lg:col-span-3 h-screen overflow-scroll">
+          <%= render partial: 'feed' %>
+        </div>
+      </div>
+    </div>
     <%= render partial: "footer" %>
   </body>
 </html>

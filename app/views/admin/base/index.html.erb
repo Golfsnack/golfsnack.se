@@ -1,34 +1,34 @@
 <div class="flex flex-col">
   <div class="my-6">
-    <%= form_for(@invite, url: create_invitation_path) do |f| %>
+    <%= form_for(@invite, url: admin_create_invitation_path) do |f| %>
       <div class="flex">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-post", class: "border border-black mr-4" %>
-        <%= f.submit "SKAPA INBJUDAN", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
+        <%= f.submit "SKAPA INBJUDAN", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
       </div>
     <% end %>
   </div>
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <h1 class="text-xl font-extrabold">Inbjudningar</h1>
-      <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
+      <div class="overflow-hidden border-b border-sand-200 shadow">
+        <table class="min-w-full divide-y divide-sand-200">
           <thead>
             <tr>
-              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
                 E-post
               </th>
-              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
                 Inbjudnings-kod
               </th>
-              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
                 Har använt koden?
               </th>
-              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
                 Användare
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+          <tbody class="bg-white divide-y divide-sand-200">
             <% @invitations.each do |invitation| %>
               <tr>
                 <td class="px-6 py-4 whitespace-no-wrap">

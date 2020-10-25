@@ -4,18 +4,13 @@
       Redigera profil
     </h2>
   </div>
-
-
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-
     <%= f.hidden_field :avatar_cache %>
-
     <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
       <%= image_tag(resource.avatar_url(:thumb)) if resource.avatar? %>
       <%= f.label :avatar %><br />
       <%= f.file_field :avatar %>
-
       <% if resource.avatar? %>
         <label>
           <%= f.check_box :remove_avatar %>
@@ -23,7 +18,6 @@
         </label>
       <% end %>
     </div>
-
     <div class="block w-full px-3 py-2 mt-8 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
       <div class="field">
         <%= f.label :email %><br />
@@ -37,21 +31,17 @@
         <%= f.label :last_name %><br />
         <%= f.text_field :last_name, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
       </div>
-
       <div class="field">
         <%= f.label :golf_id %><br />
         <%= f.text_field :golf_id, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
       </div>
     </div>
-
     <div class="mt-6 actions">
-      <%= f.submit "Uppdatera", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
+      <%= f.submit "Uppdatera", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
     </div>
   <% end %>
-
-
   <div class="block w-full px-3 py-2 mt-8 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
     <h3>Dangerzone</h3>
-    <p><%= button_to "Ta bort konto", registration_path(resource_name), data: { confirm: "Säker? Detta går inte att ångra!" }, method: :delete, class: "bg-transparent hover:bg-red-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %></p>
+    <p><%= button_to "Ta bort konto", registration_path(resource_name), data: { confirm: "Säker? Detta går inte att ångra!" }, method: :delete, class: "bg-transparent hover:bg-red-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent" %></p>
   </div>
 </div>

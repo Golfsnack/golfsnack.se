@@ -2,8 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import 'trix/dist/trix.css';
-@import 'actiontext';
+@import "trix/dist/trix.css";
+@import "actiontext";
 
 body.private {
   background: url("../../assets/images/bg.jpg") no-repeat center center fixed;
@@ -12,19 +12,77 @@ body.private {
   width: 100vw;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-bold;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl;
+    @apply font-extrabold;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  a {
+    @apply underline text-blue-800;
+  }
+
+  .private a {
+    @apply underline text-sand-200;
+  }
 }
 
-h1 {
-  @apply text-4xl;
-  @apply font-extrabold;
+@layer components {
+  .navlink {
+    @apply px-4 py-2 ml-2 text-sm font-medium transition duration-150 ease-in-out text-sand-100 no-underline;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @apply text-white bg-sand-500 outline-none;
+    }
+  }
+
+  .profilelink {
+    @apply block px-4 py-2 text-sm  transition duration-150 ease-in-out text-sand-700 no-underline;
+
+    &:hover,
+    &:focus {
+      @apply bg-sand-100 text-golfsnack-800 outline-none;
+    }
+
+    &.active,
+    &:active {
+      @apply bg-sand-200 outline-none text-golfsnack-800;
+    }
+  }
+
+  .mobilenavlink {
+    @apply block px-3 py-2 mt-1 text-base font-medium transition duration-150 ease-in-out text-sand-300 no-underline;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @apply text-white bg-sand-500 outline-none;
+    }
+  }
 }
 
-h2 {
-  @apply text-2xl;
-}
-
-h3 {
-  @apply text-xl;
+a[target="_blank"]:after {
+  content: "↗️";
+  @apply text-white;
 }

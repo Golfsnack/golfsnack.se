@@ -1,30 +1,27 @@
-<section class="container px-4 py-24 mx-auto">
-  <h2 class="pb-8 mb-12 text-2xl font-extrabold leading-tight text-gray-900 border-b border-gray-200 md:text-4xl">Senaste blogginläggen</h2>
-  <div class="w-full xl:w-4/6">
-    <div class="flex flex-col space-y-16">
-      <% @posts.each do |post| %>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-          <img src="https://images.unsplash.com/photo-1584837140822-757f4680434f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-          <div class="col-span-1 md:col-span-3">
-            <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-            <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-              <%= link_to post.title, post_path(post), class: "text-gray-900 hover:text-purple-700" %>
-            </h2>
-            <p class="mb-3 text-sm font-normal text-gray-600">
-              <%= truncate(strip_tags(post.body.to_s), length: 50) %>
-            </p>
-            <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
-          </div>
-          <div class="flex items-center p-6 bg-gray-100">
-            <%= link_to user_path(post.user) do %>
-              <img class="w-10 h-10 rounded-full" src="<%=post.user.avatar_url(:thumb)%>" alt="" />
-            <% end %>
-            <p class="text-sm font-medium leading-5 text-gray-900">
-              <%= link_to post.user.name, user_path(post.user), class: "hover:underline" %>
-            </p>
-          </div>
+<h2 class="my-12 pb-4 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Senaste blogginläggen</h2>
+<div class="w-full xl:w-4/6">
+  <div class="flex flex-col space-y-6">
+    <% @posts.each do |post| %>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-4 bg-white p-6">
+        <div class="flex flex-col p-2">
+          <%= link_to user_path(post.user) do %>
+            <img class="w-6 h-6" src="<%=post.user.avatar_url(:thumb)%>" alt="" />
+          <% end %>
+          <p class="text-sm font-medium leading-5 text-gray-900">
+            <%= link_to post.user.name, user_path(post.user), class: "hover:underline" %>
+          </p>
+          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600"><%= post.updated_at.to_s(:short) %></p>
         </div>
-      <% end %>
-    </div>
+        <div class="col-span-1 md:col-span-3">
+          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
+            <%= link_to post.title, post_path(post), class: "text-gray-900 hover:text-purple-700" %>
+          </h2>
+          <p class="mb-3 text-sm font-normal text-gray-600">
+            <%= truncate(strip_tags(post.body.to_s), length: 200) %>
+          </p>
+          <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-</section>
+</div>

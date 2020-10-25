@@ -1,5 +1,5 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="flex flex-col items-center justify-center px-4 py-12 mt-12 bg-gray-50 sm:px-6 lg:px-8">
+  <div class="flex flex-col items-center justify-center px-4 py-12 mt-12 sm:px-6 lg:px-8">
     <div>
       <h2 class="mb-6 text-3xl font-extrabold leading-9 text-center text-white">
         Registrera konto
@@ -37,7 +37,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
     </div>
     <div class="mt-6 actions">
-      <%= f.submit "Skapa konto", class: "relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-golfsnack-600 hover:bg-golfsnack-500 focus:outline-none focus:border-golfsnack-700 focus:shadow-outline-golfsnack active:bg-golfsnack-700 transition duration-150 ease-in-out" %>
+      <%= f.submit "Skapa konto", class: "relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium text-white bg-golfsnack-600 hover:bg-golfsnack-500 focus:outline-none focus:border-golfsnack-700 focus:shadow-outline-golfsnack active:bg-golfsnack-700 transition duration-150 ease-in-out" %>
     </div>
   </div>
 <% end %>
