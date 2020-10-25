@@ -1,0 +1,28 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 gap-12 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
+    <div class="col-span-1 md:col-span-3 lg:col-span-3 xl:col-span-3">
+      <h1 class="py-12 text-2xl font-extrabold leading-snug text-golfsnack-800">
+        <%=@post.title%>
+      </h1>
+      <div>
+        <%= @post.body %>
+      </div>
+    </div>
+    <div class="col-span-1 p-12">
+      <% if @post.user === current_user %>
+        <%= link_to "Redigera inlägg", edit_post_path(@post) %>
+        <br />
+        <%= link_to "Radera inlägg", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
+      <% end %>
+      <div class="card">
+        <p>Skriven av:</p>
+            <%= link_to user_path(@post.user) do %>
+              <img class="w-10 h-10 rounded-full" src="<%=@post.user.avatar_url(:thumb)%>" alt="" />
+            <% end %>
+            <p class="text-sm font-medium leading-5 text-gray-900">
+              <%= link_to @post.user.name, user_path(@post.user), class: "hover:underline" %>
+            </p>
+      </div>
+    </div>
+  </div>
+</div>

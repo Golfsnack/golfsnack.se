@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validate :invite_code_valid, on: :create
   validates :golf_id, length: { is: 10 }, format: { with: /\A[a-z\d]{6}-[a-z\d]{3}/i }
 
+  has_many :posts
+
   mount_uploader :avatar, AvatarUploader
 
   def invite_code_valid

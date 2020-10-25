@@ -2,92 +2,29 @@
   <h2 class="pb-8 mb-12 text-2xl font-extrabold leading-tight text-gray-900 border-b border-gray-200 md:text-4xl">Senaste blogginläggen</h2>
   <div class="w-full xl:w-4/6">
     <div class="flex flex-col space-y-16">
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1561439852-69c28a8ae64c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">Process Documents Using Artificial Intelligence For RPA Bots</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            Earlier RPA bots used to have some limitations like it would take structured data for processing from excel, database, on these data. But with advancements in
-            technology like OCR (Optical Character Recognition) and Machine Learning, RPA bots are capable of extracting these data …
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
+      <% @posts.each do |post| %>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
+          <img src="https://images.unsplash.com/photo-1584837140822-757f4680434f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
+          <div class="col-span-1 md:col-span-3">
+            <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
+            <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
+              <%= link_to post.title, post_path(post), class: "text-gray-900 hover:text-purple-700" %>
+            </h2>
+            <p class="mb-3 text-sm font-normal text-gray-600">
+              <%= truncate(strip_tags(post.body.to_s), length: 50) %>
+            </p>
+            <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
+          </div>
+          <div class="flex items-center p-6 bg-gray-100">
+            <%= link_to user_path(post.user) do %>
+              <img class="w-10 h-10 rounded-full" src="<%=post.user.avatar_url(:thumb)%>" alt="" />
+            <% end %>
+            <p class="text-sm font-medium leading-5 text-gray-900">
+              <%= link_to post.user.name, user_path(post.user), class: "hover:underline" %>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1584837140822-757f4680434f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">Implement Dark Mode in Your Android App</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            Are you curious to implement the Dark Mode in Android Application? Here’s the perfect guideline to attain the Dark Mode in Android Application. Don’t waste your time;
-            just implement and enjoy Dark Mode.
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1561439852-69c28a8ae64c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">Why is Mental Health one of the Important Issues to Address?</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            Mental health was one of the under spoken topics before this lockdown. After sitting at home for about six months I realized that this is one of the important issues to
-            address not only in the work sector but also in daily living.
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1584837140822-757f4680434f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">Pattern Matching In Elixir</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            Pattern matching is a great way to write idiomatic functional code. It’s a powerful tenant of functional programming that makes it a joy to write conditional
-            statements. If you don’t want your code to be peppered with deeply nested statements or multiple variations of similar business logic, use pattern matching!
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1561439852-69c28a8ae64c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">3 things you should change during your focus group interview</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            We changed three things about our feedback sessions, and it changed everything about running customer feedback sessions.
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <img src="https://images.unsplash.com/photo-1584837140822-757f4680434f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=200&q=80" class="object-cover w-full h-40 col-span-1 bg-center" alt="Kutty" loading="lazy" />
-        <div class="col-span-1 md:col-span-3">
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600">April 16, 2020</p>
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <a href="#" class="text-gray-900 hover:text-purple-700">Using Webpack with React Typescript</a>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            Ever wondered if there is a way to just tie up all your code into one single module for easy usage. If so, in this article I will show you how to bundle all your code
-            into a single javascript module that you can easily use in any other project.
-          </p>
-          <a href="#" class="btn btn-light btn-sm">Read More</a>
-        </div>
-      </div>
-    </div>
-    <div class="py-10 my-10 border-t border-gray-200">
-      <a href="#" class="w-full btn btn-light btn-lg md:w-auto">Load More</a>
+      <% end %>
     </div>
   </div>
 </section>

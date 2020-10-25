@@ -2,9 +2,29 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import 'trix/dist/trix.css';
+@import 'actiontext';
+
 body.private {
-  background: url("/assets/bg.jpg") no-repeat center center fixed;
+  background: url("../../assets/images/bg.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   width: 100vw;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-4xl;
+  @apply font-extrabold;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
 }

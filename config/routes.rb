@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/guider/:slug', to: 'guides#show'
 
   get '/profil', to: 'profile#index', as: :profile
+  get '/users/:id', to: 'profile#show', as: :user
+
+  resources :posts
 
   root to: 'home#index'
 end

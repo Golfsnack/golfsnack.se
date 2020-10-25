@@ -20,5 +20,9 @@ module Golfsnack
 
     config.generators.assets = false
     config.generators.helper = false
+    config.generators.controller_specs = false
+    config.generators.view_specs = false
+    config.generators.helper_specs = false
+    config.generators.model_specs = false
   end
 end
