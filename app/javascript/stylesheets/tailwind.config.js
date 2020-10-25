@@ -5,7 +5,7 @@ module.exports = {
     defaultLineHeights: true,
     standardFontWeights: true,
   },
-  purge: [],
+  purge: false,
   target: "relaxed",
   prefix: "",
   important: false,
@@ -742,5 +742,5 @@ module.exports = {
     animation: ["responsive"],
   },
   corePlugins: {},
-  plugins: [require("@tailwindcss/custom-forms"), require("@tailwindcss/ui")],
+  plugins: [require("@tailwindcss/ui")],
 };

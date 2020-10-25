@@ -1,1 +1,15 @@
-
+<div class="bg-rough-100 py-6">
+  <% @activities.each do |activity| %>
+    <div class="activity flex flex-col m-3 pb-3 border-b border-golfsnack-200">
+      <% if activity.owner %>
+        <%= link_to user_path(activity.owner) do %>
+          <div class="flex flex-row">
+            <img class="w-5 h-5 mr-2" src="<%=activity.owner.avatar_url(:thumb)%>" alt="" />
+            <%= activity.owner.name %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= render_activity activity %>
+    </div>
+  <% end %>
+</div>

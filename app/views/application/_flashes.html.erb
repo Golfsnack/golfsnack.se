@@ -1,9 +1,9 @@
 <% flash.each do |type, msg| %>
   <% if type == "alert" %>
-    <div class="px-4 py-3 m-4 text-red-700 bg-red-100 border border-t-4 border-red-400 rounded-b" role="alert">
+    <div class="px-4 py-3 m-4 text-red-700 bg-red-100 border border-t-4 border-red-400" role="alert">
       <strong class="font-bold">Ajdå!</strong>
     <% else %>
-      <div class="px-4 py-3 m-4 text-teal-700 bg-teal-100 border border-teal-400 rounded" role="alert">
+      <div class="px-4 py-3 m-4 text-teal-700 bg-teal-100 border border-teal-400" role="alert">
       <% end %>
       <span class="block sm:inline"><%= msg %></span>
     </div>

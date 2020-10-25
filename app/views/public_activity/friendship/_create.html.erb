@@ -1,0 +1,6 @@
+följde en annan användare:
+<% if activity.trackable %>
+  <%= link_to activity.trackable.friend.name, activity.trackable.friend %>
+<% else %>
+  som sen dess har blivit borttaget
+<% end %>

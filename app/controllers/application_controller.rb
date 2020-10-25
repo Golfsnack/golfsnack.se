@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+
   before_action :authenticate_user!
+  before_action :set_activities
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   layout :determine_layout
@@ -15,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def determine_layout
     current_user ? "application" : "private"
+  end
+
+  def set_activities
+    @activities = PublicActivity::Activity.includes([:owner, :trackable]).order("created_at desc").where(owner_type: "User").where.not(key: "friendship.destroy").all
   end
 end

@@ -1,12 +1,12 @@
 <header class="h-16" id="header" x-data="{ mobileMenuOpen: false, profileMenuOpen: false }">
   <nav class="bg-golfsnack-500">
-    <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="px-2 mx-auto sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <button
           @click="mobileMenuOpen = !mobileMenuOpen"
-          class="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out rounded-md text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white" aria-label="Main menu" aria-expanded="false">
+          class="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white" aria-label="Main menu" aria-expanded="false">
             <svg
           :class="{'block': !mobileMenuOpen, 'hidden': mobileMenuOpen }"
           class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,62 +27,25 @@
           </div>
           <% if current_user %>
             <div class="hidden sm:block sm:ml-6">
-              <div class="flex">
-                <a href="http://forum.golfsnack.se" class="px-3 py-2 ml-4 text-sm font-medium leading-5 transition duration-150 ease-in-out rounded-md text-sand-100 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700">Forum</a>
-                <a href="/guider" class="px-3 py-2 ml-4 text-sm font-medium leading-5 transition duration-150 ease-in-out rounded-md text-sand-100 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700">Guider</a>
-                <% pages.each do |page| %>
-                  <a href="#" class="px-3 py-2 ml-4 text-sm font-medium leading-5 line-through transition duration-150 ease-in-out rounded-md text-sand-100 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700"><%= page %></a>
-                <% end %>
+              <div class="flex desktoplinks">
+                <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
               </div>
             </div>
           <% end %>
         </div>
         <% if current_user %>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button class="p-1 transition duration-150 ease-in-out border-2 border-transparent rounded-full text-sand-400 hover:text-white focus:outline-none focus:text-white focus:bg-sand-700" aria-label="Notifications">
-              <!-- Heroicon name: bell -->
-              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-            </button>
             <!-- Profile dropdown -->
-            <div class="relative ml-3">
-              <div>
-                <button
-                @click="profileMenuOpen = !profileMenuOpen"
-                class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-white" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                  <img class="w-8 h-8 rounded-full" src="<%=current_user.avatar_url(:thumb) %>" alt="">
-                </button>
-              </div>
-              <div
-            x-show="profileMenuOpen"
-              x-transition:enter="transition ease-out duration-100 transform"
-              x-transition:enter-start="opacity-0 scale-95"
-              x-transition:enter-end="opacity-100 scale-100"
-              x-transition:leave="transition ease-in duration-75 transform"
-              x-transition:leave-start="opacity-100 scale-100"
-              x-transition:leave-end="opacity-0 scale-95"
-              class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                  <a href="/profil" class="block px-4 py-2 text-sm leading-5 transition duration-150 ease-in-out text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100" role="menuitem">Profil</a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 transition duration-150 ease-in-out text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100" role="menuitem">Vänner</a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 transition duration-150 ease-in-out text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100" role="menuitem">Blogg</a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 transition duration-150 ease-in-out text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100" role="menuitem">Statistik</a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 transition duration-150 ease-in-out text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100" role="menuitem">Inställningar</a>
-                  <%= link_to "Logga ut", destroy_user_session_path, class: "block px-4 py-2 text-sm leading-5 text-sand-700 hover:bg-sand-100 focus:outline-none focus:bg-sand-100 transition duration-150 ease-in-out", role: "menuitem", method: :delete %>
-                </div>
-              </div>
-            </div>
+            <%= link_to "Forum", "http://forum.golfsnack.se", class: 'navlink', target: '_blank' %>
+            <%= render partial: 'header/profile_dropdown'%>
           </div>
         </div>
       </div>
-      <div :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="sm:hidden">
-        <div class="px-2 pt-2 pb-3">
-          <a href="http://forum.golfsnack.se" class="block px-3 py-2 mt-1 text-base font-medium transition duration-150 ease-in-out rounded-md disabled text-sand-300 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700">Forum</a>
-          <a href="/guider" class="block px-3 py-2 mt-1 text-base font-medium transition duration-150 ease-in-out rounded-md text-sand-300 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700">Guider</a>
-          <% pages.each do |page| %>
-            <a href="#" class="block px-3 py-2 mt-1 text-base font-medium line-through transition duration-150 ease-in-out rounded-md text-sand-300 hover:text-white hover:bg-sand-700 focus:outline-none focus:text-white focus:bg-sand-700"><%= page %></a>
-          <% end %>
+      <div :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="sm:hidden w-screen">
+        <div class="px-2 pt-2 pb-3 absolute z-50 bg-golfsnack-500 block w-screen">
+          <%= render partial: 'header/mainlinks', locals: {class_name: 'mobilenavlink' }%>
+          <hr />
+          <%= link_to "Forum", "http://forum.golfsnack.se", class: 'mobilenavlink', target: '_blank' %>
         </div>
       </div>
     <% end %>

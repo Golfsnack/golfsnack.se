@@ -38,6 +38,14 @@ gem 'fog-aws'
 gem 'asset_sync'
 gem 'aws-sdk-s3'
 
+gem 'public_activity'
+
+gem 'image_processing'
+
+gem 'friendly_id', '~> 5.4.0'
+
+gem 'active_link_to'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -53,7 +61,11 @@ group :development do
 
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
-  gem 'annotate'
+
+  gem "better_errors"
+  gem "binding_of_caller"
+
+  gem "bullet"
 end
 
 group :test do

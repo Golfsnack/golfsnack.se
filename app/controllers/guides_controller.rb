@@ -1,10 +1,9 @@
 class GuidesController < ApplicationController
   def index
-    @guides = Guide.all
+    @latest_guides = Guide.all
   end
 
   def show
-    id = params[:slug].split('--').last
-    @guide = Guide.by_id(id)
+    @guide = Guide.friendly.find(params[:id])
   end
 end

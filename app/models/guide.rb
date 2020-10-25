@@ -1,18 +1,9 @@
-# require 'faraday'
-# API_URL = "http://cms.golfsnack.se"
+class Guide < ApplicationRecord
+  extend FriendlyId
 
-class Guide
+  has_one_attached :image
+  has_rich_text :body
+  friendly_id :title, use: :slugged
 
-  def self.latest
-    # resp = Faraday.get "#{API_URL}/guides"
-    # JSON.parse(resp.body)
-    []
-  end
-
-  def self.by_id(id)
-    # resp = Faraday.get "#{API_URL}/guides/#{id}"
-    # JSON.parse(resp.body)
-    nil
-  end
-
+  validates :title, :image, :body, presence: true
 end

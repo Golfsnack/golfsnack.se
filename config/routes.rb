@@ -3,18 +3,24 @@ Rails.application.routes.draw do
 
   get 'discourse/sso' => 'discourse_sso#sso'
 
-  get '/admin', to: 'admin#index'
-  post '/admin', to: 'admin#create', as: :create_invitation
+  namespace :admin do
+    root to: 'base#index'
+    post '/', to: 'base#create', as: :create_invitation
 
-  # -----
+    resources :guides
+  end
 
-  get '/guider', to: 'guides#index'
-  get '/guider/:slug', to: 'guides#show'
 
   get '/profil', to: 'profile#index', as: :profile
   get '/users/:id', to: 'profile#show', as: :user
+  get '/profil/vanner/', to: 'profile#friends', as: :friends
+  get '/profil/blogg/', to: 'profile#blog', as: :blog
 
-  resources :posts
+  resources :guides, only: [:index, :show], path: 'guider'
+  resources :posts, path: 'bloggar'
+  resources :friendships, only: [:create, :destroy]
+
+  get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
 
   root to: 'home#index'
 end
