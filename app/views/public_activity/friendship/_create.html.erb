@@ -3,7 +3,7 @@
     <div class="activity-follow">
       <%= render 'shared/avatar', user: activity.owner %>
       <h4 class="name"><%= link_to activity.owner.name, activity.owner %></h4>
-      <span class="action">Followed </span>
+      <span class="action">började följa </span>
       <%= render 'shared/avatar', user: activity.trackable.friend %>
       <h4 class="name"><%= link_to activity.trackable.friend.name, activity.trackable.friend %></h4>
       <%= render 'shared/created_at', activity: activity %>

@@ -1,4 +1,4 @@
-<h2 class="my-12 pb-4 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Vänner</h2>
+<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">De du följer</h2>
 <table class="min-w-full divide-y divide-sand-200">
   <thead>
     <tr>
@@ -27,7 +27,7 @@
     <% end %>
   </tbody>
 </table>
-<h2 class="my-12 pb-4 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Följare du inte följer</h2>
+<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Folk som följer dig</h2>
 <table class="min-w-full divide-y divide-sand-200">
   <thead>
     <tr>
@@ -42,7 +42,6 @@
     <% @user.inverse_friends.each do |user| %>
       <tr>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <%= user.name %>
           <%= link_to user_path(user) do %>
             <div class="flex flex-row">
               <img class="w-5 h-5 mr-2" src="<%=user.avatar_url(:thumb)%>" alt="" />
@@ -51,7 +50,9 @@
           <% end %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <%= link_to "Följ", friendships_path(friend_id: @user.id), method: :post %>
+          <% if !@user.friendships.where(friend_id: user.id).first %>
+            <%= link_to "Följ", friendships_path(friend_id: @user.id), method: :post %>
+          <% end %>
         </td>
       </tr>
     <% end %>

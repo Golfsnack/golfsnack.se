@@ -2,7 +2,7 @@ class Friendship < ApplicationRecord
   include Shared::Callbacks
 
   include PublicActivity::Model
-  tracked only: [:create], owner: Proc.new{ |controller, model| model.friend }
+  tracked only: [:create], owner: Proc.new{ |controller, model| model.user }
 
   validates :friend, :user, presence: true
 
