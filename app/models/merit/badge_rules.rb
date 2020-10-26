@@ -27,7 +27,7 @@ module Merit
       grant_on 'users#create', badge: 'duffer', to: :itself
 
       # If it has 1 comments, grant commenter-10 badge
-      grant_on 'comments#create', badge: 'commenter'
+      # grant_on 'comments#create', badge: 'commenter'
 
       # If it has 1 vote, grant relevant-commenter badge
       # grant_on 'posts#vote', badge: 'relevant-commenter',
