@@ -1,27 +1,26 @@
-<h2 class="my-12 pb-4 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Senaste blogginläggen</h2>
+<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Senaste blogginläggen</h2>
 <div class="w-full xl:w-4/6">
   <div class="flex flex-col space-y-6">
     <% @posts.each do |post| %>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-4 bg-white p-6">
-        <div class="flex flex-col p-2">
-          <%= link_to user_path(post.user) do %>
-            <img class="w-6 h-6" src="<%=post.user.avatar_url(:thumb)%>" alt="" />
-          <% end %>
-          <p class="text-sm font-medium leading-5 text-gray-900">
-            <%= link_to post.user.name, user_path(post.user), class: "hover:underline" %>
-          </p>
-          <p class="mb-2 -mt-1 text-sm font-normal text-gray-600"><%= post.updated_at.to_s(:short) %></p>
-        </div>
-        <div class="col-span-1 md:col-span-3">
-          <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
-            <%= link_to post.title, post_path(post), class: "text-gray-900 hover:text-purple-700" %>
-          </h2>
-          <p class="mb-3 text-sm font-normal text-gray-600">
-            <%= truncate(strip_tags(post.body.to_s), length: 200) %>
-          </p>
-          <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
-        </div>
+      <div class="flex flex-col p-2">
+        <%= link_to user_path(post.user) do %>
+          <img class="w-6 h-6" src="<%=post.user.avatar_url(:thumb)%>" alt="" />
+        <% end %>
+        <p class="text-sm font-medium leading-5 text-rough-900">
+          <%= link_to post.user.name, user_path(post.user), class: "hover:underline" %>
+        </p>
+        <p class="mb-2 -mt-1 text-sm font-normal text-rough-600">
+          <%= render 'shared/created_at', activity: post %>
+          <%= pluralize(post.votes_for.size, 'like') %>, <%= pluralize(post.comments.size, 'comment') %>
+        </p>
       </div>
+      <h2 class="mb-2 text-xl font-extrabold leading-snug text-gray-800">
+        <%= link_to post.title, post_path(post), class: "text-gray-900 hover:text-purple-700" %>
+      </h2>
+      <p class="mb-3 text-sm font-normal text-gray-600">
+        <%= truncate(strip_tags(post.body.to_s), length: 200) %>
+      </p>
+      <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
     <% end %>
   </div>
 </div>

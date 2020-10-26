@@ -9,12 +9,15 @@ class ProfileController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
 
-    if @user != current_user
-      @friendship = current_user.friendships.where(friend_id: @user.id).first
-    end
+    @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).all
 
     render :index
   end
+
+  # TODO: Not live here!
+  # def mentionable
+  #   render json: @user.following_users.as_json(only: [:id, :name]), root: false
+  # end
 
   private
 

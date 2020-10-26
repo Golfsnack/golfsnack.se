@@ -46,6 +46,10 @@ gem 'friendly_id', '~> 5.4.0'
 
 gem 'active_link_to'
 
+gem 'acts_as_commentable'
+gem 'acts_as_votable'
+gem 'merit'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

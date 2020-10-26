@@ -1,6 +1,12 @@
-följde en annan användare:
-<% if activity.trackable %>
-  <%= link_to activity.trackable.friend.name, activity.trackable.friend %>
-<% else %>
-  som sen dess har blivit borttaget
+<% if activity_resources_exist?(activity) && activity.trackable.friend %>
+  <div id="activity-<%= activity.id %>" class="activity">
+    <div class="activity-follow">
+      <%= render 'shared/avatar', user: activity.owner %>
+      <h4 class="name"><%= link_to activity.owner.name, activity.owner %></h4>
+      <span class="action">Followed </span>
+      <%= render 'shared/avatar', user: activity.trackable.friend %>
+      <h4 class="name"><%= link_to activity.trackable.friend.name, activity.trackable.friend %></h4>
+      <%= render 'shared/created_at', activity: activity %>
+    </div>
+  </div>
 <% end %>

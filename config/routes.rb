@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   resources :guides, only: [:index, :show], path: 'guider'
   resources :posts, path: 'bloggar'
+  resources :comments, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
+
+  post '/like', to: 'likes#create', as: :like
+  post '/unlike', to: 'likes#destroy', as: :unlike
 
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
 

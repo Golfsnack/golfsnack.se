@@ -1,0 +1,16 @@
+<% if post.user %>
+  <div class="info">
+    <%= render 'shared/avatar', user: post.user %>
+    <h4 class="name"><%= link_to post.user.name, profile_path(post.user) %></h4>
+    <span class="action">created a <%= link_to 'post', post %></span>
+    <%= render 'shared/created_at', activity: post %>
+  </div>
+  <div class="content">
+    <span class="text"><%= truncate(strip_tags(post.body.to_s), length: 100) %></span>
+    <div class="points">
+      <span class="like-count"><%= pluralize(post.votes_for.size, 'like') %></span>
+      <span class="comments-count"><%= pluralize(post.comments.size, 'comment') %></span>
+    </div>
+  </div>
+  <%= render 'shared/actions', resource: post %>
+<% end %>

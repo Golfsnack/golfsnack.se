@@ -1,0 +1,8 @@
+<% if comment.user %>
+  <%= render 'shared/avatar', user: comment.user %>
+  <%= link_to comment.user.name, user_path(comment.user) %>
+  <%= comment.comment.html_safe %>
+  <% if belongs_to_user?(comment) %>
+    <%= link_to "Radera", comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', remote: true %>
+  <% end %>
+<% end %>

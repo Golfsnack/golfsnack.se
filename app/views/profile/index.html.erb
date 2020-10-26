@@ -1,4 +1,4 @@
-<div class="bg-white p-6 my-6">
+<div class="p-6 my-6 bg-white">
   <div class="lg:flex lg:items-center lg:justify-between">
     <div class="flex-1 min-w-0">
       <img alt="..." src="<%=@user.avatar_url(:thumb)%>" class="h-auto border-none shadow-xl" style="max-width: 100px"/>
@@ -6,14 +6,16 @@
         <%= @user.name %>
       </h2>
       <div class="flex flex-col mt-1 sm:mt-0 sm:flex-row sm:flex-wrap">
-        <div class="flex items-center mt-2 text-sm leading-5 text-sand-500 sm:mr-6">
-          <!-- Heroicon name: briefcase -->
-          <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-sand-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
-            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-          </svg>
-          <%= @user.role %>
-        </div>
+        <div class="flex items-center mt-2 text-sm leading-5 text-golfsnack-500 sm:mr-6"><%= @user.points%> poäng</div>
+        <% if @user.badges.empty? %>
+          <div class="flex items-center mt-2 text-sm leading-5 text-sand-500 sm:mr-6">No badge yet.</div>
+        <% else %>
+          <% @user.badges.each do |badge| %>
+            <div class="flex inline-block px-2 py-1 mt-2 mr-1 text-sm font-semibold leading-5 uppercase rounded text-sand-100 bg-rough-500 last:mr-0 sm:mr-6">
+              <%= badge.name %>
+            </div>
+          <% end %>
+        <% end %>
         <div class="flex items-center mt-2 text-sm leading-5 text-sand-500 sm:mr-6">
           <!-- Heroicon name: currency-dollar -->
           <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-sand-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -32,9 +34,9 @@
       </div>
     </div>
     <div class="flex mt-5 lg:mt-0 lg:ml-4">
-      <% if @user == current_user %>
-        <span class="hidden shadow-sm sm:block">
-          <a href="/users/edit" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
+      <% if is_current_user? @user %>
+        <span class="shadow-sm">
+          <a href="/users/edit" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white border text-sand-700 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
             <!-- Heroicon name: pencil -->
             <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
@@ -42,26 +44,23 @@
             Redigera
           </a>
         </span>
-      <% end %>
-      <%if @user != current_user %>
+      <% else %>
         <span class="hidden ml-3 shadow-sm sm:block">
-          <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
+          <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white border text-sand-700 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
             <!-- Heroicon name: link -->
             <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
             </svg>
-            <% if @friendship %>
-              <%= link_to "Sluta följ", @friendship, method: :delete %>
-            <% else %>
-              <%= link_to "Följ", friendships_path(friend_id: @user.id), method: :post %>
-            <% end %>
+            <%= render partial: 'friendships/form' %>
           </button>
         </span>
       <% end %>
     </div>
   </div>
 </div>
-<% if @user == current_user %>
+<% if is_current_user? @user %>
   <%= link_to "Nytt inlägg", new_post_path, class: "inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50"%>
-<% end%>
-<%= render partial: 'home/blogs' %>
+  <%= render partial: 'home/blogs' %>
+<% else %>
+  <%= render_activities(@activities, layout: '/shared/activity') %>
+<% end %>

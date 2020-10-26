@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Golfsnack.se - Av golfare för golfare</title>
     <link rel="icon" href="/favicon.ico" />
     <%= csrf_meta_tags %>
@@ -9,20 +10,23 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render partial: 'og' %>
   </head>
   <body class="bg-fairway-100">
     <%= render partial: 'header' %>
-    <div class="container mx-auto">
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
-        <div class="col-span-12 md:col-span-8 lg:col-span-9">
+    <div class="w-full max-w-screen-xl px-6 mx-auto">
+      <div class="flex">
+        <div class="w-full md:w-3/4">
           <%= render partial: 'flashes'%>
-          <%= yield %>
+          <div class="w-full min-h-screen lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5">
+            <%= yield %>
+          </div>
         </div>
-        <div class="hidden md:block md:col-span-4 lg:col-span-3 h-screen overflow-scroll">
+        <div class="hidden h-screen overflow-scroll md:block md:w-1/4">
           <%= render partial: 'feed' %>
         </div>
       </div>
     </div>
-    <%= render partial: "footer" %>
+    <%#= render partial: "footer" %>
   </body>
 </html>

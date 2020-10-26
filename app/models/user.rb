@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  has_merit
+
+  has_merit
+  acts_as_voter
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,10 +17,10 @@ class User < ApplicationRecord
   validates :golf_id, length: { is: 10 }, format: { with: /\A[a-z\d]{6}-[a-z\d]{3}/i }
 
   has_many :posts
+  has_many :comments
 
   has_many :friendships
   has_many :friends, through: :friendships
-
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
@@ -28,9 +33,5 @@ class User < ApplicationRecord
 
   def name
     first_name + " " + last_name
-  end
-
-  def role
-    "Tiger Woods"
   end
 end

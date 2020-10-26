@@ -36,4 +36,28 @@ module ApplicationHelper
       "#{object_type.downcase} som har blivit borttagen sen dess"
     end
   end
+
+  def belongs_to_user?(resource)
+    resource.user == current_user
+  end
+
+  def activity_resources_exist?(activity)
+    activity && activity.trackable && activity.owner
+  end
+
+  def relative_time(datetime)
+    time_ago_in_words(datetime)
+  end
+
+  def formatted_time(time)
+    time.to_formatted_s(:short)
+  end
+
+  def find_like(likeable)
+    likeable.get_likes.where(user: current_user)
+  end
+
+  def is_current_user?(user)
+    user == current_user
+  end
 end

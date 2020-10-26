@@ -1,0 +1,6 @@
+<%- friendship = current_user.friendships.where(friend_id: @user.id).first%>
+<% if friendship %>
+  <%= link_to "Sluta följ", friendship, method: :delete %>
+<% else %>
+  <%= link_to "Följ", friendships_path(friend_id: @user.id), method: :post %>
+<% end %>

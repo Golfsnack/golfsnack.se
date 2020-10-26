@@ -1,25 +1,28 @@
 <div class="my-6">
   <%= link_to "↤ Tillbaka till bloggar", posts_path %>
 </div>
-<div class="bg-white p-6 my-6">
-  <div class="grid grid-cols-4">
-    <div class="card col-span-1 mt-12">
-      <div class="my-6">
-        <p class="text-sm font-medium leading-5 text-golfsnack-900">
-          Skrivet av:  <%= link_to @post.user.name, user_path(@post.user), class: "hover:underline" %>
-        </p>
-      </div>
-      <% if @post.user === current_user %>
-        <%= link_to "Redigera inlägg", edit_post_path(@post) %>
-        <br />
-        <%= link_to "Radera inlägg", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
-      <% end %>
+<div class="p-6 my-6 bg-white">
+  <div class="mt-12">
+    <div class="my-6">
+      <p class="text-sm font-medium leading-5 text-golfsnack-900">
+        Skrivet av:  <%= link_to @post.user.name, user_path(@post.user), class: "hover:underline" %>
+      </p>
     </div>
-    <div class="col-span-3">
-      <h1 class="py-12 text-2xl font-extrabold leading-snug text-golfsnack-800">
-        <%=@post.title%>
-      </h1>
-      <%= @post.body %>
-    </div>
+    <% if is_current_user? @post.user %>
+      <%= link_to "Redigera inlägg", edit_post_path(@post) %>
+      <br />
+      <%= link_to "Radera inlägg", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
+    <% end %>
+  </div>
+  <h1 class="py-12 text-2xl font-extrabold leading-snug text-golfsnack-800">
+    <%=@post.title%>
+  </h1>
+  <%= @post.body %>
+  <h4>Comments</h4>
+  <hr>
+  <%= render 'comments/form', commentable: @post %>
+  <br>
+  <div class="comments">
+    <%= render(@comments) %>
   </div>
 </div>

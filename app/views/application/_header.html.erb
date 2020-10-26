@@ -36,13 +36,13 @@
         <% if current_user %>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <!-- Profile dropdown -->
-            <%= link_to "Forum", "http://forum.golfsnack.se", class: 'navlink', target: '_blank' %>
+            <%= link_to "Forum", "http://forum.golfsnack.se", class: 'navlink hidden sm:block', target: '_blank' %>
             <%= render partial: 'header/profile_dropdown'%>
           </div>
         </div>
       </div>
-      <div :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="sm:hidden w-screen">
-        <div class="px-2 pt-2 pb-3 absolute z-50 bg-golfsnack-500 block w-screen">
+      <div :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="w-screen sm:hidden">
+        <div class="absolute z-50 block w-screen px-2 pt-2 pb-3 bg-golfsnack-500">
           <%= render partial: 'header/mainlinks', locals: {class_name: 'mobilenavlink' }%>
           <hr />
           <%= link_to "Forum", "http://forum.golfsnack.se", class: 'mobilenavlink', target: '_blank' %>
