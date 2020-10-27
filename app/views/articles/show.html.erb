@@ -1,0 +1,10 @@
+<div class="my-6">
+  <%= link_to "↤ Tillbaka till artiklar", articles_path %>
+</div>
+<div class="p-6 my-6 bg-white">
+  <h1 class="my-6 text-2xl font-extrabold leading-snug text-golfsnack-800">
+    <%=@article.title%>
+  </h1>
+  <%= image_tag @article.image.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full mb-6" %>
+  <%= @article.body %>
+</div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root to: 'base#index'
     post '/', to: 'base#create', as: :create_invitation
 
-    resources :guides
+    resources :articles
   end
 
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/profil/vanner/', to: 'profile#friends', as: :friends
   get '/profil/blogg/', to: 'profile#blog', as: :blog
 
-  resources :guides, only: [:index, :show], path: 'guider'
+  resources :articles, only: [:index, :show], path: 'artiklar'
   resources :posts, path: 'bloggar'
   resources :comments, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_215717) do
+ActiveRecord::Schema.define(version: 2020_10_27_123502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 2020_10_26_215717) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "image"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
   create_table "badges_sashes", force: :cascade do |t|
     t.integer "badge_id"
     t.integer "sash_id"
@@ -106,17 +117,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_215717) do
     t.integer "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "guides", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.string "image"
-    t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"
-    t.index ["slug"], name: "index_guides_on_slug", unique: true
   end
 
   create_table "invitations", force: :cascade do |t|
