@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
     def set_global_activities
       if current_user
-        friends = current_user.friends
+        friends = current_user.all_following.unshift(@user)
         @global_activities = PublicActivity::Activity.includes([:owner, :trackable]).order("created_at desc").where(owner_id: friends).all
       end
     end

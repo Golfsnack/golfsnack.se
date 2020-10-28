@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/tcocca/acts_as_follower.git
+  revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
+  branch: master
+  specs:
+    acts_as_follower (0.2.1)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,6 +169,9 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    goldiloader (3.1.1)
+      activerecord (>= 4.2, < 6.1)
+      activesupport (>= 4.2, < 6.1)
     guard (2.16.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -353,6 +364,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   acts_as_commentable
+  acts_as_follower!
   acts_as_votable
   asset_sync
   aws-sdk-s3
@@ -368,6 +380,7 @@ DEPENDENCIES
   faraday
   fog-aws
   friendly_id (~> 5.4.0)
+  goldiloader
   guard-livereload (~> 2.5)
   image_processing
   jbuilder (~> 2.7)

@@ -10,18 +10,18 @@
     </tr>
   </thead>
   <tbody class="bg-white divide-y divide-sand-200">
-    <% @user.friendships.each do |friendship| %>
+    <% @user.following_users.each do |user| %>
       <tr>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <%= link_to user_path(friendship.friend) do %>
+          <%= link_to user_path(user) do %>
             <div class="flex flex-row">
-              <img class="w-5 h-5 mr-2" src="<%=friendship.friend.avatar_url(:thumb)%>" alt="" />
-              <%= friendship.friend.name %>
+              <img class="w-5 h-5 mr-2" src="<%=user.avatar_url(:thumb)%>" alt="" />
+              <%= user.name %>
             </div>
           <% end %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <%= link_to "Sluta följ", friendship, method: :delete %>
+          <%= link_to "Sluta följ", unfollow_path(user_id: user.id), method: :post %>
         </td>
       </tr>
     <% end %>
@@ -39,7 +39,7 @@
     </tr>
   </thead>
   <tbody class="bg-white divide-y divide-sand-200">
-    <% @user.inverse_friends.each do |user| %>
+    <% @user.user_followers.each do |user| %>
       <tr>
         <td class="px-6 py-4 whitespace-no-wrap">
           <%= link_to user_path(user) do %>
@@ -50,8 +50,8 @@
           <% end %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <% if !@user.friendships.where(friend_id: user.id).first %>
-            <%= link_to "Följ", friendships_path(friend_id: @user.id), method: :post %>
+          <% if !@user.following?(user) %>
+            <%= link_to "Följ", follow_path(user_id: user.id), method: :post %>
           <% end %>
         </td>
       </tr>

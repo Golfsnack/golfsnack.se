@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_merit
   acts_as_voter
+  acts_as_followable
+  acts_as_follower
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
@@ -18,11 +20,6 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :comments
-
-  has_many :friendships
-  has_many :friends, through: :friendships
-  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   mount_uploader :avatar, AvatarUploader
 

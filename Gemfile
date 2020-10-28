@@ -48,6 +48,10 @@ gem 'active_link_to'
 
 gem 'acts_as_commentable'
 gem 'acts_as_votable'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+
+gem 'goldiloader'
+
 gem 'merit'
 
 group :development, :test do

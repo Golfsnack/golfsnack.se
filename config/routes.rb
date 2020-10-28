@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   resources :articles, only: [:index, :show], path: 'artiklar'
   resources :posts, path: 'bloggar'
   resources :comments, only: [:create, :destroy]
-  resources :friendships, only: [:create, :destroy]
 
+  post '/follow', to: 'follows#create', as: :follow
+  post "/unfollow", to: 'follows#destroy', as: :unfollow
   post '/like', to: 'likes#create', as: :like
   post '/unlike', to: 'likes#destroy', as: :unlike
 
