@@ -59,8 +59,5 @@
   </div>
 </div>
 <% if is_current_user? @user %>
-  <%= link_to "Nytt inlägg", new_post_path, class: "inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50"%>
   <%= render partial: 'home/blogs' %>
-<% else %>
-  <%= render_activities(@activities, layout: '/shared/activity') %>
 <% end %>

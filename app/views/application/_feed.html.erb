@@ -1,7 +1,6 @@
-<div class="py-6 bg-rough-100">
-  <% @global_activities.each do |activity| %>
-    <div class="flex flex-col pb-3 m-3 border-b activity border-golfsnack-200">
-      <%= render_activity activity %>
-    </div>
-  <% end %>
-</div>
+<h4 class="text-golfsnack-400">LIVE PÅ BANAN</h4>
+<% @global_activities.each do |activity| %>
+  <div class="p-4 border-b border-golfsnack-200 bg-golfsnack-100">
+    <%= render_activity activity %>
+  </div>
+<% end %>

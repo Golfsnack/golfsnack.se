@@ -10,6 +10,10 @@ body.private {
   background-size: cover;
   height: 100vh;
   width: 100vw;
+
+  label {
+    @apply text-xs font-bold tracking-wide uppercase;
+  }
 }
 
 @layer base {
@@ -85,4 +89,9 @@ body.private {
 a[target="_blank"]:after {
   content: "↗️";
   @apply text-white;
+}
+
+.cover_image {
+  background-repeat: no-repeat;
+  background-size: cover;
 }

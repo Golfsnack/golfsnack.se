@@ -1,0 +1,3 @@
+<h1>Artiklar</h1>
+<%= render partial: 'shared/comment', collection: @comments %>
+<%= render partial: 'shared/article', collection: Article.last(5) %>
