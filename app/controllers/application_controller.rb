@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
 
   before_action :authenticate_user!
-  before_action :set_global_activities
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   layout :determine_layout
@@ -17,13 +16,6 @@ class ApplicationController < ActionController::Base
 
     def determine_layout
       current_user ? "application" : "private"
-    end
-
-    def set_global_activities
-      if current_user
-        friends = current_user.all_following.unshift(@user)
-        @global_activities = PublicActivity::Activity.includes([:owner, :trackable]).order("created_at desc").where(owner_id: friends).all
-      end
     end
 end
 
