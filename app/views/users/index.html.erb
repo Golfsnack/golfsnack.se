@@ -1,0 +1,37 @@
+<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Golfare</h2>
+<table class="min-w-full divide-y divide-sand-200">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        #
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Namn
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Följ
+      </th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-sand-200">
+    <% @users.each do |user| %>
+      <tr>
+        <td class="px-6 py-4 whitespace-no-wrap">
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= link_to user_path(user) do %>
+            <div class="flex flex-row">
+              <img class="w-5 h-5 mr-2" src="<%=user.avatar_url(:thumb)%>" alt="" />
+              <%= user.name %>
+            </div>
+          <% end %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <% if !current_user.following?(user) && user != current_user%>
+            <%= link_to "Följ", follow_path(user_id: user.id), method: :post %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

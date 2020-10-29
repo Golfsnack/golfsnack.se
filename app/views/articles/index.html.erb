@@ -1,1 +1,19 @@
-<%= render partial: 'home/articles' %>
+<div class="pt-12">
+  <h2 class="mb-2 text-lg font-semibold text-golfsnack-900">
+    Artiklar
+  </h2>
+</div>
+<% @articles.each do |article|%>
+  <div class="flex w-full p-12 my-12 bg-white">
+    <%= image_tag article.image.variant(resize_to_fill: [300, 200], gravity: 'center') if article.image.attached? %>
+    <div class="ml-12">
+      <h2 class="mb-2 text-xl font-extrabold leading-snug text-golfsnack-800">
+        <%= link_to article.title, article, class: "text-golfsnack-900 hover:text-purple-700" %>
+      </h2>
+      <p class="mb-3 text-sm font-normal text-golfsnack-600">
+        <%= truncate(strip_tags(article.body.to_s), length: 500) %>
+      </p>
+      <%= link_to "Läs vidare", article, class: "btn btn-light btn-sm" %>
+    </div>
+  </div>
+<% end %>
