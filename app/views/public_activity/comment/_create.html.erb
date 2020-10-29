@@ -1,15 +1,12 @@
 <% if activity_resources_exist?(activity) %>
   <div id="activity-<%= activity.id %>" class="activity">
     <div class="activity-comment">
-      <div class="info">
+      <div class="flex">
         <%= render 'shared/avatar', user: activity.owner %>
-        <h4 class="name"><%= link_to activity.owner.name, profile_path(activity.owner) %></h4>
-        <span class="action">commented on a <%= link_to activity.trackable.commentable.class.to_s, activity.trackable.commentable %></span>
       </div>
-      <div class="content">
-        <h4><small><%= activity.trackable.comment.html_safe %></small></h4>
-      </div>
-      <%= render 'shared/created_at', activity: activity %>
+      <%= link_to activity.owner.first_name, profile_path(activity.owner) %>
+      <span class="text-golfsnack-400">kommenterade på ett inlägg: </span><%= link_to activity.trackable.commentable.title, activity.trackable.commentable %>
     </div>
+    <span class="text-xs text-golfsnack-400"><%= render 'shared/created_at', activity: activity %></span>
   </div>
 <% end %>
