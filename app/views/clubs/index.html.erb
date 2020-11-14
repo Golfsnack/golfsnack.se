@@ -1,5 +1,34 @@
+<%= paginate @clubs %>
+
 <div class="py-12">
   <h2 class="mb-2 text-lg font-semibold text-golfsnack-900">
     Golfklubbar
   </h2>
 </div>
+
+<table class="min-w-full divide-y divide-sand-200">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Namn
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        description
+      </th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-sand-200">
+    <% @clubs.each do |club| %>
+      <tr>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= link_to club.name, club %>
+        </td>
+        <td class="px-6 py-4">
+          <%= club.description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @clubs %>

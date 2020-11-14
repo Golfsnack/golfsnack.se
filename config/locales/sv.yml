@@ -131,6 +131,13 @@ sv:
         one: Ett fel förhindrade ifrågavarande %{model} från att sparas
         other: "%{count} fel förhindrade ifrågavarande %{model} från att sparas"
   helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: Visar %{entry_name} <b>%{first} - %{last}</b> av <b>%{total}</b> totalt
+      one_page:
+        display_entries:
+          one: Visar <b>%{count}<b> %{entry_name}
+          other: Visar <b>alla %{count}</b> %{entry_name}
     select:
       prompt: Välj
     submit:
@@ -203,6 +210,7 @@ sv:
         blank: får ej lämnas tomt
         wrong_length: har fel längd
         invalid: är felaktig
+        record_invalid: är felaktig
     attributes:
       user:
         confirmation_sent_at: Bekräftelse skickad
@@ -349,3 +357,10 @@ sv:
       not_saved:
         one: "1 fel hindrade denna %{resource} från att sparas:"
         other: "%{count} fel hindrade denna %{resource} från att sparas:"
+  views:
+    pagination:
+      first: "&laquo; Första"
+      last: Sista &raquo;
+      next: Nästa &rsaquo;
+      previous: "&lsaquo; Föregående"
+      truncate: "&hellip;"

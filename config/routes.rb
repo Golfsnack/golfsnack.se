@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   get '/profil/blogg/', to: 'profile#blog', as: :blog
 
   resources :articles, only: [:index, :show], path: 'artiklar'
-  resources :posts, except: [:index], path: 'bloggar' #TODO: Remove!
+  resources :posts, except: [:index], path: 'golfsnack' #TODO: Remove!
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
   resources :clubs, only: [:index, :show], path: 'golfklubbar'
+
+  resources :registration_steps
 
   post '/follow', to: 'follows#create', as: :follow
   post "/unfollow", to: 'follows#destroy', as: :unfollow

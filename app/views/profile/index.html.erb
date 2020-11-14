@@ -1,12 +1,24 @@
 <div class="p-6 my-6 bg-white">
   <div class="lg:flex lg:items-center lg:justify-between">
     <div class="flex-1 min-w-0">
-      <img alt="..." src="<%=@user.avatar_url(:thumb)%>" class="h-auto border-none shadow-xl" style="max-width: 100px"/>
-      <h2 class="text-2xl font-bold leading-7 text-sand-900 sm:text-3xl sm:leading-9 sm:truncate">
-        <%= @user.name %>
-      </h2>
+      <div class="flex">
+        <% @user.roles.each do |role|%>
+          <%= image_tag "roleicons/#{role.name}.png", width: "24px", height: "32px", class: "m-4", style: "height: 32px;" %>
+        <% end %>
+        <img alt="..." src="<%=@user.avatar_url(:thumb)%>" class="border-none shadow-xl" style="width: 40px; height: 40px;"/>
+        <h2 class="text-2xl font-bold leading-7 text-sand-900 sm:text-3xl sm:leading-9 sm:truncate">
+          <%= @user.name %>
+        </h2>
+      </div>
       <div class="flex flex-col mt-1 sm:mt-0 sm:flex-row sm:flex-wrap">
-        <div class="flex items-center mt-2 text-sm leading-5 text-golfsnack-500 sm:mr-6"><%= @user.points%> poäng</div>
+        <% unless @user.club_id.nil? %>
+          <div class="flex items-center mt-2 text-sm leading-5 text-golfsnack-500 sm:mr-6">
+            <%= link_to @user.club.name, @user.club %>
+          </div>
+        <% end %>
+        <div class="flex items-center mt-2 text-sm leading-5 text-golfsnack-500 sm:mr-6">
+          <%= @user.points%> poäng
+        </div>
         <% if @user.badges.empty? %>
           <div class="flex items-center mt-2 text-sm leading-5 text-sand-500 sm:mr-6">No badge yet.</div>
         <% else %>

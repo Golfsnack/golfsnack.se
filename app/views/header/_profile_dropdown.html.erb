@@ -13,7 +13,7 @@
               x-transition:leave="transition ease-in duration-75 transform"
               x-transition:leave-start="opacity-100 scale-100"
               x-transition:leave-end="opacity-0 scale-95"
-              class="absolute right-0 w-48 mt-2 origin-top-right shadow-lg">
+              class="absolute right-0 z-50 w-48 mt-2 origin-top-right shadow-lg">
     <div class="py-1 bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
       <%= active_link_to "Profil", profile_path, class: 'profilelink', role: "menuitem", active: :exact %>
       <%= active_link_to "Vänner", friends_path, class: 'profilelink', role: "menuitem" %>

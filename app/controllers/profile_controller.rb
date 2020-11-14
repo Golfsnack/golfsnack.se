@@ -14,11 +14,6 @@ class ProfileController < ApplicationController
     render :index
   end
 
-  # TODO: Not live here!
-  # def mentionable
-  #   render json: @user.following_users.as_json(only: [:id, :name]), root: false
-  # end
-
   private
 
   def set_user

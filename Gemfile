@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
-gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
-gem 'puma', '~> 4.1'
+gem 'rails', '~> 6.1.0.rc.1'
+gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'pg'
 
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.2.1'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise_lastseenable'
 
-gem 'mailgun-ruby', '~>1.1.6'
+gem 'mailgun-ruby'
 
 # For STRAPI... Should probably do something better here
 gem 'faraday'
@@ -54,6 +54,20 @@ gem 'goldiloader'
 
 gem 'merit'
 
+gem 'email_validator'
+
+# gem 'counter_culture', '~> 2.0'
+
+gem 'kaminari'
+
+# For import
+gem 'nokogiri'
+gem 'typhoeus'
+gem 'dalli'
+
+gem 'wicked'
+gem 'rolify'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -73,7 +87,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  gem "bullet"
+  # gem "bullet"
 end
 
 group :test do
