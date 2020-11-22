@@ -18,11 +18,25 @@
     <%=@post.title%>
   </h1>
   <%= @post.body %>
+  <div class="p-12">
+    <% if current_user.liked? @post %>
+      <%= form_tag unlike_path(likeable_type: @post.class.to_s, likeable_id: @post.id), method: :post do %>
+        <% button_tag class: 'btn btn-block liked' do %>
+          Sluta gilla
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_tag like_path(likeable_type: @post.class.to_s, likeable_id: @post.id) do %>
+        <% button_tag class: 'btn btn-block' do %>
+          Gilla
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
   <h4>Comments</h4>
   <hr>
-  <%= render 'comments/form', commentable: @post %>
-  <br>
   <div class="comments">
     <%= render(@comments) %>
   </div>
+  <%= render 'comments/form', commentable: @post %>
 </div>

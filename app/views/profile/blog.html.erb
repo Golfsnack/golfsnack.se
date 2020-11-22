@@ -3,7 +3,7 @@
     Dina blogginlägg
   </h2>
   <%= link_to "Nytt inlägg", new_post_path, class: "inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-golfsnack-700 transition duration-150 ease-in-out bg-white border border-golfsnack-300 hover:text-golfsnack-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-golfsnack-800 active:bg-golfsnack-50"%>
-  <% @user.posts.each do |post| %>
+  <% @posts.each do |post| %>
     <div class="block w-full p-12 my-12 bg-white">
       <h2 class="mb-2 text-xl font-extrabold leading-snug text-golfsnack-800">
         <%= link_to post.title, post_path(post), class: "text-golfsnack-900 hover:text-purple-700" %>

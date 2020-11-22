@@ -1,6 +1,43 @@
-<div class="py-12">
-  <h2 class="mb-2 text-lg font-semibold text-golfsnack-900">
-    <%= @club.name %>
-  </h2>
+<div class="pt-6 mt-6 border-t border-fairway-200">
+  <div class="grid grid-cols-12 gap-6">
+    <div class="col-span-8">
+      <div class="pb-6 mb-6 border-b border-golfsnack-200">
+        <h2 class="mb-4"><%= @club.name %></h2>
+        <p class="mb-4"><%= @club.description %></p>
+      </div>
+      <h3 class="mb-2">BANOR</h3>
+      <table class="min-w-full divide-y divide-sand-200">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">Bana</th>
+            <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">Hål</th>
+            <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">Par</th>
+            <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">Arkitekt</th>
+            <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @club.courses.each do |course|%>
+            <tr>
+              <td class="px-6 py-4 whitespace-no-wrap"><%= course.name %></td>
+              <td class="px-6 py-4 "><%= course.holes_count %></td>
+              <td class="px-6 py-4"><%= course.par %></td>
+              <td class="px-6 py-4 whitespace-no-wrap"><%= course.architect %></td>
+              <td class="px-6 py-4"><%= course.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-span-4">
+      <h4 class="mb-2 text-golfsnack-400"><%= @club.users.count %> MEDLEMMAR</h4>
+      <div class="w-full mb-6">
+        <%= render "shared/avatar_group", users: @club.users %>
+      </div>
+      <h4 class="text-golfsnack-400">INLÄGG</h4>
+      <div class="w-full">
+        <%= render partial: 'home/blogs' %>
+      </div>
+    </div>
+  </div>
 </div>
-

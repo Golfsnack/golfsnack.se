@@ -1,9 +1,9 @@
 <div class="grid grid-cols-12 gap-2 my-4" style="min-height: 400px">
   <% article = @latest_articles[0] %>
-  <div class="relative col-span-8 p-4 cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">
+  <div class="relative col-span-8 p-4 overflow-hidden cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">
     <div class="absolute bottom-0 pb-4">
       <%= link_to article.title, article_path(article), class: "block text-3xl font-bold text-white no-underline "%>
-      <p class="pr-64 mt-3 text-base leading-6 text-white"><%= truncate(strip_tags(article.body.to_s), length: 200) %></p>
+      <p class="pr-24 mt-3 text-base leading-6 text-white"><%= truncate(strip_tags(article.body.to_s), length: 200) %></p>
       <%= link_to "Läs artikeln » (#{article.read_minutes} min)", article_path(article), class: "leading-7 text-white no-underline" %>
     </div>
   </div>

@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :golf_id, presence: true, on: :update
   validates :golf_id, length: { is: 10 }, format: { with: /\A[a-z\d]{6}-[a-z\d]{3}/i }, on: :update
 
-  belongs_to :club, optional: true
+  belongs_to :club, optional: true, counter_cache: true
   has_many :posts
   has_many :comments
 

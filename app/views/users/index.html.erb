@@ -3,13 +3,15 @@
   <thead>
     <tr>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        #
+        Golfare
       </th>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        Namn
       </th>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        Följ
+        Hemmaklubb
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Badges
       </th>
     </tr>
   </thead>
@@ -17,12 +19,27 @@
     <% @users.each do |user| %>
       <tr>
         <td class="px-6 py-4 whitespace-no-wrap">
-        </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
           <%= link_to user_path(user) do %>
             <div class="flex flex-row">
               <img class="w-5 h-5 mr-2" src="<%=user.avatar_url(:thumb)%>" alt="" />
               <%= user.name %>
+            </div>
+          <% end %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <% user.roles.each do |role| %>
+            <%= image_tag "roleicons/#{role.name}.png", width: "18px", height: "24px", class: "mr-2 float-left", style: "height: 24px; width: 18px;" %>
+          <% end %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <% if user.club %>
+            <%= link_to user.club.name, user.club %>
+          <% end %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <% user.badges.each do |badge| %>
+            <div class="px-2 py-1 mt-2 mr-1 text-sm font-semibold leading-5 uppercase rounded text-sand-100 bg-rough-500 last:mr-0 sm:mr-6">
+              <%= badge.name %>
             </div>
           <% end %>
         </td>
@@ -35,3 +52,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @users %>

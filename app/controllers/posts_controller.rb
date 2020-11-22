@@ -6,10 +6,12 @@ class PostsController < ApplicationController
   end
 
   def new
+    @clubs = Club.order(:name).all
     @post = Post.new
   end
 
   def edit
+    @clubs = Club.order(:name).all
     @post = current_user.posts.find(params[:id])
   end
 
@@ -20,6 +22,7 @@ class PostsController < ApplicationController
       flash[:success] = "Sparade inlägget"
       redirect_to @post
     else
+      @clubs = Club.order(:name).all
       flash.now[:error] = "Något gick fel, kunde inte spara"
       render 'new'
     end
@@ -40,6 +43,7 @@ class PostsController < ApplicationController
       flash[:success] = "Sparade inlägget"
       redirect_to @post
     else
+      @clubs = Club.order(:name).all
       flash.now[:error] = "Något gick fel, kunde inte spara"
       render 'edit'
     end
@@ -48,6 +52,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :club_id)
   end
 end

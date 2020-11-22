@@ -1,11 +1,8 @@
-<%= paginate @clubs %>
-
 <div class="py-12">
   <h2 class="mb-2 text-lg font-semibold text-golfsnack-900">
-    Golfklubbar
+    Visar <%= Club.count %> Golfklubbar
   </h2>
 </div>
-
 <table class="min-w-full divide-y divide-sand-200">
   <thead>
     <tr>
@@ -13,7 +10,13 @@
         Namn
       </th>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        description
+        Beskrivning
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Medlemmar
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Inlägg
       </th>
     </tr>
   </thead>
@@ -26,9 +29,14 @@
         <td class="px-6 py-4">
           <%= club.description %>
         </td>
+        <td class="px-6 py-4">
+          <%= club.users.size %>
+        </td>
+        <td class="px-6 py-4">
+          <%= club.posts.size %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <%= paginate @clubs %>
