@@ -7,6 +7,11 @@
         Komplettera din profil
       </h2>
     </div>
+    <%= f.hidden_field :avatar_cache %>
+    <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar %>
+    </div>
     <div class="block mt-4">
       <%= f.label :first_name %><br />
       <%= f.text_field :first_name, autofocus: true, autocomplete: "First Name", class: "form-input" %>
