@@ -1,56 +1,72 @@
-<div class="flex pb-4 mb-4 border-b border-golfsnack-100">
-  <a href="#" class="flex items-center p-2 mr-2 font-semibold leading-none text-white no-underline rounded bg-golfsnack-600">ALLT</a>
-  <a href="#" class="flex items-center p-2 mr-2 font-semibold leading-none text-white no-underline rounded bg-fairway-300">SCOREKORT</a>
-  <a href="#" class="flex items-center p-2 mr-2 font-semibold leading-none text-white no-underline rounded bg-fairway-300">BANBETYG</a>
-  <a href="#" class="flex items-center p-2 mr-2 font-semibold leading-none text-white no-underline rounded bg-fairway-300">BILDER</a>
+<div class="flex pb-4 pr-4 mb-4 border-b border-golfsnack-100">
+  <h4 class="flex-1">INLÄGG</h4>
+  <a href="#" class="flex mr-4 text-sm">ALLT</a>
+  <a href="#" class="flex mr-4 text-sm">SCOREKORT</a>
+  <a href="#" class="flex mr-4 text-sm">BANBETYG</a>
+  <a href="#" class="flex text-sm">BILDER</a>
 </div>
-<% @posts.each do |post| %>
-  <div class="flex flex-col p-4 mb-6 bg-white shadow" x-data="{ commentsOpen: false}">
-    <div class="flex pb-4">
-      <%= render 'shared/avatar', user: post.user %>
-      <%= link_to post.user.name, post.user, class: "no-underline ml-4" %>
-      <span class="ml-4 text-sm font-medium text-golfsnack-400">
-        <%= render 'shared/created_at', activity: post %>
-      </span>
-      <% if post.club.present? %>
-        <span class="ml-4 text-sm font-medium text-golfsnack-400">
-          <%= link_to post.club.name, post.club %>
-        </span>
-      <% end %>
-    </div>
-    <p class="flex-shrink text-base font-medium text-golfsnack-900 width-auto">
-      <%= truncate(strip_tags(post.body.to_s), length: 200) %>
-      <%= link_to "Läs vidare", post_path(post), class: "btn btn-light btn-sm" %>
-    </p>
-    <div class="py-4">
-      <div class="inline-flex">
-        <% if current_user.liked? post %>
-          <%= form_tag unlike_path(likeable_type: post.class.to_s, likeable_id: post.id), method: :post do %>
-            <% button_tag class: 'inline-flex items-center flex-column text-golfsnack-800 hover:text-golfsnack-400' do %>
-              <%= render partial: 'shared/clap' %>
+<div class="stories">
+  <% @posts.each do |post| %>
+    <article class="story" x-data="{ commentsOpen: false}">
+      <div role="presentation">
+        <div class="story__top">
+          <div class="story__avatar">
+            <%= render 'shared/avatar', user: post.user %>
+          </div>
+          <div class="story__meta">
+            <div>
+              <%= link_to post.user.name, post.user %>
+              <% if post.club.present? %>
+                @ <%= link_to post.club.name, post.club %>
+              <% end %>
+            </div>
+            <%= render 'shared/created_at', activity: post %>
+          </div>
+        </div>
+        <div class="story__body">
+          <%= link_to post_path(post) do %>
+            <% if post.title %>
+              <h3><%= post.title%></h3>
             <% end %>
+            <div class="story__body__body">
+              <%= post.body %>
+            </div>
           <% end %>
-        <% else %>
-          <%= form_tag like_path(likeable_type: post.class.to_s, likeable_id: post.id) do %>
-            <% button_tag class: 'inline-flex items-center flex-column text-golfsnack-400 hover:text-golfsnack-900' do %>
-              <%= render partial: 'shared/noclap' %>
+        </div>
+        <div class="story__footer">
+          <div class="story__reaction">
+            <% if current_user.liked? post %>
+              <%= form_tag unlike_path(likeable_type: post.class.to_s, likeable_id: post.id), method: :post do %>
+                <% button_tag  do %>
+                  <%= render partial: 'shared/clap' %>
+                  <span><%= pluralize(post.get_likes.size, "golfklapp", locale: :sv) %></span>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= form_tag like_path(likeable_type: post.class.to_s, likeable_id: post.id) do %>
+                <% button_tag do %>
+                  <%= render partial: 'shared/noclap' %>
+                  <span><%= pluralize(post.get_likes.size, "golfklapp", locale: :sv) %></span>
+                <% end %>
+              <% end %>
             <% end %>
+          </div>
+          <div class="story__reaction">
+            <button @click="commentsOpen = !commentsOpen">
+              <svg viewBox="0 0 95 78" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.58 0c1.53.064 2.88 1.47 2.879 3v11.31c19.841.769 34.384 8.902 41.247 20.464 7.212 12.15 5.505 27.83-6.384 40.273-.987 1.088-2.82 1.274-4.005.405-1.186-.868-1.559-2.67-.814-3.936 4.986-9.075 2.985-18.092-3.13-24.214-5.775-5.78-15.377-8.782-26.914-5.53V53.99c-.01 1.167-.769 2.294-1.848 2.744-1.08.45-2.416.195-3.253-.62L.85 30.119c-1.146-1.124-1.131-3.205.032-4.312L27.389.812c.703-.579 1.49-.703 2.19-.812zm-3.13 9.935L7.297 27.994l19.153 18.84v-7.342c-.002-1.244.856-2.442 2.034-2.844 14.307-4.882 27.323-1.394 35.145 6.437 3.985 3.989 6.581 9.143 7.355 14.715 2.14-6.959 1.157-13.902-2.441-19.964-5.89-9.92-19.251-17.684-39.089-17.684-1.573 0-3.004-1.429-3.004-3V9.936z" fill-rule="nonzero" />
+              </svg>
+              <span><%= pluralize(post.comments.size, "kommentar", locale: :sv) %></span>
+            </button>
+          </div>
+        </div>
+        <div class="w-full comments" :class="{'block': commentsOpen, 'hidden': !commentsOpen }">
+          <% post.comments.each do |comment| %>
+            <%= render 'shared/comment', comment: comment %>
           <% end %>
-        <% end %>
-        <span class="ml-1 text-xs font-medium leading-loose text-golfsnack-400"><%= post.get_likes.size %></span>
+          <%= render 'comments/form', commentable: post %>
+        </div>
       </div>
-      <button class="inline-flex items-center px-1 pt-2 flex-column text-golfsnack-400 hover:text-golfsnack-900" @click="commentsOpen = !commentsOpen">
-        <svg class="w-5 h-5 ml-2 cursor-pointer fill-current text-golfsnack-400 hover:text-golfsnack-900" viewBox="0 0 95 78" xmlns="http://www.w3.org/2000/svg">
-          <path d="M29.58 0c1.53.064 2.88 1.47 2.879 3v11.31c19.841.769 34.384 8.902 41.247 20.464 7.212 12.15 5.505 27.83-6.384 40.273-.987 1.088-2.82 1.274-4.005.405-1.186-.868-1.559-2.67-.814-3.936 4.986-9.075 2.985-18.092-3.13-24.214-5.775-5.78-15.377-8.782-26.914-5.53V53.99c-.01 1.167-.769 2.294-1.848 2.744-1.08.45-2.416.195-3.253-.62L.85 30.119c-1.146-1.124-1.131-3.205.032-4.312L27.389.812c.703-.579 1.49-.703 2.19-.812zm-3.13 9.935L7.297 27.994l19.153 18.84v-7.342c-.002-1.244.856-2.442 2.034-2.844 14.307-4.882 27.323-1.394 35.145 6.437 3.985 3.989 6.581 9.143 7.355 14.715 2.14-6.959 1.157-13.902-2.441-19.964-5.89-9.92-19.251-17.684-39.089-17.684-1.573 0-3.004-1.429-3.004-3V9.936z" fill-rule="nonzero" />
-        </svg>
-        <span class="ml-1 text-xs font-medium leading-loose text-golfsnack-400"><%= post.comments.size %></span>
-      </button>
-    </div>
-    <div class="w-full comments" :class="{'block': commentsOpen, 'hidden': !commentsOpen }">
-      <% post.comments.each do |comment| %>
-        <%= render 'shared/comment', comment: comment %>
-      <% end %>
-      <%= render 'comments/form', commentable: post %>
-    </div>
-  </div>
-<% end %>
+    </article>
+  <% end %>
+</div>

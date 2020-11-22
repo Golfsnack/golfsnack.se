@@ -1,3 +1,13 @@
+<style type="text/css">
+  trix-toolbar [data-trix-button-group="file-tools"] {
+    display: none;
+  }
+</style>
+<script type="text/javascript">
+  document.addEventListener("trix-file-accept", event => {
+    event.preventDefault()
+  });
+</script>
 <div class="p-12 bg-white rounded">
   <%= form_for @post do |f| %>
     <div class="w-full">
