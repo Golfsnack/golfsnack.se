@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
-gem 'rails', '~> 6.1.0.rc.1'
+gem 'rails', '~> 6.1.0.rc.2'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'pg'
@@ -87,7 +87,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  gem "bullet", github: "flyerhzm/bullet"
+  # gem "bullet"
 end
 
 group :test do

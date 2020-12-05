@@ -7,7 +7,7 @@
 </div>
 <div class="stories">
   <% @posts.each do |post| %>
-    <article class="story" x-data="{ commentsOpen: false}">
+    <article id="post_<%=post.id%>" class="story" x-data="{ commentsOpen: false}">
       <div role="presentation">
         <div class="story__top">
           <div class="story__avatar">
@@ -35,21 +35,7 @@
         </div>
         <div class="story__footer">
           <div class="story__reaction">
-            <% if current_user.liked? post %>
-              <%= form_tag unlike_path(likeable_type: post.class.to_s, likeable_id: post.id), method: :post do %>
-                <% button_tag  do %>
-                  <%= render partial: 'shared/clap' %>
-                  <span><%= pluralize(post.get_likes.size, "golfklapp", locale: :sv) %></span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= form_tag like_path(likeable_type: post.class.to_s, likeable_id: post.id) do %>
-                <% button_tag do %>
-                  <%= render partial: 'shared/noclap' %>
-                  <span><%= pluralize(post.get_likes.size, "golfklapp", locale: :sv) %></span>
-                <% end %>
-              <% end %>
-            <% end %>
+            <%= render 'shared/reactions', item: post %>
           </div>
           <div class="story__reaction">
             <button @click="commentsOpen = !commentsOpen">
