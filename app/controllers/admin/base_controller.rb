@@ -1,9 +1,6 @@
 module Admin
   class BaseController < ApplicationController
-    skip_before_action :authenticate_user!
-    layout "admin"
-
-    http_basic_authenticate_with name: "golfsnack", password: "secret"
+    before_action :restrict_user_by_role
 
     def index
       @invitations = Invitation.includes(:user).all
@@ -33,6 +30,14 @@ module Admin
 
       @invitations = Invitation.all
       render :index
+    end
+
+    protected
+
+    def restrict_user_by_role
+      unless current_user or !current_user.has_role?(:admin)
+        redirect_to root_path
+      end
     end
 
     private
