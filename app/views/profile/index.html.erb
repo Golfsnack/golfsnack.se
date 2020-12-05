@@ -2,13 +2,13 @@
   <div class="lg:flex lg:items-center lg:justify-between">
     <div class="flex-1 min-w-0">
       <div class="flex">
-        <% @user.roles.each do |role|%>
-          <%= image_tag "roleicons/#{role.name}.png", width: "24px", height: "32px", class: "m-4", style: "height: 32px;" %>
-        <% end %>
         <img alt="..." src="<%=@user.avatar_url(:thumb)%>" class="border-none shadow-xl" style="width: 40px; height: 40px;"/>
-        <h2 class="text-2xl font-bold leading-7 text-sand-900 sm:text-3xl sm:leading-9 sm:truncate">
+        <h2 class="ml-2 text-2xl font-bold leading-7 text-sand-900 sm:text-3xl sm:leading-9 sm:truncate">
           <%= @user.name %>
         </h2>
+        <% if @user.highest_role %>
+          <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "24px", height: "32px", class: "ml-4", style: "height: 32px;", title: @user.highest_role.name %>
+        <% end %>
       </div>
       <div class="flex flex-col mt-1 sm:mt-0 sm:flex-row sm:flex-wrap">
         <% unless @user.club_id.nil? %>
@@ -70,4 +70,4 @@
     </div>
   </div>
 </div>
-<%= render 'home/blogs' %>
+<%= render 'home/posts' %>

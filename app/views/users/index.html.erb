@@ -6,8 +6,6 @@
         Golfare
       </th>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-      </th>
-      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
         Hemmaklubb
       </th>
       <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
@@ -22,13 +20,11 @@
           <%= link_to user_path(user) do %>
             <div class="flex flex-row">
               <img class="w-5 h-5 mr-2" src="<%=user.avatar_url(:thumb)%>" alt="" />
+              <% if user.highest_role %>
+                <%= image_tag "roleicons/#{user.highest_role.name}.png", width: "18px", height: "24px", class: "mr-2 float-left", style: "height: 24px; width: 18px;", title: user.highest_role.name %>
+              <% end %>
               <%= user.name %>
             </div>
-          <% end %>
-        </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <% user.roles.each do |role| %>
-            <%= image_tag "roleicons/#{role.name}.png", width: "18px", height: "24px", class: "mr-2 float-left", style: "height: 24px; width: 18px;" %>
           <% end %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">

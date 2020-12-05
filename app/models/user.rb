@@ -42,4 +42,10 @@ class User < ApplicationRecord
   def completed_profile?
     self.first_name.present? && self.last_name.present? && self.golf_id.present?
   end
+
+  def highest_role
+    return nil unless roles
+    order = ["admin", "moderator", "premium", "ambassador", "verified"]
+    return roles.sort_by { |role| order.index role.name }[0]
+  end
 end
