@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golfsnack.se - Av golfare för golfare</title>
     <link rel="icon" href="/favicon.ico" />
     <%= csrf_meta_tags %>
@@ -11,17 +11,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class="private">
-    <div class="h-screen bg-opacity-75 bg-golfsnack-500">
-      <div class="pt-12">
-        <div class="flex flex-col justify-center w-full text-center">
-          <%= image_tag 'Golfsnack_Centrerad_VIT.png', alt: "Golfsnack", class: "self-center w-40 h-auto" %>
-          <h2 class="mt-2 text-xs text-white">AV GOLFARE. FÖR GOLFARE</h2>
-        </div>
-        <%= render partial: 'flashes'%>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <%= yield %>
-        <%= render "devise/shared/links" %>
+    <div class="pt-12">
+      <div class="flex flex-col text-center">
+        <%= image_tag 'Golfsnack_Centrerad_Svart.png', alt: "Golfsnack", class: "self-center w-40 h-auto" %>
+        <h2 class="mt-2 text-xs text-rough-700">AV GOLFARE. FÖR GOLFARE</h2>
       </div>
-    </div>
-  </body>
-</html>
+      <div class="flex flex-col items-center justify-center px-2 py-12 sm:px-6 lg:px-8">
+        <div class="w-full max-w-lg bg-white rounded shadow-xl bg-opacity-95">
+          <div class="flex flex-col">
+            <div class="p-8 private-forms">
+              <%= render partial: 'flashes'%>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <%= yield %>
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
