@@ -211,6 +211,7 @@ sv:
         wrong_length: har fel längd
         invalid: är felaktig
         record_invalid: är felaktig
+        too_short: är för kort
     attributes:
       user:
         confirmation_sent_at: Bekräftelse skickad

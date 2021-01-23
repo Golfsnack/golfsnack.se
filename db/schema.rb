@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_214230) do
+ActiveRecord::Schema.define(version: 2021_01_23_105203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,28 @@ ActiveRecord::Schema.define(version: 2021_01_22_214230) do
     t.bigint "sash_id"
     t.string "category", default: "default"
     t.index ["sash_id"], name: "index_merit_scores_on_sash_id"
+  end
+
+  create_table "poll_answers", force: :cascade do |t|
+    t.integer "poll_id"
+    t.integer "poll_question_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "poll_questions", force: :cascade do |t|
+    t.integer "poll_id"
+    t.string "choice"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "name"
+    t.boolean "archived", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|

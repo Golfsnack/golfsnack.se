@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     post '/', to: 'base#create', as: :create_invitation
 
     resources :articles
+    resources :polls do
+      resources :poll_answers
+    end
   end
 
 
@@ -29,6 +32,8 @@ Rails.application.routes.draw do
   post "/unfollow", to: 'follows#destroy', as: :unfollow
   post '/like', to: 'likes#create', as: :like
   post '/unlike', to: 'likes#destroy', as: :unlike
+
+  post '/vote', to: 'polls#vote', as: :vote
 
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
 
