@@ -3,7 +3,11 @@
     <button
       @click="profileMenuOpen = !profileMenuOpen"
       class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent focus:outline-none focus:border-white" id="user-menu" aria-label="User menu" aria-haspopup="true">
-      <img class="object-cover w-8 h-8 border-2 rounded-full border-wetsand-300" src="<%=current_user.avatar_url(:thumb) %>" alt="">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 40], gravity: 'center'), class: "object-cover w-8 h-8 border-2 border-wetsand-300 small-avatar shadow"  %>
+      <% else %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar object-cover w-8 h-8 border-2 border-wetsand-300 shadow' %>
+      <% end %>
     </button>
   </div>
   <div x-show="profileMenuOpen"

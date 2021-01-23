@@ -29,11 +29,6 @@ gem 'devise_lastseenable'
 
 gem 'mailgun-ruby'
 
-# For STRAPI... Should probably do something better here
-gem 'faraday'
-gem 'kramdown'
-
-gem 'carrierwave', '~> 2.0'
 gem 'fog-aws'
 gem 'asset_sync'
 gem 'aws-sdk-s3'

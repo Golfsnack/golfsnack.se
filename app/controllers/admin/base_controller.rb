@@ -35,7 +35,7 @@ module Admin
     protected
 
     def restrict_user_by_role
-      unless current_user or !current_user.has_role?(:admin)
+      if !current_user or !current_user.has_role?(:admin)
         redirect_to root_path
       end
     end

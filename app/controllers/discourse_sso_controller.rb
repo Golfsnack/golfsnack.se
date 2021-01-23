@@ -11,7 +11,7 @@ class DiscourseSsoController < ApplicationController
     sso.username = current_user.email # from devise
     sso.external_id = current_user.id # from devise
     if current_user.avatar?
-      sso.avatar_url = current_user.avatar_url(:thumb)
+      sso.avatar_url = current_user.avatar.variant(resize_to_fill: [60, 45], gravity: 'center')
     end
     sso.sso_secret = secret
 

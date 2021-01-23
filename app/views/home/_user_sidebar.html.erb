@@ -1,7 +1,11 @@
 <div class="p-4 bg-white border rounded border-wetsand-300">
   <div class="flex items-center justify-center">
     <%= link_to user do %>
-      <%= image_tag user.avatar.url, class: 'avatar' %>
+      <% if user.avatar.attached? %>
+        <%= image_tag user.avatar.variant(resize_to_fill: [120, 100], gravity: 'center'), class: 'avatar' %>
+      <% else %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: 'avatar' %>
+      <% end %>
     <% end %>
   </div>
   <!--<% if user.highest_role %>
@@ -35,21 +39,4 @@
       </div>
     </div>
   </div>
-  <% if is_current_user? @user %>
-    <a href="/users/edit" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out bg-white border text-sand-700 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
-      <!-- Heroicon name: pencil -->
-      <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-      </svg>
-      Redigera
-    </a>
-  <% else %>
-    <button type="button" class="inline-flex items-center w-full px-4 py-2 text-sm font-medium leading-5 text-center transition duration-150 ease-in-out bg-white border hover:bg-yellow-50 text-sand-700 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
-      <!-- Heroicon name: link -->
-      <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-      </svg>
-      <%= render partial: 'follows/form' %>
-    </button>
-  <% end %>
 </div>

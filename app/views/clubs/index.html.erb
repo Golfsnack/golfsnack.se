@@ -46,7 +46,11 @@
   <div class="flex flex-wrap justify-around gap-8 mb-12">
     <% @clubs[0..4].each do |club| %>
       <div class="relative flex flex-col xs:w-1/2 sm:w-1/4 md:w-1/6">
-        <%= image_tag current_user.avatar.url, class: 'mini-avatar absolute -top-2 -left-2' %>
+        <% if user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize_to_fill: [30, 20], gravity: 'center'), class: 'mini-avatar absolute -top-2 -left-2' %>
+        <% else %>
+          <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar' %>
+        <% end %>
         <img class="object-cover w-full " src="https://images.unsplash.com/photo-1543943475-e50600c4e81c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Z29sZiUyMGNvdXJzZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=60" alt="">
         <div class="flex justify-between">
           <h4 class="mt-2 text-xs uppercase text-golfsnack-400"><%= club.name%></h4>

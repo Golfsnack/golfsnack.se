@@ -26,7 +26,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
 
-  mount_uploader :avatar, AvatarUploader
+  has_one_attached :cover
+  has_one_attached :avatar
 
   def invite_code_valid
     invite = Invitation.where(email: self.email, code: self.invite_code).first

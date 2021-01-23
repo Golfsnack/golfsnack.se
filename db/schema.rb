@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_105203) do
+ActiveRecord::Schema.define(version: 2021_01_23_195646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -285,7 +285,6 @@ ActiveRecord::Schema.define(version: 2021_01_23_105203) do
     t.string "first_name"
     t.string "last_name"
     t.string "golf_id"
-    t.string "avatar"
     t.integer "sash_id"
     t.integer "level", default: 0
     t.integer "club_id"

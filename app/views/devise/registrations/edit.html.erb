@@ -6,17 +6,15 @@
   </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <%= f.hidden_field :avatar_cache %>
     <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-      <%= image_tag(resource.avatar_url(:thumb)) if resource.avatar? %>
+      <%= image_tag resource.avatar.variant(resize_to_fill: [50, 40], gravity: 'center') if resource.avatar.attached? %>
       <%= f.label :avatar %><br />
       <%= f.file_field :avatar %>
-      <% if resource.avatar? %>
-        <label>
-          <%= f.check_box :remove_avatar %>
-          Ta bort profilbild
-        </label>
-      <% end %>
+    </div>
+    <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
+      <%= image_tag @user.cover.variant(resize_to_fill: [320, 105], gravity: 'center') if resource.cover.attached? %>
+      <%= f.label :cover %><br />
+      <%= f.file_field :cover %>
     </div>
     <div class="block w-full px-3 py-2 mt-8 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
       <div class="field">
