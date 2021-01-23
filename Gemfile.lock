@@ -338,6 +338,10 @@ GEM
       rubyzip (>= 1.2.2)
     semantic_range (2.3.1)
     shellany (0.0.1)
+    skylight (4.3.0)
+      skylight-core (= 4.3.0)
+    skylight-core (4.3.0)
+      activesupport (>= 4.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -425,6 +429,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   searchkick
   selenium-webdriver
+  skylight
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
