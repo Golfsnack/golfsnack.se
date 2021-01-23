@@ -1,14 +1,17 @@
 <%= render partial: 'articles' %>
-<div class="pt-6 mt-6 border-t border-fairway-200">
+<div class="pt-6 mt-6 border-t border-wetsand-300">
   <div class="grid grid-cols-12 gap-6">
-    <div class="col-span-8">
+    <div class="col-span-4 xl:col-span-3">
+      <div class="sticky top-10">
+        <%= render partial: 'user_sidebar', locals: { user: @user } %>
+      </div>
+      <%= render partial: 'leaderboard', locals: { users: @leaderboard_users } %>
+    </div>
+    <div class="col-span-8 xl:col-span-6">
       <%= render partial: 'posts' %>
     </div>
-    <div class="col-span-4">
-      <h4 class="text-golfsnack-400">KÖP & SÄLJ</h4>
-      <div class="w-full h-64 mb-6 opacity-25 bg-golfsnack-200"></div>
-      <h4 class="text-golfsnack-400">SENASTE SPELADE BANA</h4>
-      <div class="w-full h-64 mb-6 opacity-25 bg-golfsnack-200"></div>
+    <div class="hidden xl:block xl:col-span-3">
+      <%= render partial: 'polls' %>
     </div>
   </div>
 </div>

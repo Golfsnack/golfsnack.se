@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @latest_articles = Article.limit(3).order("created_at desc")
+    @home = "home"
+    @article = Article.order("created_at desc").first
     @posts = Post.includes(:user).limit(10).order("created_at desc").includes([:rich_text_body])
+    @user = current_user
+    @leaderboard_users = User.find Merit::Score.top_scored.map{ |s| s["user_id"] }
   end
 end

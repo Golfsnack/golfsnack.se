@@ -1,21 +1,20 @@
-<div class="grid grid-cols-12 gap-2 my-4" style="min-height: 400px">
-  <% article = @latest_articles[0] %>
-  <div class="relative col-span-8 p-4 overflow-hidden cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">
-    <div class="absolute bottom-0 pb-4">
-      <%= link_to article.title, article_path(article), class: "block text-3xl font-bold text-white no-underline "%>
-      <p class="pr-24 mt-3 text-base leading-6 text-white"><%= truncate(strip_tags(article.body.to_s), length: 200) %></p>
-      <%= link_to "Läs artikeln » (#{article.read_minutes} min)", article_path(article), class: "leading-7 text-white no-underline" %>
-    </div>
-  </div>
-  <div class="col-span-4">
-    <div class="grid h-full grid-rows-2 gap-2 auto-rows-max">
-      <% @latest_articles[1..3].each do |article| %>
-        <a href="<%= url_for article %>" class="relative p-4 cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(<%= url_for article.image %>)">
-          <div class="absolute bottom-0 block pb-4 text-2xl font-bold text-white no-underline">
-            <%= article.title %>
-          </div>
+<section class="w-full my-12 carousel" aria-label="Gallery">
+  <div class="grid my-12 md:grid-cols-3">
+    <a href="<%= url_for @article %>" class="no-underline hover:underline hover:opacity-90">
+      <%= image_tag @article.image.variant(resize_to_fill: [600, 300], gravity: 'center'), class: "object-cover w-full" %>
+    </a>
+    <div class="w-full px-8 md:col-span-2">
+      <div class="text-columns">
+        <a href="<%= url_for @article %>" class="block mb-4 no-underline hover:underline">
+          <h2 class="mb-0 text-2xl font-extrabold leading-snug uppercase text-golfsnack-800">
+            <%= @article.title%>
+          </h2>
+          <h3 class="mb-0 text-lg font-bold uppercase text-golfsnack-400">
+            <%= @article.subitle %>
+          </h3>
         </a>
-      <% end %>
+        <%= @article.preamble %>
+      </div>
     </div>
   </div>
-</div>
+</section>

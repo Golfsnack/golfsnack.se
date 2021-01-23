@@ -11,9 +11,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: 'og' %>
   </head>
-  <body class="bg-fairway-100">
+  <body class="bg-fairway-100 <%= @home%>">
     <%= render partial: 'header' %>
-    <div class="container px-12 mx-auto">
+    <div class="px-4 mx-auto xl:px-12">
       <%= render partial: 'flashes'%>
       <%= yield %>
     </div>

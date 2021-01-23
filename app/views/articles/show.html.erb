@@ -1,10 +1,12 @@
 <div class="my-6">
   <%= link_to "↤ Tillbaka till artiklar", articles_path %>
 </div>
-<div class="p-6 my-6 bg-white">
-  <h1 class="my-6 text-2xl font-extrabold leading-snug text-golfsnack-800">
+<div class="p-6 my-6 bg-white text-columns">
+  <%= image_tag @article.image.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full mb-6" %>
+  <h1 class="mb-2 text-2xl font-extrabold leading-snug text-golfsnack-800">
     <%=@article.title%>
   </h1>
-  <%= image_tag @article.image.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full mb-6" %>
+  <h2 class="mb-2 text-lg font-extrabold leading-snug text-golfsnack-400"><%=@article.subitle%></h2>
+  <%= @article.preamble %>
   <%= @article.body %>
 </div>

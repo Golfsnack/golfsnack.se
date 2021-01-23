@@ -6,7 +6,7 @@
   }
 
   .story {
-    @apply flex p-4 rounded shadow bg-white mb-4;
+    @apply flex p-4 rounded shadow bg-wetsand-200 mb-4;
   }
 
   .story__top {
@@ -18,9 +18,9 @@
   }
 
   .story__meta {
-    @apply flex flex-col text-xs;
+    @apply flex flex-col text-sm text-wetsand-500;
     a {
-      @apply text-golfsnack-600 font-bold;
+      @apply text-wetsand-800 font-bold;
     }
   }
 
@@ -28,7 +28,7 @@
     @apply pl-12;
 
     .story__body__body {
-      @apply text-sm py-2;
+      @apply text-sm py-2 border-t border-b border-wetsand-600;
 
       h3 {
         @apply leading-none;

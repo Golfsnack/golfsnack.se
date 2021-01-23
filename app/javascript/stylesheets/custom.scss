@@ -1,3 +1,8 @@
+
+/*! purgecss start ignore */
+@import "colors";
+/*! purgecss end ignore */
+
 body.private {
   background: url("../../assets/images/bg.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -75,13 +80,13 @@ body.private {
 
 @layer components {
   .navlink {
-    @apply px-4 py-2 ml-2 text-sm font-medium transition duration-150 ease-in-out text-sand-100 no-underline;
+    @apply px-4 py-2 ml-2 text-sm font-bold transition duration-150 ease-in-out text-sand-200 no-underline;
 
     &:hover,
     &:focus,
     &:active,
     &.active {
-      @apply text-white bg-sand-500 outline-none;
+      @apply text-white underline outline-none;
     }
   }
 
@@ -90,7 +95,7 @@ body.private {
 
     &:hover,
     &:focus {
-      @apply bg-sand-100 text-golfsnack-800 outline-none;
+      @apply  text-golfsnack-800 outline-none underline;
     }
 
     &.active,
@@ -106,7 +111,113 @@ body.private {
     &:focus,
     &:active,
     &.active {
-      @apply text-white bg-sand-500 outline-none;
+      @apply text-white outline-none underline;
+    }
+  }
+
+  #header {
+    background: url("../../assets/images/bg2.jpg") no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+  }
+
+  .subtitle {
+    display: none;
+  }
+
+  .home #header {
+    height: 520px;
+    .subtitle {
+      display: flex;
+    }
+  }
+
+  .text-columns {
+    column-count: 2;
+    column-gap: 1rem;
+
+    a {
+      column-span: all;
+    }
+  }
+
+  .carousel > div:not(:first-child) {
+    display: none;
+  }
+
+  .avatar {
+    height: 120px;
+    width: 100px;
+    clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+    border-width: 2px;
+    border-color: #ccc;
+    margin-top: -30px;
+    object-fit: cover;
+  }
+
+  .small-avatar {
+    height: 50px;
+    width: 40px;
+    clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+    object-fit: cover;
+  }
+
+
+  .mini-avatar {
+    height: 30px;
+    width: 20px;
+    clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+    object-fit: cover;
+  }
+
+
+  .arrow-title {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+    @apply bg-yellow-400 py-2 px-8 pr-12 text-white;
+  }
+
+  .poll {
+    li {
+      @apply  border-b py-4 border-wetsand-300 w-full inline-block;
+      @apply text-sm font-normal text-golfsnack-500;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .reportage {
+    @apply text-white bg-rough-500;
+    &:hover {
+      @apply bg-rough-800;
+    }
+  }
+  .utrustning {
+    @apply text-white bg-red-600;
+    &:hover {
+      @apply bg-red-800;
+    }
+  }
+  .nyheter {
+    @apply text-white bg-blue-600;
+    &:hover {
+      @apply bg-blue-800;
+    }
+  }
+  .banbesok {
+    @apply text-white bg-yellow-600;
+    &:hover {
+      @apply bg-yellow-800;
+    }
+  }
+
+  // Definition Lists
+  dl {
+    @apply my-4 list-inside text-sm;
+    dt {
+      @apply font-semibold float-left pr-2;
     }
   }
 }

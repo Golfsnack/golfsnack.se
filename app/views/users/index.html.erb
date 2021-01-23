@@ -1,4 +1,4 @@
-<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Golfare</h2>
+<h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Sökresultat</h2>
 <table class="min-w-full divide-y divide-sand-200">
   <thead>
     <tr>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody class="bg-white divide-y divide-sand-200">
-    <% @users.each do |user| %>
+    <% @users.with_highlights.each do |user, highlights| %>
       <tr>
         <td class="px-6 py-4 whitespace-no-wrap">
           <%= link_to user_path(user) do %>

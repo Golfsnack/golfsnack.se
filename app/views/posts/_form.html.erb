@@ -21,6 +21,10 @@
           <%= f.collection_select :club_id, @clubs, :id, :name, {include_blank: true}, { class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" } %>
         </div>
       </div>
+      <div class="flex flex-col flex-1 py-4">
+        <label class="font-bold">Ingress</label>
+        <%= f.text_area :preamble, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
+      </div>
       <div class="my-12 control">
         <label class="my-4 font-bold">Inlägg</label>
         <%= f.rich_text_area :body, class: "h-64 block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>

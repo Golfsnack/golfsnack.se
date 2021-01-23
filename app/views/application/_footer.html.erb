@@ -5,6 +5,9 @@
         <%= image_tag 'Golfsnack_Outline_Centrerad_Svart.png', alt: "Golfsnack", class: "inline-block w-24 h-auto" %>
       </a>
       <p class="mt-2 text-sm text-golfsnack-500">För golfare, Av golfare!</p>
+      <form action="<%= users_path%>" class="mt-12">
+        <input type="search" name="query" placeholder="Sök golfare..."  class="p-2 mr-2" />
+      </form>
     </div>
     <div class="col-span-8 pt-12 text-right">
       <span class="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start">

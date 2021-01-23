@@ -1,23 +1,24 @@
-<div class="pt-12">
-  <h2 class="mb-2 text-lg font-semibold text-golfsnack-900">
-    Artiklar
-  </h2>
-</div>
 <% if @latest_articles %>
-  <div class="articles_grid">
+  <div class="mt-6 articles_grid">
     <% @latest_articles.each_with_index do |article, index| %>
-      <div class="article_item article<%= index %> relative overflow-hidden p-4 cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">
+      <div class="article_item article<%= index+1 %> relative overflow-hidden p-4 cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">
         <div class="absolute bottom-0 pb-4">
           <%= link_to article.title, article_path(article), class: "block text-#{index == 0 ? '3xl' : '2xl'} font-bold text-white no-underline "%>
           <% if index == 0 %>
-            <p class="pr-24 mt-3 text-base leading-6 text-white"><%= truncate(strip_tags(article.body.to_s), length: 200) %></p>
+            <p class="w-full mt-3 text-base leading-6 text-white sm:w-1/2 md:w-1/3"><%= truncate(strip_tags(article.body.to_s), length: 200) %></p>
+            <%= link_to "Läs artikeln » (#{article.read_minutes} min)", article_path(article), class: "leading-7 text-white no-underline" %>
           <% end %>
-          <%= link_to "Läs artikeln » (#{article.read_minutes} min)", article_path(article), class: "leading-7 text-white no-underline" %>
         </div>
       </div>
     <% end %>
   </div>
 <% end %>
+<nav class="flex items-center justify-center w-full gap-4 my-8">
+  <a href="#" class="block px-8 py-4 no-underline reportage hover:underline">REPORTAGE</a>
+  <a href="#" class="block px-8 py-4 no-underline utrustning hover:underline">UTRUSTNING</a>
+  <a href="#" class="block px-8 py-4 no-underline nyheter hover:underline">NYHETER</a>
+  <a href="#" class="block px-8 py-4 no-underline banbesok hover:underline">BANBESÖK</a>
+</nav>
 <% @articles.each do |article|%>
   <div class="flex w-full p-12 my-12 bg-white">
     <%= image_tag article.image.variant(resize_to_fill: [300, 200], gravity: 'center') if article.image.attached? %>
@@ -33,3 +34,8 @@
   </div>
 <% end %>
 <%= paginate @articles %>
+<style>
+  #header {
+    background-image: url("<%= url_for @latest_articles[0].image %>");
+  }
+</style>

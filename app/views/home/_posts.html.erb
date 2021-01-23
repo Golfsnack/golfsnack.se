@@ -1,11 +1,7 @@
-<div class="flex pb-4 pr-4 mb-4 border-b border-golfsnack-100">
-  <h4 class="flex-1">INLÄGG</h4>
-  <a href="#" class="flex mr-4 text-sm">ALLT</a>
-  <a href="#" class="flex mr-4 text-sm">SCOREKORT</a>
-  <a href="#" class="flex mr-4 text-sm">BANBETYG</a>
-  <a href="#" class="flex text-sm">BILDER</a>
-</div>
 <div class="stories">
+  <div class="w-full py-2 mb-8 text-center border-t border-b border-wetsand-300 text-golfsnack-400">
+    <h2>INLÄGG</h2>
+  </div>
   <% @posts.each do |post| %>
     <article id="post_<%=post.id%>" class="story" x-data="{ commentsOpen: false}">
       <div role="presentation">
@@ -25,11 +21,8 @@
         </div>
         <div class="story__body">
           <%= link_to post_path(post) do %>
-            <% if post.title %>
-              <h3><%= post.title%></h3>
-            <% end %>
             <div class="story__body__body">
-              <%= post.body %>
+              <%= post.preamble %>
             </div>
           <% end %>
         </div>
