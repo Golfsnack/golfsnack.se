@@ -66,6 +66,7 @@
       <%= render partial: '/home/posts' %>
     </div>
     <div class="sm:col-span-2">
+      <p class="pb-12"><%= @user.info%></p>
       <h4 class="text-golfsnack-300">BADGES</h4>
       <% @user.badges.each do |badge| %>
         <div class="flex px-2 py-1 mt-2 mr-1 text-sm font-semibold leading-5 uppercase rounded text-sand-100 bg-rough-500 last:mr-0 sm:mr-6">

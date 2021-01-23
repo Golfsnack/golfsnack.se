@@ -19,6 +19,10 @@
           <%= image_tag @user.cover.variant(resize_to_fill: [320, 105], gravity: 'center') if resource.cover.attached? %>
           <%= f.file_field :cover %>
         </div>
+        <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
+          <%= f.label :info %><br />
+          <%= f.text_area :info, rows: 5, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
+        </div>
       </div>
       <div>
         <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">

@@ -13,15 +13,20 @@ module Merit
     include Merit::PointRulesMethods
 
     def initialize
-      score 10, to: :post_creator, on: 'comments#create', category: 'comment_activity' do |comment|
+      score 1, to: :post_creator, on: 'comments#create', category: 'comment_activity' do |comment|
         comment.comment.present?
       end
 
+      score 1, on: [ 'sessions#create', 'likes#create']
+
       # score 15, :on => 'reviews#create', :to => [:reviewer, :reviewed]
 
-      score 20, :on => [
-        'comments#create'
+      score 3, on: [
+        'comments#create',
+        'polls#vote'
       ]
+
+      score 10, on: ['posts#create']
 
       # score -10, :on => 'comments#destroy'
     end
