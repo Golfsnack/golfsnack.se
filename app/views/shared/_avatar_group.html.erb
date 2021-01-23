@@ -2,9 +2,9 @@
   <% users.each_with_index do |user, index| %>
     <%= link_to user_path(user) do %>
       <% if user.avatar.attached? %>
-        <%= image_tag @user.avatar.variant(resize_to_fill: [30, 20], gravity: 'center'), class: "inline-block w-8 h-8 #{index > 0 ? "-ml-2" : ""} text-white rounded-full shadow-solid mini-avatar" %>
+        <%= image_tag user.avatar.variant(resize_to_fill: [30, 20], gravity: 'center'), class: "inline-block w-8 h-8 #{index > 0 ? "-ml-2" : ""} text-white rounded-full shadow-solid mini-avatar" %>
       <% else %>
-        <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar' %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: 'inline-block w-8 h-8 #{index > 0 ? "-ml-2" : ""} text-white rounded-full shadow-solid mini-avatar' %>
       <% end %>
     <% end %>
   <% end %>
