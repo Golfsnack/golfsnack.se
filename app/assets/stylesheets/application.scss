@@ -1,0 +1,162 @@
+@import "colors";
+@import "typography";
+@import "header";
+@import "footer";
+@import "articles";
+@import "stories";
+
+body {
+  background: var(--fairway-100);
+}
+
+.subtitle {
+  display: none;
+}
+
+.home #header {
+  height: 520px;
+  .subtitle {
+    display: flex;
+  }
+}
+
+.text-columns {
+  column-count: 2;
+  column-gap: 1rem;
+
+  a {
+    column-span: all;
+  }
+}
+
+.carousel > div:not(:first-child) {
+  display: none;
+}
+
+.big-avatar {
+  height: 180px;
+  width: 140px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  border-width: 2px;
+  border-color: #ccc;
+  object-fit: cover;
+}
+
+.avatar {
+  height: 120px;
+  width: 100px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  border-width: 2px;
+  border-color: #ccc;
+  margin-top: -30px;
+  object-fit: cover;
+}
+
+.small-avatar {
+  height: 50px;
+  width: 40px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  object-fit: cover;
+}
+
+.mini-avatar {
+  height: 30px;
+  width: 20px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  object-fit: cover;
+}
+
+.arrow-title {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+  background: var(--yellow-400);
+  padding: 0.5rem 2rem;
+  padding-right: 3rem;
+  color: white;
+}
+
+.poll {
+  li {
+    border-bottom: 1px solid var(--wetsand-300);
+    width: 100%;
+    display: inline-block;
+    padding: 1rem 0;
+    color: var(--golfsnack-500);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.reportage {
+  color: white;
+  background: var(--rough-500);
+  &:hover {
+    background: var(--rough-800);
+  }
+}
+.utrustning {
+  color: white;
+  background: var(--red-600);
+  &:hover {
+    background: var(--red-800);
+  }
+}
+.nyheter {
+  color: white;
+  background: var(--blue-600);
+  &:hover {
+    background: var(--blue-800);
+  }
+}
+.banbesok {
+  color: white;
+  background: var(--yellow-600);
+  &:hover {
+    background: var(--yellow-800);
+  }
+}
+
+// Definition Lists
+dl {
+  margin: 4rem 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  list-style-position: inside;
+  dt {
+    float: left;
+    padding-right: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+a[target="_blank"]:after {
+  content: "↗️";
+  color: white;
+}
+
+.flash-alert {
+  color: var(--red-700);
+  background: var(--red-100);
+  border-color: var(--red-400);
+}
+.flash-info {
+  color: var(--teal-700);
+  background: var(--teal-100);
+  border-color: var(--teal-400);
+}
+
+.mobilenav {
+  background: var(--golfsnack-500);
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-white  {
+  background: white;
+}

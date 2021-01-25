@@ -1,12 +1,12 @@
 <% if current_user.liked? item %>
-  <%= form_tag unlike_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post, data: { 'turbolinks-scroll': true }, remote: true do %>
+  <%= form_tag unlike_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
     <% button_tag do %>
       <%= render partial: 'shared/clap' %>
       <span><%= pluralize(item.get_likes.size, "golfklapp", locale: :sv) %></span>
     <% end %>
   <% end %>
 <% else %>
-  <%= form_tag like_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post, data: { 'turbolinks-scroll': true }, remote: true do %>
+  <%= form_tag like_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
     <% button_tag do %>
       <%= render partial: 'shared/noclap' %>
       <span><%= pluralize(item.get_likes.size, "golfklapp", locale: :sv) %></span>

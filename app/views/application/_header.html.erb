@@ -1,18 +1,15 @@
-<header id="header" x-data="{ mobileMenuOpen: false, profileMenuOpen: false }" class="flex flex-col">
-  <nav class="py-4 bg-opacity-75 h-18 bg-golfsnack-600">
+<header id="header" class="flex flex-col">
+  <nav class="py-4 h-18">
     <div class="relative flex items-center h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
         <button
-          @click="mobileMenuOpen = !mobileMenuOpen"
           class="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white" aria-label="Main menu" aria-expanded="false">
           <svg
-          :class="{'block': !mobileMenuOpen, 'hidden': mobileMenuOpen }"
           class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           <svg
-          :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }"
           class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -29,15 +26,15 @@
           <%= render partial: 'header/profile_dropdown'%>
         </div>
       </div>
-      <div :class="{'block': mobileMenuOpen, 'hidden': !mobileMenuOpen }" class="w-screen sm:hidden">
-        <div class="absolute z-50 block w-screen px-2 pt-2 pb-3 font-mono uppercase bg-golfsnack-500">
+      <div class="hidden w-screen sm:hidden">
+        <div class="absolute z-50 block w-screen px-2 pt-2 pb-3 font-mono uppercase mobilenav">
           <%= render partial: 'header/mainlinks', locals: {class_name: 'mobilenavlink' }%>
         </div>
       </div>
     <% end %>
   </nav>
   <% if current_user %>
-    <nav class="hidden py-2 bg-opacity-75 bg-wetsand-500 sm:block">
+    <nav class="hidden py-2 subnav sm:block">
       <div class="hidden sm:block sm:ml-6">
         <div class="flex items-center justify-center w-full font-mono uppercase">
           <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
