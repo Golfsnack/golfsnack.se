@@ -6,8 +6,8 @@ class ProfileController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.order('created_at DESC')
+    @user = User.includes([avatar_attachment: :blob]).find(params[:id])
+    @posts = @user.posts.includes([:club]).order('created_at DESC')
     render :index
   end
 

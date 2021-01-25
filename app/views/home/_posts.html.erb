@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="w-full comments" :class="{'block': commentsOpen, 'hidden': !commentsOpen }">
-          <% post.comments.each do |comment| %>
+          <% post.comments.includes([:user]).each do |comment| %>
             <%= render 'shared/comment', comment: comment %>
           <% end %>
           <%= render 'comments/form', commentable: post %>

@@ -67,7 +67,7 @@ Rails.application.configure do
   config.middleware.use(Rack::LiveReload)
 
   config.after_initialize do
-    Bullet.enable = false
+    Bullet.enable = true
     Bullet.rails_logger = true
     Bullet.console = false
   end

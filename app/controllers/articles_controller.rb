@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.order(created_at: :desc).page params[:page]
+    @articles = Article.includes([:rich_text_body, image_attachment: :blob]).order(created_at: :desc).page params[:page]
     @latest_articles = (@articles + @articles + @articles).first(8)
   end
 
