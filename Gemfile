@@ -33,7 +33,6 @@ gem 'fog-aws'
 gem 'asset_sync'
 gem 'aws-sdk-s3'
 
-gem 'public_activity'
 
 gem 'image_processing'
 

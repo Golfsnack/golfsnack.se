@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :completed_profile
-  include PublicActivity::StoreController
   include SessionCurrentUser
 
   before_action :authenticate_user!
@@ -36,6 +35,3 @@ class ApplicationController < ActionController::Base
       current_user ? "application" : "private"
     end
 end
-
-# Front page activities
-# @activities = PublicActivity::Activity.joins("INNER JOIN users ON activities.owner_id = users.id").order(created_at: :desc).paginate(page: params[:page], per_page: 10)

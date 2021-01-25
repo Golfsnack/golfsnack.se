@@ -2,8 +2,6 @@ class Post < ApplicationRecord
 
   has_many_attached :images
 
-  include Shared::Callbacks
-
   acts_as_commentable
   acts_as_votable
 
