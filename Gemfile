@@ -67,6 +67,10 @@ gem 'searchkick'
 
 gem 'skylight', '5.0.0.beta4'
 
+group :production do
+  gem 'tunemygc'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -86,7 +90,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  # gem "bullet"
+  gem "bullet"
 end
 
 group :test do
