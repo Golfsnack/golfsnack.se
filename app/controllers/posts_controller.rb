@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      flash[:success] = "Sparade inlägget"
+      flash[:success] = "Sparade golfsnacket"
       redirect_to @post
     else
       @clubs = Club.order(:name).all
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     if @post.destroy
-      flash[:success] = "Tog bort inlägget"
+      flash[:success] = "Tog bort golfsnack"
     end
     redirect_to profile_path
   end
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      flash[:success] = "Sparade inlägget"
+      flash[:success] = "Sparade golfsnack"
       redirect_to @post
     else
       @clubs = Club.order(:name).all

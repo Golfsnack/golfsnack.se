@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/golfare/:id', to: 'profile#show', as: :user
   get '/profil', to: 'profile#index', as: :profile
   get '/profil/vanner/', to: 'profile#friends', as: :friends
-  get '/profil/blogg/', to: 'profile#blog', as: :blog
+  get '/profil/golfsnack/', to: 'profile#blog', as: :blog
 
   resources :articles, only: [:index, :show], path: 'artiklar'
   resources :posts, except: [:index], path: 'golfsnack' #TODO: Remove!

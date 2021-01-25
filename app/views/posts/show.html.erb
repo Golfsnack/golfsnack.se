@@ -9,9 +9,9 @@
       </p>
     </div>
     <% if is_current_user? @post.user %>
-      <%= link_to "Redigera inlägg", edit_post_path(@post) %>
+      <%= link_to "Redigera golfsnack", edit_post_path(@post) %>
       <br />
-      <%= link_to "Radera inlägg", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
+      <%= link_to "Radera golfsnack", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
     <% end %>
   </div>
   <h1 class="py-6 text-2xl font-extrabold leading-snug text-golfsnack-800">
