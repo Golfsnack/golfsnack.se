@@ -10,7 +10,7 @@ class DiscourseSsoController < ApplicationController
     sso.name = current_user.name # this is a custom method on the User class
     sso.username = current_user.email # from devise
     sso.external_id = current_user.id # from devise
-    if current_user.avatar?
+    if current_user.avatar.attached?
       sso.avatar_url = current_user.avatar.variant(resize_to_fill: [60, 45], gravity: 'center')
     end
     sso.sso_secret = secret
