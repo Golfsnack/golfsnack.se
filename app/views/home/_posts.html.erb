@@ -3,7 +3,7 @@
     <h2>GOLFSNACK</h2>
   </div>
   <% @posts.each do |post| %>
-    <turbo-frame id="post-<%=post.id%>">
+
       <article id="post_<%=post.id%>" class="story">
         <div role="presentation">
           <div class="story__top">
@@ -29,7 +29,9 @@
           </div>
           <div class="story__footer">
             <div class="story__reaction">
+            <turbo-frame id="post-<%=post.id%>">
               <%= render 'shared/reactions', item: post %>
+    </turbo-frame>
             </div>
             <div class="story__reaction">
               <svg viewBox="0 0 95 78" xmlns="http://www.w3.org/2000/svg">
@@ -40,6 +42,5 @@
           </div>
         </div>
       </article>
-    </turbo-frame>
   <% end %>
 </div>

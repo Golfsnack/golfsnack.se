@@ -1,4 +1,5 @@
 @import "colors";
+@import "color_utils";
 @import "typography";
 @import "header";
 @import "footer";
@@ -7,6 +8,11 @@
 
 body {
   background: var(--fairway-100);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .subtitle {
@@ -153,10 +159,16 @@ a[target="_blank"]:after {
   background: var(--golfsnack-500);
 }
 
-.text-white {
-  color: white;
+// TODO REMOVE from HTML and make components!
+.placeholder-golfsnack-500 {
+  &::placeholder {
+    color: var(--golfsnack-500);
+  }
 }
 
-.bg-white  {
-  background: white;
+.divide-sand-200 {
+  border-color: var(--sand-200);
+}
+.divide-wetsand-800 {
+  border-color: var(--wetsand-800);
 }
