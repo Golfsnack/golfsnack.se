@@ -361,6 +361,8 @@ GEM
       rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
+    trix-rails (2.3.0)
+      rails (> 4.1, < 7.0)
     tunemygc (1.0.71)
     turbo-rails (0.5.8)
       rails (>= 6.0.0)
@@ -437,6 +439,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tailwindcss-rails (~> 0.3.1)
+  trix-rails
   tunemygc
   typhoeus
   tzinfo-data
