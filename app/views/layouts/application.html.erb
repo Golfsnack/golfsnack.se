@@ -13,6 +13,7 @@
     <%= render partial: 'og' %>
     <%= yield :head %>
     <%= javascript_include_tag "turbo", type: "module" %>
+    <%= stimulus_include_tags %>
   </head>
   <body class="<%= @home%>">
     <%= render partial: 'header' %>

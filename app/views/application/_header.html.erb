@@ -1,16 +1,19 @@
-<header id="header" class="flex flex-col">
+<header id="header" class="flex flex-col" data-controller="navbar">
   <nav class="py-4 h-18">
-    <div class="relative flex items-center h-16">
+    <div class="relative flex items-center h-16 max-w-screen-2xl mx-auto">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
         <button
-          class="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white" aria-label="Main menu" aria-expanded="false">
+          class="togglebtn inline-flex items-center justify-center p-2 transition duration-150 ease-in-out text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white"
+          aria-label="Main menu"
+          aria-expanded="false"
+          data-action="click->navbar#toggleMobileMenu" data-navbar-target="toggleBtn">
           <svg
-          class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          class="opener w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           <svg
-          class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          class="closer hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -34,9 +37,9 @@
     <% end %>
   </nav>
   <% if current_user %>
-    <nav class="hidden py-2 subnav sm:block">
-      <div class="hidden sm:block sm:ml-6">
-        <div class="flex items-center justify-center w-full font-mono uppercase">
+    <nav class="hidden py-2 subnav sm:block" data-navbar-target="mobileMenu">
+      <div class="sm:block sm:ml-6">
+        <div class="flex flex-col items-center justify-center w-full font-mono uppercase">
           <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
         </div>
       </div>

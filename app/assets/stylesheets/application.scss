@@ -173,3 +173,14 @@ a[target="_blank"]:after {
 .divide-wetsand-800 {
   border-color: var(--wetsand-800);
 }
+
+.togglebtn {
+  &.open {
+    .opener {
+      display: none;
+    }
+    .closer {
+      display: block;
+    }
+  }
+}
