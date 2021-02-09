@@ -1,0 +1,260 @@
+@import "colors";
+@import "color_utils";
+@import "typography";
+@import "header";
+@import "footer";
+@import "articles";
+@import "stories";
+@import "trix";
+@import "tomselect";
+
+body {
+  background: var(--fairway-100);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+.subtitle {
+  display: none;
+}
+
+.home #header {
+  height: 520px;
+  .subtitle {
+    display: flex;
+  }
+}
+
+.text-columns {
+  column-count: 2;
+  column-gap: 1rem;
+
+  a {
+    column-span: all;
+  }
+}
+
+.carousel > div:not(:first-child) {
+  display: none;
+}
+
+.big-avatar {
+  height: 180px;
+  width: 140px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  border-width: 2px;
+  border-color: #ccc;
+  object-fit: cover;
+}
+
+.avatar {
+  height: 120px;
+  width: 100px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  border-width: 2px;
+  border-color: #ccc;
+  margin-top: -30px;
+  object-fit: cover;
+}
+
+.small-avatar {
+  height: 50px;
+  width: 40px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  object-fit: cover;
+}
+
+.mini-avatar {
+  height: 30px;
+  width: 22px;
+  clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+  object-fit: cover;
+}
+
+.arrow-title {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+  background: var(--yellow-400);
+  padding: 0.5rem 2rem;
+  padding-right: 3rem;
+  color: white;
+}
+
+.poll {
+  li {
+    border-bottom: 1px solid var(--wetsand-300);
+    width: 100%;
+    display: inline-block;
+    padding: 1rem 0;
+    color: var(--golfsnack-500);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.reportage {
+  color: white;
+  background: var(--rough-500);
+  &:hover {
+    background: var(--rough-800);
+  }
+}
+.utrustning {
+  color: white;
+  background: var(--red-600);
+  &:hover {
+    background: var(--red-800);
+  }
+}
+.nyheter {
+  color: white;
+  background: var(--blue-600);
+  &:hover {
+    background: var(--blue-800);
+  }
+}
+.banbesok {
+  color: white;
+  background: var(--yellow-600);
+  &:hover {
+    background: var(--yellow-800);
+  }
+}
+
+// Definition Lists
+dl {
+  margin: 4rem 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  list-style-position: inside;
+  dt {
+    float: left;
+    padding-right: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+a[target="_blank"]:after {
+  content: "↗️";
+  color: white;
+}
+
+.flash-alert {
+  color: var(--red-700);
+  background: var(--red-100);
+  border-color: var(--red-400);
+}
+.flash-info {
+  color: var(--rough-700);
+  background: var(--rough-100);
+  border-color: var(--rough-400);
+}
+
+.mobilenav {
+  background: var(--golfsnack-500);
+}
+
+// TODO REMOVE from HTML and make components!
+.placeholder-golfsnack-500 {
+  &::placeholder {
+    color: var(--golfsnack-500);
+  }
+}
+
+.divide-sand-200 {
+  border-color: var(--sand-200);
+}
+.divide-wetsand-800 {
+  border-color: var(--wetsand-800);
+}
+
+.togglebtn {
+  &.open {
+    .opener {
+      display: none;
+    }
+    .closer {
+      display: block;
+    }
+  }
+}
+
+@keyframes boop {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.boop {
+  animation: boop 0.5s;
+}
+
+#error_explanation {
+  color: #8d1a14;
+  background: #e3c6c4;
+}
+
+.field_with_errors {
+  width: 100%;
+  input,
+  textarea,
+  select {
+    border-bottom: 1px solid #8d1a14;
+  }
+}
+
+// turbo-frame {
+//   display: block;
+//   border: 1px dotted blue;
+// }
+
+.disabled-feature {
+  opacity: 0.25;
+}
+
+img.imgpreview {
+  border: "2px solid orange";
+}

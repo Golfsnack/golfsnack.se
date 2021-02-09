@@ -42,9 +42,9 @@
             <%= f.label :golf_id %><br />
             <%= f.text_field :golf_id, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
           </div>
-          <div class="block mt-4">
+          <div class="block mt-4" data-controller="autocomplete">
             <%= f.label "Hemmaklubb" %><br />
-            <%= f.collection_select :club_id, Club.order(:name).all, :id, :name, include_blank: true, class: "form-input" %>
+            <%= f.collection_select :club_id, Club.order(:name).all, :id, :name, {include_blank: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
           </div>
         </div>
       </div>

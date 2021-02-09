@@ -19,10 +19,12 @@ Rails.application.routes.draw do
   get '/golfare/:id', to: 'profile#show', as: :user
   get '/profil', to: 'profile#index', as: :profile
   get '/profil/vanner/', to: 'profile#friends', as: :friends
-  get '/profil/blogg/', to: 'profile#blog', as: :blog
+  get '/profil/golfsnack/', to: 'profile#blog', as: :blog
 
   resources :articles, only: [:index, :show], path: 'artiklar'
-  resources :posts, except: [:index], path: 'golfsnack' #TODO: Remove!
+  resources :posts, except: [:index], path: 'golfsnack' do
+    resources :images, only: [:destroy]
+  end
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
   resources :clubs, only: [:index, :show], path: 'golfklubbar'
 
@@ -36,6 +38,8 @@ Rails.application.routes.draw do
   post '/vote', to: 'polls#vote', as: :vote
 
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
+
+  get '/anvandaravtal', to: 'public#useragreement', as: :user_agreement
 
   root to: 'home#index'
 

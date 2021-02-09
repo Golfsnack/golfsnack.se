@@ -1,0 +1,100 @@
+.navlink {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sand-200);
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    text-decoration: underline;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+.profilelink {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sand-700);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--golfsnack-800);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    text-decoration: underline;
+  }
+
+  &.active,
+  &:active {
+    background: var(--sand-200);
+    color: var(--golfsnack-800);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+.mobilenavlink {
+  display: block;
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sand-300);
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: white;
+    text-decoration: underline;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+#header {
+  background: url("/assets/bg2.jpg") no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  width: 100%;
+
+  nav {
+    background: var(--golfsnack-600);
+
+    &.subnav {
+      background: var(--wetsand-500);
+    }
+  }
+}
+
+.home #header nav {
+  background: rgba(59, 66, 25, 0.75);
+
+  &.subnav {
+    background: rgba(179, 142, 58, 0.75);
+  }
+}

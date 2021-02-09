@@ -1,47 +1,55 @@
 <h2 class="pb-4 my-12 mb-4 font-bold border-b text-golfsnack-800 border-sand-200">Ledartavla</h2>
-<h3>Filter: Mest birdies, etc</h3>
-<table class="min-w-full divide-y divide-sand-200">
-  <thead>
-    <tr>
-      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        #
-      </th>
-      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        Namn
-      </th>
-      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        Poäng
-      </th>
-      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
-        Blogginlägg
-      </th>
-    </tr>
-  </thead>
-  <tbody class="bg-white divide-y divide-sand-200">
-    <% @users.each do |user| %>
-      <tr>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          T1
-        </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <%= link_to user_path(user) do %>
-            <div class="flex flex-row">
-              <% if user.avatar.attached? %>
-                <%= image_tag user.avatar.variant(resize_to_fill: [60, 40], gravity: 'center'), class: 'small-avatar mr-2' %>
-              <% else %>
-                <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar mr-2' %>
+<div class="grid grid-cols-12 gap-6">
+  <div class="col-span-8 xl:col-span-6">
+    <table class="min-w-full divide-y divide-sand-200">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+            #
+          </th>
+          <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+            Namn
+          </th>
+          <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+            Poäng
+          </th>
+          <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+            Golfsnack
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-sand-200">
+        <% @users.each do |user| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-no-wrap">
+              T1
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap">
+              <%= link_to user_path(user) do %>
+                <div class="flex flex-row">
+                  <% if user.avatar.attached? %>
+                    <%= image_tag user.avatar.variant(resize_to_fill: [60, 40], gravity: 'center'), class: 'small-avatar mr-2' %>
+                  <% else %>
+                    <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar mr-2' %>
+                  <% end %>
+                  <%= user.name %>
+                </div>
               <% end %>
-              <%= user.name %>
-            </div>
-          <% end %>
-        </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <%= user.points %>
-        </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <%= user.posts.count %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap">
+              <%= user.points %>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap">
+              <%= user.posts.count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-span-4 xl:col-span-3">
+    <div class="relative p-4 bg-white border rounded border-wetsand-300">
+      <h4>Info om poäng, vad de är och hur man får dem</h4>
+    </div>
+  </div>
+</div>

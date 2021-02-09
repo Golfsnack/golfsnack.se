@@ -21,5 +21,8 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <div class="text-sm muted py-12">
+    Genom att skapa ett konto förbinder du dig att följa Golfsnacks <%= link_to "användaravtal", user_agreement_path %>
+  </div>
   <%= f.submit "Skapa konto"%>
 <% end %>

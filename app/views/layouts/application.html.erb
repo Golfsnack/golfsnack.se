@@ -2,19 +2,22 @@
 <html lang="sv">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golfsnack.se - Av golfare för golfare</title>
     <link rel="icon" href="/favicon.ico" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' if Rails.env.production? %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "inter-font" %>
+    <%= stylesheet_link_tag "tailwind" %>    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
     <%= render partial: 'og' %>
+    <%= yield :head %>
+    <%= javascript_include_tag "turbo", type: "module" %>
+    <%= stimulus_include_tags %>
   </head>
-  <body class="bg-fairway-100 <%= @home%>">
+  <body class="<%= @home%>">
     <%= render partial: 'header' %>
-    <div class="container px-4 mx-auto xl:px-12">
-      <%= render partial: 'flashes'%>
+    <div class="container main">
       <%= yield %>
     </div>
     <%= render partial: "footer" %>

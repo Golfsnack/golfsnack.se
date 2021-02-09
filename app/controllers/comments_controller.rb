@@ -9,14 +9,21 @@ class CommentsController < ApplicationController
       comment.user = current_user
     end
     @comment.save
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment_id = params[:id]
+    @commentable = @comment.commentable
     @comment.destroy
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   private

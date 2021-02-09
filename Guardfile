@@ -21,7 +21,9 @@ guard 'livereload' do
     png: :png,
     gif: :gif,
     jpg: :jpg,
-    jpeg: :jpeg
+    jpeg: :jpeg,
+    css: :css,
+    sass: :scss,
   }
 
   rails_view_exts = %w[erb haml slim]

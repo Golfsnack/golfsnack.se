@@ -1,0 +1,130 @@
+.stories {
+  .story {
+    display: block;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background: var(--wetsand-100);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .story__top {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+
+  .story__avatar {
+    width: 3rem;
+  }
+
+  .story__meta {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--wetsand-600);
+
+    a {
+      color: var(--wetsand-700);
+      font-weight: 700;
+    }
+  }
+
+  .story__body {
+    padding-left: 3rem;
+
+    .story__body__body {
+      width: 100%;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      border-top: 1px solid var(--wetsand-600);
+      border-bottom: 1px solid var(--wetsand-600);
+      padding: 0.5rem 0;
+
+      h3 {
+        line-height: 1;
+      }
+
+      figure {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0.5rem 0;
+        figcaption {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .story__footer {
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 2rem;
+
+    .story__reaction {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-weight: 700 font-mono leading-relaxed;
+
+      button,
+      a.btn {
+        display: flex;
+        padding: 0.5rem 1rem;
+        background: var(--sand-100);
+        margin-right: 0.25rem;
+        border-radius: 0.25rem;
+
+        &:hover {
+          background: var(--sand-300);
+        }
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.25rem;
+      }
+
+      span {
+        margin-left: 0.25rem;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.story-show {
+  .story__reaction {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700 font-mono leading-relaxed;
+
+    button,
+    a.btn {
+      display: flex;
+      padding: 0.5rem 1rem;
+      background: var(--sand-100);
+      margin-right: 0.25rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background: var(--sand-300);
+      }
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-right: 0.25rem;
+    }
+
+    span {
+      margin-left: 0.25rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      font-weight: 400;
+    }
+  }
+}

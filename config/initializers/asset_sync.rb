@@ -36,7 +36,7 @@ if defined?(AssetSync)
     # config.existing_remote_files = "keep"
     #
     # Automatically replace files with their equivalent gzip compressed version
-    # config.gzip_compression = true
+    config.gzip_compression = true
     #
     # Use the Rails generated 'manifest.yml' file to produce the list of files to
     # upload instead of searching the assets directory.
@@ -62,15 +62,5 @@ if defined?(AssetSync)
     # If you have an asset with name `app.0ba4d3.js`, only `app.0ba4d3` will need to be matched
     # config.cache_asset_regexps = [ /\.[a-f0-9]{8}$/i, /\.[a-f0-9]{20}$/i ]
     # config.cache_asset_regexp = /\.[a-f0-9]{8}$/i
-
-    config.run_on_precompile = false
-    config.add_local_file_paths do
-      # Support webpacker assets
-      public_root = Rails.root.join("public")
-      Dir.chdir(public_root) do
-        packs_dir = Webpacker.config.public_output_path.relative_path_from(public_root)
-        Dir[File.join(packs_dir, '/**/**')]
-      end
-    end
   end
 end

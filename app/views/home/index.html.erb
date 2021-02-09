@@ -1,13 +1,14 @@
 <%= render partial: 'articles' %>
 <div class="pt-6 mt-6 border-t border-wetsand-300">
   <div class="grid grid-cols-12 gap-6">
-    <div class="col-span-4 xl:col-span-3">
+    <div class="hidden md:block col-span-4 xl:col-span-3">
       <div class="sticky top-10">
         <%= render partial: 'user_sidebar', locals: { user: @user } %>
         <%= render partial: 'leaderboard', locals: { users: @leaderboard_users } %>
+        <%= render partial: 'popular_tags', locals: { tags: @popular_tags } %>
       </div>
     </div>
-    <div class="col-span-8 xl:col-span-6">
+    <div class="col-span-12 md:col-span-8 xl:col-span-6">
       <%= render partial: 'posts' %>
     </div>
     <div class="hidden xl:block xl:col-span-3">

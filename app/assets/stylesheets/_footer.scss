@@ -1,0 +1,11 @@
+footer {
+  color: var(--golfsnack-700);
+  background: var(--golfsnack-100);
+
+  a {
+    color: var(--golfsnack-500);
+    &:hover {
+      color: var(--golfsnack-900);
+    }
+  }
+}

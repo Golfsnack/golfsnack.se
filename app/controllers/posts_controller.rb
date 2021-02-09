@@ -19,19 +19,19 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      flash[:success] = "Sparade inlägget"
+      flash[:success] = "Sparade golfsnacket"
       redirect_to @post
     else
       @clubs = Club.order(:name).all
       flash.now[:error] = "Något gick fel, kunde inte spara"
-      render 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
     if @post.destroy
-      flash[:success] = "Tog bort inlägget"
+      flash[:success] = "Tog bort golfsnack"
     end
     redirect_to profile_path
   end
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      flash[:success] = "Sparade inlägget"
+      flash[:success] = "Sparade golfsnack"
       redirect_to @post
     else
       @clubs = Club.order(:name).all
@@ -49,9 +49,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.attachments.first.purge
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :preamble, :club_id)
+    params.require(:post).permit(:title, :body, :club_id, tag_list: [], images: [])
   end
 end
