@@ -1,6 +1,6 @@
 <div class="flex flex-col">
   <div class="my-6">
-    <%= form_for(@invite, url: admin_create_invitation_path) do |f| %>
+    <%= form_for([:admin, @invite], url: admin_create_invitation_path) do |f| %>
       <div class="flex">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-post", class: "border border-black mr-4" %>
         <%= f.submit "SKAPA INBJUDAN", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>

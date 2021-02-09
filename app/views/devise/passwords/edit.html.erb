@@ -1,0 +1,18 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <h2>Ändra ditt lösenord</h2>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="input">
+    <%= f.label :password, "Nytt lösenord" %>
+    <div>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <em class="text-sm pt-2">(minst <%= @minimum_password_length %> tecken)</em>
+      <% end %>
+    </div>
+  </div>
+  <div class="input">
+    <%= f.label :password_confirmation, "Bekräfta lösenord" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  <%= f.submit "Ändra mitt lösenord" %>
+<% end %>

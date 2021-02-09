@@ -9,14 +9,22 @@ class CommentsController < ApplicationController
       comment.user = current_user
     end
     @comment.save
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append("comments-#{@commentable.id}", partial: "comments/comment", locals: { comment: @comment})
+      end
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment_id = params[:id]
     @comment.destroy
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   private

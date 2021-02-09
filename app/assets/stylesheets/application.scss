@@ -16,6 +16,12 @@ body {
   padding: 0 1rem;
 }
 
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
 .subtitle {
   display: none;
 }
@@ -68,7 +74,7 @@ body {
 
 .mini-avatar {
   height: 30px;
-  width: 20px;
+  width: 22px;
   clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
   object-fit: cover;
 }
@@ -151,9 +157,9 @@ a[target="_blank"]:after {
   border-color: var(--red-400);
 }
 .flash-info {
-  color: var(--teal-700);
-  background: var(--teal-100);
-  border-color: var(--teal-400);
+  color: var(--rough-700);
+  background: var(--rough-100);
+  border-color: var(--rough-400);
 }
 
 .mobilenav {

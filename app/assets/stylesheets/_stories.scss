@@ -1,13 +1,11 @@
 .stories {
-  display: flex;
-  flex-direction: column;
-
   .story {
-    display: flex;
+    display: block;
     padding: 2rem;
     border-radius: 0.25rem;
-    background: var(--wetsand-200);
+    background: var(--wetsand-100);
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .story__top {
@@ -24,10 +22,10 @@
     flex-direction: column;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    color: var(--wetsand-500);
+    color: var(--wetsand-600);
 
     a {
-      color: var(--wetsand-800);
+      color: var(--wetsand-700);
       font-weight: 700;
     }
   }
@@ -36,6 +34,7 @@
     padding-left: 3rem;
 
     .story__body__body {
+      width: 100%;
       font-size: 0.875rem;
       line-height: 1.25rem;
       border-top: 1px solid var(--wetsand-600);
@@ -59,15 +58,16 @@
 
   .story__footer {
     display: flex;
-    padding-left: 4rem;
-    padding-top: 4rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
 
     .story__reaction {
       font-size: 0.875rem;
       line-height: 1.25rem;
       font-weight: 700 font-mono leading-relaxed;
 
-      button {
+      button,
+      a.btn {
         display: flex;
         padding: 0.5rem 1rem;
         background: var(--sand-100);
@@ -93,4 +93,63 @@
       }
     }
   }
+}
+
+.story-show {
+  .story__reaction {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700 font-mono leading-relaxed;
+
+    button,
+    a.btn {
+      display: flex;
+      padding: 0.5rem 1rem;
+      background: var(--sand-100);
+      margin-right: 0.25rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background: var(--sand-300);
+      }
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-right: 0.25rem;
+    }
+
+    span {
+      margin-left: 0.25rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      font-weight: 400;
+    }
+  }
+}
+
+.stories .story-show {
+  position: absolute;
+  background: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 1001;
+  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  height: 80vh;
+  max-width: 960px;
+  width: 80vw;
+}
+
+.stories .backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
 }

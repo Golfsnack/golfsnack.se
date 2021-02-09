@@ -1,43 +1,49 @@
-<div class="my-6">
-  <%= link_to "↤ Tillbaka", :back %>
-</div>
-<div class="p-6 my-6 bg-white">
-  <div class="mt-12">
-    <div class="my-6">
-      <p class="text-sm font-medium leading-5 text-golfsnack-900">
-        Skrivet av:  <%= link_to @post.user.name, user_path(@post.user), class: "hover:underline" %>
-      </p>
+<%= turbo_frame_tag dom_id(@post) do %>
+  <div class="backdrop"></div>
+  <div class="p-6 my-6 md:grid grid-cols-6 gap-12 max-w-screen-lg mx-auto story-show">
+    <div class="md:col-span-4">
+      <div class="flex mb-4 pb-4 border-b border-golfsnack-200">
+        <div class="story__avatar pr-4">
+          <%= render 'shared/avatar', user: @post.user %>
+        </div>
+        <div>
+          <h1 class="text-2xl font-extrabold leading-snug text-golfsnack-800">
+            <%=@post.title%>
+          </h1>
+          <div class="flex flex-col">
+            <div>
+              <%= link_to @post.user.name, @post.user, "data-turbo-frame": "_top" %>
+              <% if @post.club.present? %>
+                @ <%= link_to @post.club.name, @post.club, "data-turbo-frame": "_top" %>
+              <% end %>
+            </div>
+            <span class="text-sm muted"><%= render 'shared/created_at', activity: @post %></span>
+          </div>
+        </div>
+      </div>
+      <div class="story__reaction">
+        <turbo-frame id="post-<%=@post.id%>">
+          <%= render 'shared/reactions', item: @post %>
+        </turbo-frame>
+      </div>
+      <% if is_current_user? @post.user %>
+        <div class="flex flex-row min-w-full bg-golfsnack-100 justify-evenly text-sm p-2">
+          <%= link_to "Redigera golfsnack", edit_post_path(@post), "data-turbo-frame": "_top" %>
+          <%= link_to "Radera golfsnack", post_path(@post), method: :delete, data: { confirm: "Säker?" }, class: "text-red-400", "data-turbo-frame": "_top" %>
+        </div>
+      <% end %>
+      <%= @post.body %>
     </div>
-    <% if is_current_user? @post.user %>
-      <%= link_to "Redigera golfsnack", edit_post_path(@post) %>
-      <br />
-      <%= link_to "Radera golfsnack", post_path(@post), method: :delete, data: { confirm: "Säker?" } %>
-    <% end %>
+    <div class="md:col-span-2 mt-8 md:-mt-4">
+      <div class="bg-rough-100 w-full text-sm">
+        <turbo-frame id="comments-<%=@post.id%>">
+          <h5 class="pt-2 pl-2"><%= pluralize(@post.comments.size, "kommentar", locale: :sv) %></h5>
+          <%= render(@comments) %>
+        </turbo-frame>
+        <div class="mt-6 p-2">
+          <%= render 'comments/form', commentable: @post %>
+        </div>
+      </div>
+    </div>
   </div>
-  <h1 class="py-6 text-2xl font-extrabold leading-snug text-golfsnack-800">
-    <%=@post.title%>
-  </h1>
-  <p class="py-4"><%= @post.preamble %></p>
-  <%= @post.body %>
-  <div class="p-12">
-    <% if current_user.liked? @post %>
-      <%= form_tag unlike_path(likeable_type: @post.class.to_s, likeable_id: @post.id), method: :post do %>
-        <% button_tag class: 'btn btn-block liked' do %>
-          Sluta gilla
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= form_tag like_path(likeable_type: @post.class.to_s, likeable_id: @post.id) do %>
-        <% button_tag class: 'btn btn-block' do %>
-          Gilla
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-  <h4>Comments</h4>
-  <hr>
-  <div class="comments">
-    <%= render(@comments) %>
-  </div>
-  <%= render 'comments/form', commentable: @post %>
-</div>
+<% end %>

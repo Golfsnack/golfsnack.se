@@ -25,26 +25,18 @@
       </div>
       <% if current_user %>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 font-mono uppercase sm:static sm:inset-auto sm:pr-0">
-          <!-- Profile dropdown -->
           <%= render partial: 'header/profile_dropdown'%>
-        </div>
-      </div>
-      <div class="hidden w-screen sm:hidden">
-        <div class="absolute z-50 block w-screen px-2 pt-2 pb-3 font-mono uppercase mobilenav">
-          <%= render partial: 'header/mainlinks', locals: {class_name: 'mobilenavlink' }%>
         </div>
       </div>
     <% end %>
   </nav>
-  <% if current_user %>
-    <nav class="hidden py-2 subnav sm:block" data-navbar-target="mobileMenu">
-      <div class="sm:block sm:ml-6">
-        <div class="flex flex-col items-center justify-center w-full font-mono uppercase">
-          <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
-        </div>
+  <div class="relative">
+    <nav class="absolute z-10 sm:static hidden py-2 subnav sm:block w-full" data-navbar-target="mobileMenu">
+      <div class="flex flex-col sm:flex-row items-center justify-center w-full font-mono uppercase">
+        <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
       </div>
     </nav>
-  <% end %>
+  </div>
   <div class="flex items-center justify-center w-full h-full subtitle">
     <h2 class="font-normal text-white uppercase">Av golfare. För golfare</h2>
   </div>

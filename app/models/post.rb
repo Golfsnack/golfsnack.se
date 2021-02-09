@@ -4,6 +4,7 @@ class Post < ApplicationRecord
 
   acts_as_commentable
   acts_as_votable
+  acts_as_taggable_on :tags
 
   belongs_to :user
   belongs_to :club, counter_cache: true, optional: true

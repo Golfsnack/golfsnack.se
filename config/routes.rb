@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
 
+  get '/anvandaravtal', to: 'public#useragreement', as: :user_agreement
+
   root to: 'home#index'
 
   if Rails.env.development?

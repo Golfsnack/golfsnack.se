@@ -1,8 +1,18 @@
 <% if comment.user %>
-  <%= render 'shared/avatar', user: comment.user %>
-  <%= link_to comment.user.name, user_path(comment.user) %>
-  <%= comment.comment.html_safe %>
-  <% if belongs_to_user?(comment) %>
-    <%= link_to "Radera", comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm' %>
-  <% end %>
+  <div class="flex py-2 px-4 border-b border-golfsnack-100" id="comment_<%=comment.id%>">
+    <div class="mr-2 mt-1">
+      <% if comment.user.avatar.attached? %>
+        <%= image_tag comment.user.avatar.variant(resize_to_fill: [30, 22], gravity: 'center'), class: 'mini-avatar' %>
+      <% else %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: 'mini-avatar' %>
+      <% end %>
+    </div>
+    <div class="flex flex-col text-xs">
+      <%= link_to comment.user.name, user_path(comment.user), "data-turbo-frame": "_top" %>
+      <%= comment.comment.html_safe %>
+      <% if belongs_to_user?(comment) %>
+        <%= link_to "Radera", comment_path(comment), method: :delete, class: 'text-red-500 mt-2', data: { confirm: "Säker?" } %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
