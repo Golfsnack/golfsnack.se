@@ -12,7 +12,7 @@ export default class extends Controller {
       plugins: ["remove_button"],
       create: this.createValue,
       closeAfterSelect: true,
-      maxItems: this.createValue ? 10 : 1,
+      maxItems: this.createValue ? 5 : 1,
     })
   }
 }

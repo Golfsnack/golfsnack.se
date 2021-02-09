@@ -1,8 +1,8 @@
 <div class="">
   <% if @user.cover.attached? %>
-    <%= image_tag @user.cover.variant(resize_to_fill: [1280, 420], gravity: 'center'), class: "object-cover w-full mb-6" %>
+    <%= image_tag @user.cover.variant(resize_to_fill: [1280, 420], gravity: 'center'), class: "object-cover w-full mb-6 mt-12" %>
   <% else %>
-    <div class="block w-full bg-wetsand-300" style="height: 420px;"></div>
+    <div class="mt-12 block w-full bg-wetsand-300" style="height: 420px;"></div>
   <% end %>
   <div class="flex flex-col items-center justify-center w-full -mt-24">
     <div class="relative">
