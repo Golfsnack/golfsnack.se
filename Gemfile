@@ -87,6 +87,8 @@ group :development do
   gem "binding_of_caller"
 
   gem "bullet"
+
+  gem "letter_opener"
 end
 
 group :test do
