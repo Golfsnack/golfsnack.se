@@ -1,15 +1,17 @@
-<% if current_user.liked? item %>
-  <%= form_tag unlike_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
-    <% button_tag do %>
-      <%= render partial: 'shared/clap' %>
+<turbo-frame id="<%= item.class.to_s%>-<%=item.id%>-reactions">
+  <% if current_user.liked? item %>
+    <%= button_to unlike_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
+      <span class="<%= local_assigns.fetch :animate, "no-animate"%>">
+        <%= render partial: 'shared/clap' %>
+      </span>
+      <span><%= pluralize(item.get_likes.size, "golfklapp", locale: :sv) %></span>
+    <% end %>
+  <% else %>
+    <%= button_to like_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
+      <span class="<%= local_assigns.fetch :animate, "no-animate"%>">
+        <%= render partial: 'shared/noclap' %>
+      </span>
       <span><%= pluralize(item.get_likes.size, "golfklapp", locale: :sv) %></span>
     <% end %>
   <% end %>
-<% else %>
-  <%= form_tag like_path(likeable_type: item.class.to_s, likeable_id: item.id), method: :post do %>
-    <% button_tag do %>
-      <%= render partial: 'shared/noclap' %>
-      <span><%= pluralize(item.get_likes.size, "golfklapp", locale: :sv) %></span>
-    <% end %>
-  <% end %>
-<% end %>
+</turbo-frame>

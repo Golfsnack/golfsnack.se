@@ -1,0 +1,7 @@
+<%= turbo_stream.append "comments-#{@commentable.id}", @comment %>
+<%= turbo_stream.replace "comments-#{@commentable.id}-count" do %>
+  <turbo-frame id="comments-<%=@commentable.id%>-count">
+    <h5 class="pt-2 pl-2"><%= pluralize(@commentable.comments.size, "kommentar", locale: :sv) %></h5>
+  </turbo-frame>
+<% end %>
+<%= turbo_stream.replace "comments-#{@commentable.id}-form", partial: "comments/form", locals: { commentable: @commentable} %>

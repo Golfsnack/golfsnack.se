@@ -4,12 +4,26 @@ class LikesController < ApplicationController
 
   def create
     @likeable.liked_by current_user
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("#{@likeable.class.to_s}-#{@likeable.id}-reactions", partial: "shared/reactions", locals: { item: @likeable, animate: "boop" })
+      end
+      format.html {
+        redirect_back(fallback_location: root_path)
+      }
+    end
   end
 
   def destroy
     @likeable.disliked_by current_user
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("#{@likeable.class.to_s}-#{@likeable.id}-reactions", partial: "shared/reactions", locals: { item: @likeable, animate: "boop" })
+      end
+      format.html {
+        redirect_back(fallback_location: root_path)
+      }
+    end
   end
 
   private

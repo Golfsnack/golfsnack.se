@@ -1,50 +1,52 @@
 <% @polls.each do |poll| %>
   <div class="relative p-4 bg-white border rounded border-wetsand-300">
-    <h3 class="absolute left-0 block arrow-title top-2">OMRÖSTNING</h3>
-    <h4 class="block w-full px-4 py-4 mt-12 text-lg text-center uppercase border-t border-b border-wetsand-300 text-golfsnack-500"><%=poll.name%></h4>
-    <% if poll.poll_answers.where(user_id: current_user.id).size > 0 %>
-      <ul class="poll">
-        <% poll.poll_questions.each do |question| %>
-          <%- percentage = question.poll_answers.size > 0 ? ((question.poll_answers.size.to_f  / poll.poll_answers.size.to_f) * 100).round : 0 %>
-          <style>
-            .progress_<%= question.id %>:before {
-              content: "";
-              position: absolute;
-              width: <%= percentage%>%;
-              top: 0; left: 0; bottom: 0;
-              height: 100%;
-              background: #feb;
-              z-index: 0;
-            }
-          </style>
-          <li class="relative progress_<%= question.id %>">
-            <label class="relative z-20 flex justify-between w-full px-4 text-xs ex">
-              <%= question.choice %>
-              <span class="text-xs">
-                <%= percentage %> %
-              </span>
-            </label>
-          </li>
-        <% end %>
-      </ul>
-      <div class="w-full py-2 mt-6 mb-8 text-center border-t border-b border-wetsand-300 text-wetsand-400">
-        <h4>RESULTAT</h4>
-      </div>
-    <% else %>
-      <%= form_for(poll.poll_answers.new, url: vote_path) do |f| %>
-        <%= f.hidden_field :poll_id %>
+    <%=turbo_frame_tag dom_id(poll) do %>
+      <h3 class="absolute left-0 block arrow-title top-2">OMRÖSTNING</h3>
+      <h4 class="block w-full px-4 py-4 mt-12 text-lg text-center uppercase border-t border-b border-wetsand-300 text-golfsnack-500"><%=poll.name%></h4>
+      <% if poll.poll_answers.where(user_id: current_user.id).size > 0 %>
         <ul class="poll">
           <% poll.poll_questions.each do |question| %>
-            <li class="px-4">
-              <label class="text-xs">
-                <input type="radio" name="poll_answer[poll_question_id]" value="<%=question.id%>" />
-          <%= question.choice %>
-        </label>
-      </li>
+            <%- percentage = question.poll_answers.size > 0 ? ((question.poll_answers.size.to_f  / poll.poll_answers.size.to_f) * 100).round : 0 %>
+            <style>
+              .progress_<%= question.id %>:before {
+                content: "";
+                position: absolute;
+                width: <%= percentage%>%;
+                top: 0; left: 0; bottom: 0;
+                height: 100%;
+                background: #feb;
+                z-index: 0;
+              }
+            </style>
+            <li class="relative progress_<%= question.id %>">
+              <label class="relative z-20 flex justify-between w-full px-4 text-xs ex">
+                <%= question.choice %>
+                <span class="text-xs">
+                  <%= percentage %> %
+                </span>
+              </label>
+            </li>
+          <% end %>
+        </ul>
+        <div class="w-full py-2 mt-6 mb-8 text-center border-t border-b border-wetsand-300 text-wetsand-400">
+          <h4>RESULTAT</h4>
+        </div>
+      <% else %>
+        <%= form_for(poll.poll_answers.new, url: vote_path) do |f| %>
+          <%= f.hidden_field :poll_id %>
+          <ul class="poll">
+            <% poll.poll_questions.each do |question| %>
+              <li class="px-4">
+                <label class="text-xs">
+                  <input type="radio" name="poll_answer[poll_question_id]" value="<%=question.id%>">
+                  <%= question.choice %>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+          <%= f.submit "RÖSTA" , class: "block w-full py-4 my-4 font-bold text-center text-white bg-yellow-400 hover:bg-yellow-600" %>
+        <% end %>
+      <% end %>
     <% end %>
-  </ul>
-  <%= f.submit "RÖSTA" , class: "block w-full py-4 my-4 font-bold text-center text-white bg-yellow-400 hover:bg-yellow-600" %>
-<% end %>
-<% end %>
-</div>
+  </div>
 <% end %>

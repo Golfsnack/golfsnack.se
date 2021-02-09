@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     else
       @clubs = Club.order(:name).all
       flash.now[:error] = "Något gick fel, kunde inte spara"
-      render 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -49,9 +49,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.attachments.first.purge
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :club_id, :tag_list)
+    params.require(:post).permit(:title, :body, :club_id, tag_list: [], images: [])
   end
 end

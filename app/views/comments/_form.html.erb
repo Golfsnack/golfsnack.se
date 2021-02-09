@@ -1,6 +1,8 @@
-<%= form_tag comments_path(commentable_type: commentable.class.to_s, commentable_id: commentable.id), method: :post do %>
-  <div class="flex flex-col pt-6 mt-6 border-t border-golfsnack-100">
-    <%= text_area_tag :comment_text, nil, placeholder: 'Kommentera', class: 'w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5', rows: 3 %>
-    <%= submit_tag "Kommentera", class: 'w-32 px-2 py-2 mt-2 text-white rounded-md bg-blue-600 text-sm' %>
-  </div>
-<% end %>
+<turbo-frame id="comments-<%=commentable.id%>-form">
+  <%= form_tag comments_path(commentable_type: commentable.class.to_s, commentable_id: commentable.id), method: :post do %>
+    <div class="flex flex-col pt-6 mt-6 border-t border-golfsnack-100">
+      <%= text_area_tag :comment_text, nil, placeholder: 'Kommentera', class: 'w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5', rows: 3 %>
+      <%= submit_tag "Kommentera", class: 'w-32 px-2 py-2 mt-2 text-white rounded-md bg-blue-600 text-sm' %>
+    </div>
+  <% end %>
+</turbo-frame>

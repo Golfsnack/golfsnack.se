@@ -1,49 +1,56 @@
-<%= turbo_frame_tag dom_id(@post) do %>
-  <div class="backdrop"></div>
-  <div class="p-6 my-6 md:grid grid-cols-6 gap-12 max-w-screen-lg mx-auto story-show">
-    <div class="md:col-span-4">
-      <div class="flex mb-4 pb-4 border-b border-golfsnack-200">
-        <div class="story__avatar pr-4">
-          <%= render 'shared/avatar', user: @post.user %>
-        </div>
-        <div>
-          <h1 class="text-2xl font-extrabold leading-snug text-golfsnack-800">
-            <%=@post.title%>
-          </h1>
-          <div class="flex flex-col">
-            <div>
-              <%= link_to @post.user.name, @post.user, "data-turbo-frame": "_top" %>
-              <% if @post.club.present? %>
-                @ <%= link_to @post.club.name, @post.club, "data-turbo-frame": "_top" %>
-              <% end %>
-            </div>
-            <span class="text-sm muted"><%= render 'shared/created_at', activity: @post %></span>
+<div class="md:grid grid-cols-8 gap-12 pt-12 max-w-screen-lg mx-auto story-show">
+  <div class="md:col-span-5 bg-white p-4 shadow-lg rounded border">
+    <div class="flex mb-4 pb-4 border-b border-golfsnack-200">
+      <div class="story__avatar pr-4">
+        <%= render 'shared/avatar', user: @post.user %>
+      </div>
+      <div>
+        <h1 class="text-2xl font-extrabold leading-snug text-golfsnack-800">
+          <%=@post.title%>
+        </h1>
+        <div class="flex flex-col">
+          <div>
+            <%= link_to @post.user.name, @post.user, "data-turbo-frame": "_top" %>
+            <% if @post.club.present? %>
+              @ <%= link_to @post.club.name, @post.club, "data-turbo-frame": "_top" %>
+            <% end %>
           </div>
+          <span class="text-sm muted"><%= render 'shared/created_at', activity: @post %></span>
+          <%= render 'shared/tags', tags: @post.tags %>
         </div>
       </div>
-      <div class="story__reaction">
-        <turbo-frame id="post-<%=@post.id%>">
-          <%= render 'shared/reactions', item: @post %>
-        </turbo-frame>
-      </div>
-      <% if is_current_user? @post.user %>
-        <div class="flex flex-row min-w-full bg-golfsnack-100 justify-evenly text-sm p-2">
-          <%= link_to "Redigera golfsnack", edit_post_path(@post), "data-turbo-frame": "_top" %>
-          <%= link_to "Radera golfsnack", post_path(@post), method: :delete, data: { confirm: "Säker?" }, class: "text-red-400", "data-turbo-frame": "_top" %>
-        </div>
-      <% end %>
-      <%= @post.body %>
     </div>
-    <div class="md:col-span-2 mt-8 md:-mt-4">
-      <div class="bg-rough-100 w-full text-sm">
-        <turbo-frame id="comments-<%=@post.id%>">
-          <h5 class="pt-2 pl-2"><%= pluralize(@post.comments.size, "kommentar", locale: :sv) %></h5>
-          <%= render(@comments) %>
-        </turbo-frame>
-        <div class="mt-6 p-2">
-          <%= render 'comments/form', commentable: @post %>
+    <% if is_current_user? @post.user %>
+      <div class="flex flex-row min-w-full bg-golfsnack-100 justify-evenly text-sm p-2">
+        <%= link_to "Redigera golfsnack", edit_post_path(@post), "data-turbo-frame": "_top" %>
+        <%= link_to "Radera golfsnack", post_path(@post), method: :delete, data: { confirm: "Säker?" }, class: "text-red-400", "data-turbo-frame": "_top" %>
+      </div>
+    <% end %>
+    <% if @post.images.attached? %>
+      <div class="my-6 flex gap-4 flex-wrap">
+        <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full" %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= @post.body %>
+  </div>
+  <div class="md:col-span-3">
+    <div class="story__reaction">
+      <%= render 'shared/reactions', item: @post %>
+    </div>
+    <div class="bg-rough-100 w-full pt-4 text-sm">
+      <turbo-frame id="comments-<%=@post.id%>-count">
+        <h5 class="pt-2 pl-2 pb-2"><%= pluralize(@post.comments.size, "kommentar", locale: :sv) %></h5>
+      </turbo-frame>
+      <turbo-frame id="comments-<%=@post.id%>">
+        <div class="max-h-96 overscroll-contain overflow-auto">
+          <%= render @comments %>
         </div>
+      </turbo-frame>
+      <div class="mt-6 p-2">
+        <%= render 'comments/form', commentable: @post %>
       </div>
     </div>
   </div>
-<% end %>
+</div>

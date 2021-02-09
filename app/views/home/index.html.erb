@@ -5,6 +5,7 @@
       <div class="sticky top-10">
         <%= render partial: 'user_sidebar', locals: { user: @user } %>
         <%= render partial: 'leaderboard', locals: { users: @leaderboard_users } %>
+        <%= render partial: 'popular_tags', locals: { tags: @popular_tags } %>
       </div>
     </div>
     <div class="col-span-12 md:col-span-8 xl:col-span-6">

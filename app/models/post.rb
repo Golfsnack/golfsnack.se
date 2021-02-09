@@ -11,6 +11,9 @@ class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   has_rich_text :body
+  has_many_attached :images do |attachable|
+    attachable.variant :thumb, resize: "200x100"
+  end
 
   def name
     self.title

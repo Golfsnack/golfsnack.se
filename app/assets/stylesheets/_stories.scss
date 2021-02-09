@@ -1,7 +1,7 @@
 .stories {
   .story {
     display: block;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.25rem;
     background: var(--wetsand-100);
     margin-bottom: 2rem;
@@ -127,29 +127,4 @@
       font-weight: 400;
     }
   }
-}
-
-.stories .story-show {
-  position: absolute;
-  background: white;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  z-index: 1001;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  height: 80vh;
-  max-width: 960px;
-  width: 80vw;
-}
-
-.stories .backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
 }

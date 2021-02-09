@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   get '/profil/golfsnack/', to: 'profile#blog', as: :blog
 
   resources :articles, only: [:index, :show], path: 'artiklar'
-  resources :posts, except: [:index], path: 'golfsnack' #TODO: Remove!
+  resources :posts, except: [:index], path: 'golfsnack' do
+    resources :images, only: [:destroy]
+  end
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
   resources :clubs, only: [:index, :show], path: 'golfklubbar'
 
