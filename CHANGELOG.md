@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2021-02-20
+
+- Man kan nu beskära sin profilbild + omslagsbild på sin profil
+- Sökningen för golfklubbar fungerar nu
+- Admin för Golfklubbar
+- Man kan sätta en "admin" för en golfklubb i Admin
+- Man kan komma åt artikel, eller inlägg trots att man inte är inloggad!!! (för att möjliggöra delning)
+- Man kan nu inte fuska till sig poäng genom att like:a/unlike:a sina egna golfsnack
+- Fixat till registreringen, så flödet blir bättre
+- Man kan nu dela ett inlägg/artikel till Facebook
+- Fixat till publik metadata, framförallt för inlägg + artikel
+- Mängder av andra mindre fixar här å där
+- Fixat andra småsaker i admin vyer
+
 ## 2021-02-09
 
 - Post show + Post Creation
