@@ -64,6 +64,9 @@ gem 'skylight', '5.0.0.beta4'
 
 gem 'acts-as-taggable-on', '~> 7.0'
 
+gem 'pghero'
+gem 'pg_query', '>= 0.9.0'
+
 group :production do
   gem 'tunemygc'
 end

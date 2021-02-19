@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  authenticate :user, -> (user) { user.has_role?(:admin) } do
+    mount PgHero::Engine, at: "pghero"
+  end
+
   devise_for :users, controllers: { registrations: "registrations" }
 
   get 'discourse/sso' => 'discourse_sso#sso'
