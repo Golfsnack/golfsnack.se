@@ -1,0 +1,49 @@
+<ul>
+  <% @club.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<%= form_for [:admin, @club], html: { multipart: true }, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+  <template data-nested-form-target="template">
+    <%= f.fields_for :courses, Course.new, child_index: 'NEW_RECORD' do |course_fields| %>
+      <%= render "course_form", f: course_fields %>
+    <% end %>
+  </template>
+  <div class="flex flex-col gap-4">
+    <div class="grid grid-cols-4 gap-4">
+      <div class="col-span-2">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :lat %>
+        <%= f.text_field :lat %>
+      </div>
+      <div>
+        <%= f.label :lng %>
+        <%= f.text_field :lng %>
+      </div>
+    </div>
+    <div data-controller="autocomplete">
+      <%= f.label :moderator_user_id %>
+      <%= f.collection_select :moderator_user_id, User.order(:first_name).all, :id, :name, {include_blank: true, multiple: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
+    </div>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "w-full", rows: 5 %>
+    </div>
+  </div>
+  <div class="mt-12">
+    <h3>Banor (<%= @club.courses.size %> sparade)</h3>
+    <%= f.fields_for :courses do |course_fields| %>
+      <%= render "course_form", f: course_fields %>
+    <% end %>
+    <div data-nested-form-target="target"></div>
+    <button type="button" data-action="nested-form#add" class="mt-6 btn">
+      Lägg till bana
+    </button>
+  </div>
+  <div class="actions mt-12">
+    <%= f.submit 'Spara golfklubb' %>
+  </div>
+<% end %>

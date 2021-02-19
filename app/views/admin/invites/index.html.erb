@@ -1,0 +1,47 @@
+<h2>Inbjudningar</h2>
+<div class="my-6 w-1/2">
+  <%= form_for([:admin, @invite], url: admin_invites_path) do |f| %>
+    <div class="flex">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-post", class: "border border-black mr-4 w-2/3" %>
+      <%= f.submit "SKAPA INBJUDAN", class: "flex justify-center py-2 px-4 border border-transparent text-sm leading-5 w-1/3 font-medium text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
+    </div>
+  <% end %>
+</div>
+<table class="min-w-full divide-y divide-sand-200">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        E-post
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Inbjudnings-kod
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Har använt koden?
+      </th>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+        Användare
+      </th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-sand-200 text-xs">
+    <% @invitations.each do |invitation| %>
+      <tr>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= invitation.email %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= invitation.code %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= invitation.claimed_at != nil ? "YES" : "NO"%>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <% if invitation.user %>
+            <%= invitation.user.first_name %> <%= invitation.user.last_name %> (<%= invitation.user.golf_id %>)
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

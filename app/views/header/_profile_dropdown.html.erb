@@ -16,10 +16,7 @@
       <%= active_link_to "Dina Golfsnack", blog_path, class: 'profilelink', role: "menuitem" %>
       <%= link_to "Logga ut", destroy_user_session_path, role: "menuitem", method: :delete, class: "profilelink" %>
       <% if current_user.has_role?(:admin) %>
-        <strong class="block w-full pl-4 my-2 border-b border-golfsnack-100">ADMIN</strong>
-        <%= active_link_to "Inbjudningar", admin_root_path, class: 'profilelink', role: "menuitem" %>
-        <%= active_link_to "Artiklar", admin_articles_path, class: 'profilelink', role: "menuitem" %>
-        <%= active_link_to "Omröstningar", admin_polls_path, class: 'profilelink', role: "menuitem" %>
+        <%= active_link_to "ADMIN", admin_root_path, class: 'profilelink block w-full pl-4 my-2 border-t border-golfsnack-100', role: "menuitem" %>
       <% end %>
     </div>
   </div>

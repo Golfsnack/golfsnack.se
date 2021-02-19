@@ -18,7 +18,7 @@ module Merit
         comment.comment.present?
       end
 
-      score 1, on: 'sessions#create'
+      score 1, on: 'Devise::SessionsController#create'
       score 1, on: 'likes#create'
       score -1, on: 'likes#destroy'
 

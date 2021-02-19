@@ -9,4 +9,8 @@ class ClubsController < ApplicationController
     @posts = @club.posts.includes(:user).limit(10).order("created_at desc").includes([:rich_text_body])
   end
 
+  def search
+    @clubs = Club.search params[:query], operator: "or", fields: [:name], match: :word_middle, page: 0, per_page: 5
+    render layout: false
+  end
 end

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "inter-font" %>
+    <%= stylesheet_link_tag "tailwind" %>    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= render partial: 'og' %>
+    <%= yield :head %>
+    <%= javascript_include_tag "turbo", type: "module" %>
+    <%= stimulus_include_tags %>
+  </head>
+  <body class="admin">
+    <%= render partial: 'header' %>
+    <div class="container main">
+      <%= render partial: 'flashes'%>
+      <div class="grid grid-cols-8">
+        <div class="col-span-2 pr-8">
+          <a href="/admin">
+            <h2 class="my-12 font-medium">GOLFSNACK ADMIN</h2>
+          </a>
+          <nav class="flex flex-col gap-1">
+            <%= active_link_to "Inbjudningar", admin_invites_path, class: 'adminlink', role: "menuitem" %>
+            <%= active_link_to "Artiklar", admin_articles_path, class: 'adminlink', role: "menuitem" %>
+            <%= active_link_to "Omröstningar", admin_polls_path, class: 'adminlink', role: "menuitem" %>
+            <%= active_link_to "Golfklubbar", admin_clubs_path, class: 'adminlink', role: "menuitem" %>
+          </nav>
+        </div>
+        <div class="col-span-6 pt-12">
+          <div class="shadow sm:rounded-md sm:overflow-hidden">
+            <div class="px-4 py-5 bg-white sm:p-6">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

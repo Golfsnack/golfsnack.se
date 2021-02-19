@@ -1,38 +1,32 @@
-<div class="flex flex-col">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <h1 class="text-xl font-extrabold">Artiklar</h1>
-      <%= link_to "Ny artikel", new_admin_article_path, class: "inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50"%>
-      <div class="overflow-hidden border-b shadow border-sand-200">
-        <table class="min-w-full divide-y divide-sand-200">
-          <thead>
-            <tr>
-              <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase text-sand-500 bg-sand-50">
-                Titel
-              </th>
-              <th>
-              </th>
-              <th>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-sand-200">
-            <% @articles.each do |article| %>
-              <tr>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                  <%= article.title %>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                  <%= link_to "Redigera artikel", edit_admin_article_path(article) %>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                  <%= link_to "Radera artikel", admin_article_path(article), method: :delete, data: { confirm: "Säker?" } %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="flex pb-12">
+  <h2>Artiklar</h2>
+  <%= link_to "Ny artikel", new_admin_article_path, class: "flex-0 ml-auto px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50"%>
 </div>
+<table class="w-full divide-y divide-sand-200">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase text-sand-500 bg-sand-50">
+        Titel
+      </th>
+      <th>
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-sand-200 text-xs">
+    <% @articles.each do |article| %>
+      <tr>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= article.title %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= link_to "Redigera artikel", edit_admin_article_path(article) %>
+        </td>
+        <td class="px-6 py-4 whitespace-no-wrap">
+          <%= link_to "Radera artikel", admin_article_path(article), method: :delete, data: { confirm: "Säker?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

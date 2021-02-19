@@ -320,3 +320,17 @@ form {
     opacity: 0.8;
   }
 }
+
+.adminlink {
+  padding: 8px 14px;
+}
+
+.adminlink.active {
+  font-weight: bold;
+  background: var(--rough-400);
+}
+
+.toberemoved {
+  opacity: 0.5;
+  border: 5px solid var(--red-200);
+}

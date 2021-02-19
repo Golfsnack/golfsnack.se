@@ -1,0 +1,48 @@
+<div class="flex pb-12">
+  <h2 >Golfklubbar</h2>
+  <%= link_to "Ny golfklubb", new_admin_club_path, class: "flex-0 ml-auto px-4 py-2 text-sm font-medium leading-5 text-sand-700 transition duration-150 ease-in-out bg-white border border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50"%>
+</div>
+<form action="<%= admin_clubs_path%>" class="mb-4">
+  <input type="search" name="query" placeholder="Sök golfklubb..."  class="p-2" />
+</form>
+<div class="overflow-hidden border-b shadow border-sand-200">
+  <table class="min-w-full divide-y divide-sand-200">
+    <thead>
+      <tr>
+        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+          Namn
+        </th>
+        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+          Medlemmar
+        </th>
+        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+          Golfsnack
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-sand-200 text-xs">
+      <% @clubs.each do |club| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= club.name %>
+          </td>
+          <td class="px-6 py-4">
+            <%= club.users.size %>
+          </td>
+          <td class="px-6 py-4">
+            <%= club.posts.size %>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= link_to "Redigera", edit_admin_club_path(club) %>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= link_to "Radera", admin_club_path(club), method: :delete, data: { confirm: "Säker?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @clubs %>
+</div>

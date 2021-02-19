@@ -7,13 +7,16 @@ Rails.application.routes.draw do
 
   get 'discourse/sso' => 'discourse_sso#sso'
 
-  namespace :admin do
-    root to: 'base#index'
-    post '/', to: 'base#create', as: :create_invitation
+  authenticate :user, -> (user) { user.has_role?(:admin) } do
+    namespace :admin do
+      resources :invites
+      resources :articles
+      resources :polls do
+        resources :poll_answers
+      end
+      resources :clubs
 
-    resources :articles
-    resources :polls do
-      resources :poll_answers
+      root to: 'invites#index'
     end
   end
 
@@ -38,7 +41,9 @@ Rails.application.routes.draw do
     delete '/mainimage', to: "images#mainimage", as: :destroy_mainimage
   end
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
-  resources :clubs, only: [:index, :show], path: 'golfklubbar'
+  resources :clubs, only: [:index, :show], path: 'golfklubbar' do
+    collection { get 'search' }
+  end
 
   post '/follow', to: 'follows#create', as: :follow
   post "/unfollow", to: 'follows#destroy', as: :unfollow
