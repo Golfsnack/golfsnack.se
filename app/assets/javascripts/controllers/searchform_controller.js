@@ -1,6 +1,4 @@
 import { Controller } from "stimulus"
-import debounce from "../libraries/debounce"
-
 export default class extends Controller {
   static targets = ["searchResults", "searchItem"]
 
