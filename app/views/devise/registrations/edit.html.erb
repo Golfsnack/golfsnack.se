@@ -1,60 +1,52 @@
-<div class="container px-12 py-12">
-  <div>
-    <%= link_to "↤ Tillbaka till profil", profile_path %>
-    <h2 class="mb-6 text-3xl font-extrabold">
-      Redigera profil
-    </h2>
-  </div>
+<div class="mt-12">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="grid-cols-2 gap-12 md:grid">
-      <div>
-        <div class="block w-full px-3 py-2 mb-6 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-          <%= f.label :avatar %><br />
-          <%= image_tag resource.avatar.variant(resize_to_fill: [50, 40], gravity: 'center') if resource.avatar.attached? %>
-          <%= f.file_field :avatar %>
-        </div>
-        <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-          <%= f.label :cover %><br />
-          <%= image_tag @user.cover.variant(resize_to_fill: [320, 105], gravity: 'center') if resource.cover.attached? %>
-          <%= f.file_field :cover %>
-        </div>
-        <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-          <%= f.label :info %><br />
-          <%= f.text_area :info, rows: 5, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h4 class="mb-6 text-2xl font-bold">Redigera information</h4>
         </div>
       </div>
-      <div>
-        <div class="block w-full px-3 py-2 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autocomplete: "email", class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :first_name %>
+                <%= f.text_field :first_name, class: "" %>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :last_name %>
+                <%= f.text_field :last_name, class: "" %>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :email %>
+                <%= f.email_field :email, autocomplete: "email", class: "" %>
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :golf_id %>
+                <%= f.text_field :golf_id, class: "" %>
+              </div>
+              <div class="block mt-4 col-span-6" data-controller="autocomplete">
+                <%= f.label "Hemmaklubb" %>
+                <%= f.collection_select :club_id, Club.order(:name).all, :id, :name, {include_blank: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
+              </div>
+            </div>
+            <div class="my-6">
+              <%= f.label :info, "Om dig" %>
+              <div class="rounded-md shadow-sm">
+                <%= f.text_area :info, rows: 5, class: "form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+              </div>
+              <p class="mt-2 text-sm text-gray-500">
+                Kort beskrivning om vem du är
+              </p>
+            </div>
           </div>
-          <div class="field">
-            <%= f.label :first_name %><br />
-            <%= f.text_field :first_name, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
-          </div>
-          <div class="field">
-            <%= f.label :last_name %><br />
-            <%= f.text_field :last_name, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
-          </div>
-          <div class="field">
-            <%= f.label :golf_id %><br />
-            <%= f.text_field :golf_id, class: "block w-full px-3 py-2 border border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" %>
-          </div>
-          <div class="block mt-4" data-controller="autocomplete">
-            <%= f.label "Hemmaklubb" %><br />
-            <%= f.collection_select :club_id, Club.order(:name).all, :id, :name, {include_blank: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
+          <div class="actions">
+            <%= f.submit "Uppdatera" %>
           </div>
         </div>
       </div>
-      <div class="mt-6 actions">
-        <%= f.submit "Uppdatera", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium text-white bg-rough-600 hover:bg-rough-500 focus:outline-none focus:border-rough-700 focus:shadow-outline-golfsnack active:bg-rough-700 transition duration-150 ease-in-out" %>
-      </div>
-    </div>
-  <% end %>
-  <div class="block w-full px-3 py-2 mt-20 border field border-golfsnack-300 placeholder-golfsnack-500 text-golfsnack-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-    <h3 class="text-red-500">Dangerzone</h3>
-    <p><%= button_to "Ta bort konto", registration_path(resource_name), data: { confirm: "Säker? Detta går inte att ångra!" }, method: :delete, class: "bg-transparent hover:bg-red-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent" %></p>
+    <% end %>
   </div>
 </div>

@@ -7,4 +7,10 @@ class ImagesController < ApplicationController
     @image.purge
     redirect_back(fallback_location: root_path)
   end
+
+  def mainimage
+    @post = Post.find(params[:post_id])
+    @post.mainimage.purge
+    redirect_back(fallback_location: root_path)
+  end
 end

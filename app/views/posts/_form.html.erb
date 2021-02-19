@@ -31,17 +31,33 @@
         </div>
         <%= f.collection_select :tag_list, ActsAsTaggableOn::Tag.all, :name, :name, {include_blank: false}, "data-autocomplete-target": "field", multiple: true %>
       </div>
-      <div class="banan">
+      <div class="bg-golfsnack-100">
         <div class="flex">
           <svg height="20px" width="20px" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-          Bilder
+          Huvudbild
+        </div>
+        <% if @post.mainimage.attached? %>
+          <turbo-frame id="post-<%=@post.id%>-main-image-form">
+            <%= image_tag @post.mainimage %>
+            <%= link_to 'Ta bort bild', post_destroy_mainimage_path(@post), method: :delete, data: { confirm: 'Helt säker?' } %>
+          </turbo-frame>
+        <% end %>
+        <div data-controller="imgpreview">
+          <div data-imgpreview-target="output" class="flex gap-4 flex-wrap"></div>
+          <%= f.file_field :mainimage, "data-imgpreview-target": "input", "data-action": "imgpreview#readURL" %>
+        </div>
+      </div>
+      <div class="bg-golfsnack-100">
+        <div class="flex">
+          <svg height="20px" width="20px" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          Andra Bilder
         </div>
         <% if @post.images.attached? %>
           <turbo-frame id="post-<%=@post.id%>-images-form">
             <div class="flex gap-2">
               <% @post.images.each do |image| %>
                 <div class="flex flex-col gap-2">
-                  <%= image_tag image.variant(resize_to_fill: [100, 100]) %>
+                  <%= image_tag image %>
                   <%= link_to 'Ta bort bild', post_image_path(@post, image), method: :delete, data: { confirm: 'Helt säker?' } %>
                 </div>
               <% end %>
@@ -49,7 +65,7 @@
           </turbo-frame>
         <% end %>
         <div data-controller="imgpreview">
-          <div data-imgpreview-target="output" class="flex gap-4 flex-wrap"></div>
+          <div data-imgpreview-target="output" class="flex gap-4 flex-wrap otherimages"></div>
           <%= f.file_field :images, multiple: true, "data-imgpreview-target": "input", "data-action": "imgpreview#readURL" %>
         </div>
       </div>

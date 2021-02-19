@@ -1,5 +1,4 @@
 import { Controller } from "stimulus"
-
 export default class extends Controller {
   static targets = ["output", "input"]
 
@@ -12,8 +11,6 @@ export default class extends Controller {
       reader.onload = function (e) {
         const img = document.createElement("img")
         img.src = e.target.result
-        img.width = "100"
-        img.height = "100"
         img.className = "imgpreview"
         output.append(img)
         // do sth with bin

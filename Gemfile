@@ -56,7 +56,6 @@ gem 'nokogiri'
 gem 'typhoeus'
 gem 'dalli'
 
-gem 'wicked'
 gem 'rolify'
 
 gem 'searchkick'

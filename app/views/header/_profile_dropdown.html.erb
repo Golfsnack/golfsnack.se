@@ -3,7 +3,7 @@
     <button
       class="flex text-sm transition duration-150 ease-in-out focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true" data-action="click->navbar#toggleProfileMenu">
       <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 40], gravity: 'center'), class: "object-cover w-8 h-8 mini-avatar border border-fairway-600"  %>
+        <%= image_tag current_user.avatar, class: "object-cover w-8 h-8 mini-avatar border border-fairway-600"  %>
       <% else %>
         <%= image_tag "fallback/avatar-thumb-default.png", class: 'mini-avatar object-cover w-8 h-8 border border-fairway-600' %>
       <% end %>

@@ -21,14 +21,20 @@ Rails.application.routes.draw do
   get '/profil/vanner/', to: 'profile#friends', as: :friends
   get '/profil/golfsnack/', to: 'profile#blog', as: :blog
 
+  get '/profil/bild', to: 'profile#avatar', as: :profile_avatar
+  get '/profil/omslagsbild', to: 'profile#coverimage', as: :profile_cover
+  put '/profil/bild', to: 'profile#update_avatar', as: :update_avatar
+  put '/profil/omslagsbild', to: 'profile#update_cover', as: :update_cover
+  delete '/profil/bild', to: 'profile#delete_avatar', as: :delete_avatar
+  delete '/profil/omslagsbild', to: 'profile#delete_cover', as: :delete_cover
+
   resources :articles, only: [:index, :show], path: 'artiklar'
   resources :posts, except: [:index], path: 'golfsnack' do
     resources :images, only: [:destroy]
+    delete '/mainimage', to: "images#mainimage", as: :destroy_mainimage
   end
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
   resources :clubs, only: [:index, :show], path: 'golfklubbar'
-
-  resources :registration_steps
 
   post '/follow', to: 'follows#create', as: :follow
   post "/unfollow", to: 'follows#destroy', as: :unfollow

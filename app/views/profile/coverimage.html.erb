@@ -1,0 +1,24 @@
+<div class="mt-12">
+  <%= form_for(@user, url: update_cover_path, html: { method: :put, multipart: true }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @user %>
+    <div class="shadow sm:rounded-md sm:overflow-hidden">
+      <div class="px-4 py-5 bg-white sm:p-6" data-controller="imgcrop" data-imgcrop-width-value="800" data-imgcrop-height-value="343">
+        <h4 class="mb-6 text-2xl font-bold">Redigera omslagsbild</h4>
+        <%= f.hidden_field :cover, "data-imgcrop-target": "field" %>
+        <div data-imgcrop-target="output" class="bg-golfsnack-100" style="width: 900px; height: 400px;"></div>
+        <div class="my-12">
+          <input type="file" data-imgcrop-target="input" data-action="imgcrop#readURL" class="my-12" accept="image/*" />
+          <% if @user.cover.attached? %>
+            <%= image_tag @user.cover, data: {"imgcrop-target": "preview"}, style: "background: #eee; width: 600px;", class: "hidden" %>
+            <%= link_to 'Ta bort bild', delete_cover_path, method: :delete, data: { confirm: 'Helt säker?' } %>
+          <% else %>
+            <img data-imgcrop-target="preview" style="background: #eee; width: 600px;" class="hidden" />
+          <% end %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Uppdatera", disabled: true, "data-imgcrop-target": "submit" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -8,7 +8,6 @@
   <% @posts.each do |post| %>
     <article id="post_<%=post.id%>" class="story rounded-lg">
       <div role="presentation">
-        <h3 class="font-semibold mb-2 text-golfsnack-600"><%= post.title %></h3>
         <div class="story__top">
           <div class="story__avatar">
             <%= render 'shared/avatar', user: post.user %>
@@ -24,10 +23,11 @@
             <%= render 'shared/tags', tags: post.tags %>
           </div>
         </div>
-        <% if post.images.attached? %>
-          <%= image_tag post.images.first.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full border-2 border-golfsnack-100 my-4" %>
-        <% end %>
         <div class="story__body">
+          <h4 class="font-semibold mb-2 text-golfsnack-600"><%= post.title %></h4>
+          <% if post.mainimage.attached? %>
+            <%= image_tag post.mainimage.variant(resize_to_fill: [800, 450], gravity: 'center'), class: "object-cover w-full mb-4" %>
+          <% end %>
           <div class="story__body__body">
             <%= truncate(strip_tags(post.body.to_s), length: 400) %>
             <%= link_to "Läs mer", post_path(post), class: "font-bold text-wetsand-700", "data-turbo-frame": "post-show" %>

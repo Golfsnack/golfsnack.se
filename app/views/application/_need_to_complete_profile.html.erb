@@ -1,0 +1,6 @@
+<div class="border border-red-600 p-4 w-full bg-red-100 my-12 flex">
+  <h4>Du måste komplettera din profil innan du kan använda Golfsnack fullt ut</h4>
+  <% if url_for != edit_user_registration_path %>
+    <%= link_to "Komplettera profil", edit_user_registration_path, class: "flex-0 ml-auto" %>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 <% if user %>
   <%= link_to user, "data-turbo-frame": "_top" do %>
     <% if user.avatar.attached? %>
-      <%= image_tag user.avatar.variant(resize_to_fill: [60, 40], gravity: 'center'), class: 'small-avatar' %>
+      <%= image_tag user.avatar, class: 'small-avatar' %>
     <% else %>
       <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar' %>
     <% end %>

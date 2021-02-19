@@ -1,23 +1,25 @@
 <header id="header" class="flex flex-col" data-controller="navbar">
   <nav class="py-4 h-18">
     <div class="relative flex items-center h-16 max-w-screen-2xl mx-auto">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <!-- Mobile menu button-->
-        <button
+      <% if current_user %>
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button
           class="togglebtn inline-flex items-center justify-center p-2 transition duration-150 ease-in-out text-sand-100 hover:text-sand-600 hover:bg-sand-700 focus:outline-none focus:bg-sand-700 focus:text-white"
           aria-label="Main menu"
           aria-expanded="false"
           data-action="click->navbar#toggleMobileMenu" data-navbar-target="toggleBtn">
-          <svg
+            <svg
           class="opener w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg
           class="closer hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      <% end %>
       <div class="w-full text-center">
         <a href="/">
           <%= image_tag 'Golfsnack_Centrerad_VIT.png', alt: "Golfsnack", class: "inline-block h-12 w-auto" %>
@@ -28,15 +30,19 @@
           <%= render partial: 'header/profile_dropdown'%>
         </div>
       </div>
+    <% else %>
+      <%= link_to "Logga in", new_user_session_path, class: "text-white w-24 text-sm" %>
     <% end %>
   </nav>
-  <div class="relative">
-    <nav class="absolute z-10 sm:static hidden py-2 subnav sm:block w-full" data-navbar-target="mobileMenu">
-      <div class="flex flex-col sm:flex-row items-center justify-center w-full font-mono uppercase">
-        <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
-      </div>
-    </nav>
-  </div>
+  <% if current_user %>
+    <div class="relative">
+      <nav class="absolute z-10 sm:static hidden py-2 subnav sm:block w-full" data-navbar-target="mobileMenu">
+        <div class="flex flex-col sm:flex-row items-center justify-center w-full font-mono uppercase">
+          <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
+        </div>
+      </nav>
+    </div>
+  <% end %>
   <div class="flex items-center justify-center w-full h-full subtitle">
     <h2 class="font-normal text-white uppercase">Av golfare. För golfare</h2>
   </div>

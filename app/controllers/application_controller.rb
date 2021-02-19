@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :completed_profile
   include SessionCurrentUser
 
   before_action :authenticate_user!
@@ -16,16 +15,7 @@ class ApplicationController < ActionController::Base
     if resource.completed_profile?
       root_path
     else
-      registration_steps_path
-    end
-  end
-
-  def completed_profile
-    if current_user
-      if !current_user.completed_profile?
-        flash[:error] = "Du måste komplettera din profil"
-        redirect_to registration_steps_path
-      end
+      edit_user_registration_path
     end
   end
 

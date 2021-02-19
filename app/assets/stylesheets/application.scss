@@ -7,6 +7,7 @@
 @import "stories";
 @import "trix";
 @import "tomselect";
+@import "croppie";
 
 body {
   background: var(--fairway-100);
@@ -48,34 +49,30 @@ body {
 }
 
 .big-avatar {
-  height: 180px;
-  width: 140px;
+  height: 200px;
+  width: 150px;
   clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
-  border-width: 2px;
-  border-color: #ccc;
   object-fit: cover;
 }
 
 .avatar {
-  height: 120px;
-  width: 100px;
+  height: 150px;
+  width: 112.5px;
   clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
-  border-width: 2px;
-  border-color: #ccc;
   margin-top: -30px;
   object-fit: cover;
 }
 
 .small-avatar {
   height: 50px;
-  width: 40px;
+  width: 37.5px;
   clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
   object-fit: cover;
 }
 
 .mini-avatar {
   height: 30px;
-  width: 22px;
+  width: 22.5px;
   clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
   object-fit: cover;
 }
@@ -256,5 +253,70 @@ a[target="_blank"]:after {
 }
 
 img.imgpreview {
-  border: "2px solid orange";
+  object-fit: contain;
+}
+
+.otherimages {
+  img {
+    width: 45%;
+  }
+}
+
+form {
+  input[type="submit"] {
+    padding: 8px 16px;
+    line-height: 1.25rem;
+    font-weight: 500;
+    border-radius: 2px;
+    color: white;
+    font-size: small;
+    background: var(--rough-600);
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+    &:not(:disabled):hover {
+      background: var(--rough-800);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  .actions {
+    padding: 16px 12px;
+    background: var(--blue-100);
+    text-align: right;
+  }
+
+  label {
+    line-height: 1.25rem;
+    display: block;
+    font-weight: 500;
+    color: var(--golfsnack-800);
+  }
+
+  input[type="text"] {
+    margin-top: 0.25rem;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--golfsnack-300);
+    border-radius: 0.375rem;
+    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+.post-image {
+  &:hover {
+    border: 2px solid var(--rough-200);
+    opacity: 0.8;
+  }
 }

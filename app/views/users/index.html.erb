@@ -20,7 +20,7 @@
           <%= link_to user_path(user) do %>
             <div class="relative flex flex-row">
               <% if user.avatar.attached? %>
-                <%= image_tag user.avatar.variant(resize_to_fill: [60, 40], gravity: 'center'), class: 'small-avatar mr-2' %>
+                <%= image_tag user.avatar, class: 'small-avatar mr-2' %>
               <% else %>
                 <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar mr-2' %>
               <% end %>

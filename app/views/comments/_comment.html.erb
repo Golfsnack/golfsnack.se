@@ -2,7 +2,7 @@
   <div class="flex py-2 px-4 border-b border-golfsnack-100" id="comment_<%=comment.id%>">
     <div class="mr-2 mt-1">
       <% if comment.user.avatar.attached? %>
-        <%= image_tag comment.user.avatar.variant(resize_to_fill: [30, 22], gravity: 'center'), class: 'mini-avatar' %>
+        <%= image_tag comment.user.avatar, class: 'mini-avatar' %>
       <% else %>
         <%= image_tag "fallback/avatar-thumb-default.png", class: 'mini-avatar' %>
       <% end %>

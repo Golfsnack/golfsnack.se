@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[show]
+  layout "application"
 
   def show
     @post = Post.find(params[:id])
@@ -57,6 +59,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :club_id, tag_list: [], images: [])
+    params.require(:post).permit(:title, :body, :club_id, :mainimage, tag_list: [], images: [])
   end
 end

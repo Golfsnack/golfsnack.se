@@ -49,7 +49,7 @@
     <% @clubs[0..4].each do |club| %>
       <div class="relative flex flex-col xs:w-1/2 sm:w-1/4 md:w-1/6">
         <% if current_user.avatar.attached? %>
-          <%= image_tag current_user.avatar.variant(resize_to_fill: [40, 25], gravity: 'center'), class: 'mini-avatar absolute -top-2 -left-2' %>
+          <%= image_tag current_user.avatar, class: 'mini-avatar absolute -top-2 -left-2' %>
         <% else %>
           <%= image_tag "fallback/avatar-thumb-default.png", class: 'small-avatar' %>
         <% end %>

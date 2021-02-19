@@ -1,0 +1,36 @@
+<div class="mt-12">
+  <%= form_for(@user, url: update_avatar_path, html: { method: :put, multipart: true }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @user %>
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h4 class="mb-6 text-2xl font-bold">Redigera profilbild</h4>
+        </div>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="shadow sm:rounded-md sm:overflow-hidden" data-controller="imgcrop" data-imgcrop-width-value="150" data-imgcrop-height-value="200">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <%= f.hidden_field :avatar, "data-imgcrop-target": "field" %>
+            <div class="grid md:grid-cols-2 gap-12">
+              <div data-imgcrop-target="output" class="bg-golfsnack-100" style="width: 100%; height: 400px;"></div>
+              <div>
+                <% if @user.avatar.attached? %>
+                  <%= image_tag @user.avatar, data: {"imgcrop-target": "preview"}, style: "width: 150px; height: 200px;", class: "big-avatar" %>
+                  <%= link_to 'Ta bort bild', delete_avatar_path, method: :delete, data: { confirm: 'Helt säker?' } %>
+                <% else %>
+                  <%= image_tag "fallback/avatar-thumb-default.png", data: {"imgcrop-target": "preview"}, style: "width: 150px; height: 200px;", class: "big-avatar" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="mt-12">
+              <input type="file" data-imgcrop-target="input" data-action="imgcrop#readURL" class="mt-12" accept="image/*" />
+            </div>
+          </div>
+          <div class="actions">
+            <%= f.submit "Uppdatera", disabled: true, "data-imgcrop-target": "submit" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
