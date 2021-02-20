@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2021-02-20
+## 2021-02-19
 
 - Man kan nu beskära sin profilbild + omslagsbild på sin profil
 - Sökningen för golfklubbar fungerar nu
