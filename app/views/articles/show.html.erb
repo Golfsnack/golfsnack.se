@@ -1,7 +1,7 @@
 <% content_for :meta_title, "Golfsnack: #{@article.title}" %>
 <% content_for :meta_description, truncate(@article.preamble, length: 200) %>
 <% if @article.image.attached? %>
-  <% content_for :meta_image, rails_representation_url(@article.image.variant(resize_to_fill: [1200, 627], gravity: 'center')) %>
+  <% content_for :meta_image, url_for(@article.image) %>
 <% end %>
 <% content_for :meta_type, "article" %>
 <% content_for :meta_url, article_url(@article) %>
@@ -10,7 +10,7 @@
   <div class="fb-share-button mx-1" data-href="<%= url_for(only_path: false) %>" data-layout="button_count"></div>
 </div>
 <div class="p-6 my-6 bg-white text-columns">
-  <%= image_tag @article.image.variant(resize_to_fill: [1024, 726], gravity: 'center'), class: "object-cover w-full mb-6" %>
+  <%= image_tag @article.image, class: "object-cover w-full mb-6" %>
   <h1 class="mb-2 text-2xl font-extrabold leading-snug text-golfsnack-800">
     <%=@article.title%>
   </h1>

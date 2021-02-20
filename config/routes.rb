@@ -46,6 +46,12 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy], path: 'kommentarer'
   resources :clubs, only: [:index, :show], path: 'golfklubbar' do
     collection { get 'search' }
+    get '/bild', to: "clubs#logo", as: :logo
+    get '/omslagsbild', to: "clubs#cover", as: :cover
+    put '/bild', to: "clubs#update_logo", as: :update_logo
+    put '/omslagsbild', to: "clubs#update_cover", as: :update_cover
+    delete '/bild', to: "clubs#delete_logo", as: :delete_logo
+    delete '/omslagsbild', to: "clubs#delete_cover", as: :delete_cover
   end
 
   post '/follow', to: 'follows#create', as: :follow

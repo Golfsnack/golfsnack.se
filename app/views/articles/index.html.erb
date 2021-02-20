@@ -21,7 +21,7 @@
 </nav>
 <% @articles.each do |article|%>
   <div class="flex w-full p-12 my-12 bg-white">
-    <%= image_tag article.image.variant(resize_to_fill: [300, 200], gravity: 'center') if article.image.attached? %>
+    <%= image_tag article.image if article.image.attached? %>
     <div class="ml-12">
       <h2 class="mb-2 text-xl font-extrabold leading-snug text-golfsnack-800">
         <%= link_to article.title, article, class: "text-golfsnack-900 hover:text-purple-700" %>

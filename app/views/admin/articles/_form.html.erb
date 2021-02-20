@@ -9,7 +9,7 @@
   <label>Underrubrik</label>
   <%= f.text_field :subitle %>
   <div class="my-12">
-    <%= image_tag @article.image.variant(resize_to_fill: [640, 480], gravity: 'center') if @article.image.attached? %>
+    <%= image_tag @article.image if @article.image.attached? %>
     <%= f.label :image %><br />
     <%= f.file_field :image %>
   </div>

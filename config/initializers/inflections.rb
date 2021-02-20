@@ -100,4 +100,5 @@ ActiveSupport::Inflector.inflections(:sv) do |inflect|
   inflect.uncountable %w(hus kar träd får brev namn nummer kön)
 
   inflect.irregular 'golfklapp', 'golfklappar'
+  inflect.irregular 'medlem', 'medlemmar'
 end

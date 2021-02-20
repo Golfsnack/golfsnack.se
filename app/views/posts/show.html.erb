@@ -1,7 +1,7 @@
 <% content_for :meta_title, "Golfsnack: #{@post.title}" %>
 <% content_for :meta_description, truncate(strip_tags(@post.body.to_s), length: 200) %>
 <% if @post.mainimage.attached? %>
-  <% content_for :meta_image, rails_representation_url(@post.mainimage.variant(resize_to_fill: [1200, 627], gravity: 'center')) %>
+  <% content_for :meta_image, url_for(@post.mainimage) %>
 <% end %>
 <% content_for :meta_type, "article" %>
 <% content_for :meta_url, url_for(only_path: false) %>
@@ -28,12 +28,12 @@
       </div>
     </div>
     <% if @post.mainimage.attached? %>
-      <%= image_tag @post.mainimage.variant(resize_to_fill: [800, 450], gravity: 'center'), class: "object-cover w-full" %>
+      <%= image_tag @post.mainimage, class: "object-cover w-full" %>
     <% end %>
     <% if @post.images.attached? %>
       <div class="my-4 grid grid-cols-3 gap-4">
         <% @post.images.each do |image| %>
-          <%= image_tag image.variant(resize_to_fill: [400, 225], gravity: 'center'), class: "object-contain w-full border-2" %>
+          <%= image_tag image, class: "object-contain w-full border-2" %>
         <% end %>
       </div>
     <% end %>

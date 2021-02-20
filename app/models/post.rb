@@ -13,10 +13,7 @@ class Post < ApplicationRecord
   has_rich_text :body
 
   has_one_attached :mainimage
-
-  has_many_attached :images do |attachable|
-    attachable.variant :thumb, resize: "200x100"
-  end
+  has_many_attached :images
 
   def name
     self.title

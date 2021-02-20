@@ -26,7 +26,7 @@
         <div class="story__body">
           <h4 class="font-semibold mb-2 text-golfsnack-600"><%= post.title %></h4>
           <% if post.mainimage.attached? %>
-            <%= image_tag post.mainimage.variant(resize_to_fill: [800, 450], gravity: 'center'), class: "object-cover w-full mb-4" %>
+            <%= image_tag post.mainimage, class: "object-cover w-full mb-4" %>
           <% end %>
           <div class="story__body__body">
             <%= truncate(strip_tags(post.body.to_s), length: 400) %>
