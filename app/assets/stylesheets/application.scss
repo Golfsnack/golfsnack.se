@@ -85,6 +85,14 @@ body {
   color: white;
 }
 
+.small-arrow-title {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+  background: var(--yellow-400);
+  padding: 0.2rem 1rem;
+  padding-right: 2rem;
+  color: white;
+}
+
 .poll {
   li {
     border-bottom: 1px solid var(--wetsand-300);
@@ -123,7 +131,8 @@ body {
     background: var(--blue-800);
   }
 }
-.banbesok {
+.banbesok,
+.banbesök {
   color: white;
   background: var(--yellow-600);
   &:hover {

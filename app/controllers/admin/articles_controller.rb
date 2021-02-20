@@ -38,7 +38,7 @@ module Admin
     private
 
     def article_params
-      params.require(:article).permit(:title, :image, :body, :preamble, :subitle)
+      params.require(:article).permit(:title, :image, :body, :preamble, :category_id)
     end
   end
 end

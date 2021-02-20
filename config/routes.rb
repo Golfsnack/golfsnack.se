@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :invites
       resources :articles
+      resources :categories
       resources :polls do
         resources :poll_answers
       end

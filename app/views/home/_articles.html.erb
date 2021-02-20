@@ -1,20 +1,15 @@
-<section class="w-full my-12 carousel" aria-label="Gallery">
+<section class="w-full my-12 carousel bg-golfsnack-100 px-4 py-1 rounded" aria-label="Gallery">
   <div class="grid my-12 md:grid-cols-3">
     <a href="<%= url_for @article %>" class="no-underline hover:underline hover:opacity-90">
       <%= image_tag @article.image, class: "object-cover w-full border-4 border-golfsnack-100" %>
     </a>
     <div class="w-full px-8 md:col-span-2">
-      <div class="text-columns">
-        <a href="<%= url_for @article %>" class="block mb-4 no-underline hover:underline">
-          <h2 class="mb-0 text-2xl font-extrabold leading-snug uppercase text-golfsnack-800">
-            <%= @article.title%>
-          </h2>
-          <h3 class="mb-0 text-lg font-bold uppercase text-golfsnack-400">
-            <%= @article.subitle %>
-          </h3>
-        </a>
-        <%= @article.preamble %>
-      </div>
+      <a href="<%= url_for @article %>" class="block mb-4 no-underline hover:underline">
+        <h2 class="mb-0 text-2xl font-extrabold leading-snug uppercase text-golfsnack-800">
+          <%= @article.title%>
+        </h2>
+      </a>
+      <%= @article.preamble %>
     </div>
   </div>
 </section>

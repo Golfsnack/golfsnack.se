@@ -20,10 +20,12 @@
         <td class="px-6 py-4 whitespace-no-wrap">
           <%= article.title %>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <%= link_to "Redigera artikel", edit_admin_article_path(article) %>
+        <td>
+          <%= article.category ? article.category.name : "Ingen kategori" %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
+          <%= link_to "Redigera artikel", edit_admin_article_path(article) %>
+          &nbsp;
           <%= link_to "Radera artikel", admin_article_path(article), method: :delete, data: { confirm: "Säker?" } %>
         </td>
       </tr>

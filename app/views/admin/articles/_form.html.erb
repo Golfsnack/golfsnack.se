@@ -4,10 +4,11 @@
   <% end %>
 </ul>
 <%= form_for [:admin, @article], html: { multipart: true } do |f| %>
+  <label>Kategori</label>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: true}, placeholder: "Välj en kategori...", class: "w-full" %>
+  <hr class="my-4" />
   <label>Rubrik</label>
   <%= f.text_field :title %>
-  <label>Underrubrik</label>
-  <%= f.text_field :subitle %>
   <div class="my-12">
     <%= image_tag @article.image if @article.image.attached? %>
     <%= f.label :image %><br />

@@ -4,10 +4,17 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.includes([:rich_text_body, image_attachment: :blob]).order(created_at: :desc).page params[:page]
-    @latest_articles = (@articles + @articles + @articles).first(8)
+    if params[:category]
+      @category = Category.where(name: params[:category].capitalize).first
+      if @category
+        @articles = @articles.where(category_id: @category.id)
+      end
+    else
+      @latest_articles = (@articles + @articles + @articles).first(8)
+    end
   end
 
   def show
-    @article = Article.friendly.find(params[:id])
+    @article = Article.includes([:rich_text_body, image_attachment: :blob]).friendly.find(params[:id])
   end
 end

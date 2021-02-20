@@ -1,0 +1,12 @@
+<ul>
+  <% @category.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<%= form_for [:admin, @category] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <div class="actions mt-12">
+    <%= f.submit 'Spara kategori' %>
+  </div>
+<% end %>

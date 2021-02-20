@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_205107) do
+ActiveRecord::Schema.define(version: 2021_02_20_225147) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_205107) do
     t.string "slug"
     t.text "preamble"
     t.string "subitle"
+    t.integer "category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -92,6 +94,12 @@ ActiveRecord::Schema.define(version: 2021_02_19_205107) do
     t.datetime "created_at"
     t.index ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id"
     t.index ["sash_id"], name: "index_badges_sashes_on_sash_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "clubs", force: :cascade do |t|

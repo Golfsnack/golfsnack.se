@@ -5,16 +5,18 @@
 <% end %>
 <% content_for :meta_type, "article" %>
 <% content_for :meta_url, article_url(@article) %>
-<div class="my-6">
-  <%= link_to "↤ Tillbaka till artiklar", articles_path %>
-  <div class="fb-share-button mx-1" data-href="<%= url_for(only_path: false) %>" data-layout="button_count"></div>
-</div>
-<div class="p-6 my-6 bg-white text-columns">
-  <%= image_tag @article.image, class: "object-cover w-full mb-6" %>
-  <h1 class="mb-2 text-2xl font-extrabold leading-snug text-golfsnack-800">
+
+<div class="p-6 my-6 bg-white shadow-lg rounded max-w-screen-lg mx-auto">
+  <h1 class="mb-2 text-3xl font-extrabold leading-snug text-golfsnack-800 uppercase">
     <%=@article.title%>
   </h1>
-  <h2 class="mb-2 text-lg font-extrabold leading-snug text-golfsnack-400"><%=@article.subitle%></h2>
+  <%= image_tag @article.image, class: "object-cover w-full mb-6" %>
+  <div class="my-6 flex gap-4">
+    <% if @article.category %>
+      <span class="px-2 py-1 text-xs inline-block <%= @article.category.name.downcase %>"><%= @article.category.name %></span>
+    <% end %>
+    <div class="fb-share-button" data-href="<%= url_for(only_path: false) %>" data-layout="button_count"></div>
+  </div>
   <%= @article.preamble %>
   <%= @article.body %>
 </div>
