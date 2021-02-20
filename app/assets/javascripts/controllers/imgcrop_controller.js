@@ -15,10 +15,7 @@ const debounce = (func, wait, immediate) => {
     if (callNow) func.apply(context, args)
   }
 }
-export default class extends Controller {
-  static targets = ["output", "input", "preview", "field", "submit"]
-  static values = { width: Number, height: Number }
-
+class ImgcropController extends Controller {
   connect() {
     const output = this.outputTarget
     const preview = this.previewTarget
@@ -87,3 +84,8 @@ export default class extends Controller {
     }
   }
 }
+
+ImgcropController.targets = ["output", "input", "preview", "field", "submit"]
+ImgcropController.values = { width: Number, height: Number }
+
+export default ImgcropController

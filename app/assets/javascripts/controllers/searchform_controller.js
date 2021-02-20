@@ -1,11 +1,5 @@
 import { Controller } from "stimulus"
-export default class extends Controller {
-  static targets = ["searchResults", "searchItem"]
-
-  connect() {
-    console.log("connected to searchForm controller")
-  }
-
+class SearchformController extends Controller {
   requestSearch() {
     const resultsArea = document.querySelector(".sys-search-results")
     if (this.searchItemTarget.value.length > 0) {
@@ -22,3 +16,7 @@ export default class extends Controller {
     }
   }
 }
+
+SearchformController.targets = ["searchResults", "searchItem"]
+
+export default SearchformController

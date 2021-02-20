@@ -1,8 +1,5 @@
 import { Controller } from "stimulus"
-
-export default class extends Controller {
-  static targets = ["mobileMenu", "profileMenu", "toggleBtn"]
-
+class NavbarController extends Controller {
   toggleProfileMenu() {
     this.profileMenuTarget.classList.toggle("hidden")
   }
@@ -12,3 +9,7 @@ export default class extends Controller {
     this.toggleBtnTarget.classList.toggle("open")
   }
 }
+
+NavbarController.targets = ["mobileMenu", "profileMenu", "toggleBtn"]
+
+export default NavbarController

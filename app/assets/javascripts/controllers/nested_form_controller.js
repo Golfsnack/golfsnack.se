@@ -1,11 +1,5 @@
 import { Controller } from "stimulus"
-
-export default class extends Controller {
-  static targets = ["target", "template"]
-  static values = {
-    wrapperSelector: String,
-  }
-
+class NestedFormController extends Controller {
   initialize() {
     this.wrapperSelector = this.wrapperSelectorValue || ".nested-form-wrapper"
   }
@@ -30,3 +24,10 @@ export default class extends Controller {
     }
   }
 }
+
+NestedFormController.targets = ["target", "template"]
+NestedFormController.values = {
+  wrapperSelector: String,
+}
+
+export default NestedFormController

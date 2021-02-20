@@ -1,7 +1,5 @@
 import { Controller } from "stimulus"
-export default class extends Controller {
-  static targets = ["output", "input"]
-
+class ImgPreview extends Controller {
   readmultifiles(files) {
     const output = this.outputTarget
     const reader = new FileReader()
@@ -29,3 +27,7 @@ export default class extends Controller {
     }
   }
 }
+
+ImgPreview.targets = ["output", "input"]
+
+export default ImgPreview

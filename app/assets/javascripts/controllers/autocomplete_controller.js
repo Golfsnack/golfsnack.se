@@ -1,12 +1,7 @@
 import { Controller } from "stimulus"
 import TomSelect from "https://cdn.skypack.dev/tom-select"
 
-export default class extends Controller {
-  static values = {
-    create: Boolean,
-  }
-  static targets = ["field"]
-
+class AutocompleteController extends Controller {
   connect() {
     this.ac = new TomSelect(this.fieldTarget, {
       plugins: ["remove_button"],
@@ -16,3 +11,10 @@ export default class extends Controller {
     })
   }
 }
+
+AutocompleteController.values = {
+  create: Boolean,
+}
+AutocompleteController.targets = ["field"]
+
+export default AutocompleteController
