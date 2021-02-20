@@ -2,7 +2,7 @@ class User < ApplicationRecord
   rolify
   has_merit
 
-  searchkick highlight: [:first_name, :last_name]
+  searchkick highlight: [:first_name, :last_name], callbacks: :async
 
   acts_as_voter
   acts_as_followable

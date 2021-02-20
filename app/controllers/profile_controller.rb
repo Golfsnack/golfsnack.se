@@ -19,12 +19,12 @@ class ProfileController < ApplicationController
   def coverimage;end
 
   def delete_avatar
-    @user.avatar.purge
+    @user.avatar.purge_later
     redirect_to profile_path
   end
 
   def delete_cover
-    @user.cover.purge
+    @user.cover.purge_later
     redirect_to profile_path
   end
 

@@ -1,6 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   authenticate :user, -> (user) { user.has_role?(:admin) } do
     mount PgHero::Engine, at: "pghero"
+    mount Sidekiq::Web, at: "sidekiq"
   end
 
   devise_for :users, controllers: { registrations: "registrations" }

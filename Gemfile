@@ -67,6 +67,8 @@ gem 'acts-as-taggable-on', '~> 7.0'
 gem 'pghero'
 gem 'pg_query', '>= 0.9.0'
 
+gem 'sidekiq', '~> 6.1.3'
+
 group :production do
   gem 'tunemygc'
 end

@@ -4,13 +4,13 @@ class ImagesController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @image = @post.images.find(params[:id])
-    @image.purge
+    @image.purge_later
     redirect_back(fallback_location: root_path)
   end
 
   def mainimage
     @post = Post.find(params[:post_id])
-    @post.mainimage.purge
+    @post.mainimage.purge_later
     redirect_back(fallback_location: root_path)
   end
 end

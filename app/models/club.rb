@@ -3,7 +3,7 @@ class Club < ApplicationRecord
   has_many :users
   has_many :posts
 
-  searchkick word_middle: [:name]
+  searchkick word_middle: [:name], callbacks: :async
 
   accepts_nested_attributes_for :courses, reject_if: :all_blank, allow_destroy: true
 
