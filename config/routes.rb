@@ -56,8 +56,9 @@ Rails.application.routes.draw do
   post '/vote', to: 'polls#vote', as: :vote
 
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
-
   get '/anvandaravtal', to: 'public#useragreement', as: :user_agreement
+  get '/vanliga-fragor-och-svar', to: 'public#faq', as: :faq
+  get '/om-golfsnack', to: 'public#about_us', as: :about_us
 
   root to: 'home#index'
 

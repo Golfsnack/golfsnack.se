@@ -1,10 +1,5 @@
 <% flash.each do |type, msg| %>
-  <% if type == "alert" %>
-    <div class="px-4 py-3 my-4 border border-t-4 flash-alert" role="alert">
-      <strong class="font-bold">Ajdå!</strong>
-    <% else %>
-      <div class="px-4 py-3 my-4 border flash-info" role="alert">
-      <% end %>
-      <span class="block sm:inline"><%= msg %></span>
-    </div>
-  <% end %>
+  <div class="px-4 py-3 my-4 border flash-<%= type %>" role="alert">
+    <span class="block sm:inline"><%= msg %></span>
+  </div>
+ <% end %>

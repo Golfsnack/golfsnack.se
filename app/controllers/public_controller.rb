@@ -4,4 +4,10 @@ class PublicController < ApplicationController
 
   def useragreement
   end
+
+  def faq
+  end
+
+  def about_us
+  end
 end
