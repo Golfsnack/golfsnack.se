@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2021-02-20
+
+- Kategorier på artiklar + Admin för kategorier
+- Banans profilsida + Admin för omslag+logo om man är "moderator" på banan
+- La till tomma skal + länkar i footer för Faq + om oss
+- Performance fixes for asset uploading/deletion
+- Fixat bugg som bara visade sig i Safari
+
 ## 2021-02-19
 
 - Man kan nu beskära sin profilbild + omslagsbild på sin profil
