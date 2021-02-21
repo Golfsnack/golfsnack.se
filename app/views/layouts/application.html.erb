@@ -14,6 +14,7 @@
     <%= javascript_include_tag "application" %>
     <%= render partial: 'og' %>
     <%= yield :head %>
+    <link href="https://cdn.jsdelivr.net/npm/quickmenu@1.2.0/dist/css/quickmenu.min.css" rel="stylesheet" integrity="sha384-1Alh/TQ242wwdeRkNYXqDxDUEHD+BPtfrrmEdEypmRxRBnPFNWN6+iQMNfdXybWr" crossorigin="anonymous">
   </head>
   <body class="<%= @home%>">
     <%= render partial: 'header' %>
