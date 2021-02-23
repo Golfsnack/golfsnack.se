@@ -1,7 +1,7 @@
 <% content_for :meta_title, "Golfsnack: #{@article.title}" %>
 <% content_for :meta_description, truncate(@article.preamble, length: 200) %>
-<% if @article.image.attached? %>
-  <% content_for :meta_image, polymorphic_url(@article.image) %>
+<% if @article.image.attached? && Rails.env.production? %>
+  <% content_for :meta_image, @article.image.service_url %>
 <% end %>
 <% content_for :meta_type, "article" %>
 <% content_for :meta_url, article_url(@article) %>

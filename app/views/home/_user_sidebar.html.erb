@@ -18,23 +18,17 @@
     <% if user.club %>
       <h4 class="mt-2 font-normal uppercase text-fairway-600"><%= user.club.name %></h4>
     <% end %>
-    <div class="flex justify-around w-full my-6 border-t divide-y border-wetsand-400">
-      <div class="flex flex-col">
-        <div class="pr-2 my-2 text-sm text-gray-500 uppercase border-r border-gray-500">
-          <span>Följare</span>
-        </div>
+    <div class="grid grid-cols-3 w-full my-6 divide-x divide-golfsnack-500">
+      <div class="flex flex-col gap-2 w-full">
+        <span class="w-full text-center text-sm text-gray-500 uppercase">Följare</span>
         <h5 class="w-full font-mono text-xl text-center text-gray-700"><%= user.followers.size %></h5>
       </div>
-      <div class="flex flex-col">
-        <div class="pr-2 my-2 text-sm text-gray-500 uppercase border-r border-gray-500">
-          <span>Följer</span>
-        </div>
+      <div class="flex flex-col gap-2 w-full">
+        <span class="w-full text-center text-sm text-gray-500 uppercase">Följer</span>
         <h5 class="w-full font-mono text-xl text-center text-gray-700"><%= user.follows.size %></h5>
       </div>
-      <div class="flex flex-col">
-        <div class="my-2 text-sm text-gray-500 uppercase">
-          <span>Rundor</span>
-        </div>
+      <div class="flex flex-col gap-2 w-full">
+        <span class="w-full text-center text-sm text-gray-500 uppercase">Rundor</span>
         <h5 class="w-full font-mono text-xl text-center text-gray-700">0</h5>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@user.name} är aktiv på Golfsnack.se" %>
 <div class="">
-  <div class="mt-6 block w-full bg-wetsand-100 relative" style="height: 420px;">
+  <div class="block mt-6 w-full bg-wetsand-100 relative" style="height: 420px;">
     <% if is_current_user? @user %>
       <a href="/profil/omslagsbild" type="button" class="flex gap-2 text-sm bg-white rounded px-4 py-2 absolute bottom-4 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out hover:no-underline">
         <svg class="mx-auto h-5 w-5 text-goflsnack-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
@@ -10,7 +10,7 @@
       </a>
     <% end %>
     <% if @user.cover.attached? %>
-      <%= image_tag @user.cover, class: "object-cover w-full h-full mb-6 mt-12" %>
+      <%= image_tag @user.cover, class: "object-cover w-full h-full" %>
     <% end %>
     <% if @user.highest_role %>
       <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "18px", height: "24px", class: "absolute -bottom-12 left-12", style: "height: 40px; width: 32px;", title: @user.highest_role.name %>
