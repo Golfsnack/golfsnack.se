@@ -21,6 +21,9 @@
       <% if current_user && !current_user.completed_profile?%>
         <%= render partial: 'need_to_complete_profile' %>
       <% end %>
+      <% unless current_user %>
+        <%= render partial: 'become_member' %>
+      <% end %>
       <%= yield %>
     </div>
     <%= render partial: "footer" %>

@@ -1,10 +1,9 @@
 <%= render partial: 'articles' %>
-<div class="pt-6 border-t border-wetsand-300">
+<div class="pt-6">
   <div class="grid grid-cols-12 gap-6">
-    <div class="hidden md:block col-span-4 xl:col-span-3">
+    <div class="hidden col-span-4 md:block xl:col-span-3">
       <div class="sticky top-10">
         <%= render partial: 'user_sidebar', locals: { user: @user } %>
-        <%= render partial: 'leaderboard', locals: { users: @leaderboard_users } %>
         <%= render partial: 'popular_tags', locals: { tags: @popular_tags } %>
       </div>
     </div>
@@ -12,6 +11,8 @@
       <%= render partial: 'posts' %>
     </div>
     <div class="hidden xl:block xl:col-span-3">
+      <%= render partial: 'who_to_follow' %>
+      <%= render partial: 'leaderboard', locals: { users: @leaderboard_users } %>
       <%= render partial: 'polls' %>
     </div>
   </div>
