@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="mt-12">
-    <h3>Banor (<%= @club.courses.size %> sparade)</h3>
+    <h3>Banor (<%= @club.courses_count %> sparade)</h3>
     <%= f.fields_for :courses do |course_fields| %>
       <%= render "course_form", f: course_fields %>
     <% end %>

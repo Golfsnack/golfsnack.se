@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_225147) do
+ActiveRecord::Schema.define(version: 2021_02_23_195932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", id: :bigint, default: -> { "nextval('article_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
     t.string "image"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.text "preamble"
     t.string "subitle"
     t.integer "category_id"
-    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["slug"], name: "index_article_on_slug", unique: true
   end
 
   create_table "badges_sashes", force: :cascade do |t|
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "articles_count", default: 0, null: false
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "posts_count"
     t.integer "users_count"
+    t.integer "courses_count", default: 0, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -123,8 +125,10 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.string "role", default: "comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["discarded_at"], name: "index_comments_on_discarded_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -244,6 +248,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.string "choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "poll_answers_count", default: 0, null: false
   end
 
   create_table "polls", force: :cascade do |t|
@@ -251,6 +256,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.boolean "archived", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "poll_questions_count", default: 0, null: false
+    t.integer "poll_answers_count", default: 0, null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -263,6 +270,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.integer "comments_count"
     t.integer "club_id"
     t.text "preamble"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_posts_on_discarded_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -329,7 +338,12 @@ ActiveRecord::Schema.define(version: 2021_02_20_225147) do
     t.integer "level", default: 0
     t.integer "club_id"
     t.text "info"
+    t.datetime "discarded_at"
+    t.integer "follows_count", default: 0, null: false
+    t.integer "followers_count", default: 0, null: false
+    t.integer "posts_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

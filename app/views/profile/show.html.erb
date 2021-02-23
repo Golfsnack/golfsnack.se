@@ -38,25 +38,29 @@
       <% end %>
     <% end %>
     <div class="flex flex-col items-center justify-between w-full p-4 my-12 text-white uppercase bg-wetsand-600 md:flex-row">
-      <div>
-        <span class="px-2 border-r border-white">
-          <small class="font-light">följare</small> <strong class="text-lg font-bold"><%= @user.followers.size %></strong>
-        </span>
-        <span class="px-2 border-r border-white">
-          <small class="font-light">golfsnack</small> <strong class="text-lg font-bold"><%= @user.posts.size %></strong>
-        </span>
-        <span class="px-2 ">
-          <small class="font-light">antal rundor</small>
-          <strong class="text-lg font-bold">0</strong>
-        </span>
-      </div>
-      <div>
-        <span class="px-2 border-r border-white">
-          <small class="font-light">Medlem sedan</small> <strong class="text-lg font-bold"><%= l(@user.created_at, format: "%b %Y") %></strong>
+      <div class="divide-x divide-sand-100">
+        <span class="px-2">
+          <strong class="text-lg mx-1 font-bold"><%= @user.followers_count %></strong>
+          <small class="font-light">följare</small>
         </span>
         <span class="px-2">
-          <small class="font-light">golf-id</small> <strong class="text-lg font-bold"><%= @user.golf_id %></strong>
+          <strong class="text-lg mx-1 font-bold"><%= @user.posts_count %></strong>
+          <small class="font-light">golfsnack</small>
         </span>
+        <span class="px-2 ">
+          <strong class="text-lg mx-1 font-bold">0</strong>
+          <small class="font-light"> rundor</small>
+        </span>
+      </div>
+      <div class="divide-x divide-sand-100">
+        <span class="px-2">
+          <small class="font-light">Medlem sedan</small> <strong class="text-lg ml-2 font-bold"><%= l(@user.created_at, format: "%b %Y") %></strong>
+        </span>
+        <% unless @user.golf_id.blank? %>
+          <span class="px-2">
+            <small class="font-light">golf-id</small> <strong class="text-lg ml-2 font-bold"><%= @user.golf_id %></strong>
+          </span>
+        <% end %>
       </div>
     </div>
   </div>

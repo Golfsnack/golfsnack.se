@@ -10,7 +10,7 @@ module Admin
 
     def edit
       @poll = Poll.find(params[:id])
-      (10 - @poll.poll_questions.size).times do
+      (10 - @poll.poll_questions_count).times do
         @poll.poll_questions.build
       end
     end

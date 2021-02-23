@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
   belongs_to :category
+  counter_culture :category
 
   has_one_attached :image
   has_rich_text :body

@@ -1,6 +1,6 @@
 <%= turbo_stream.remove(@comment) %>
 <%= turbo_stream.replace "comments-#{@commentable.id}-count" do %>
   <turbo-frame id="comments-<%=@commentable.id%>-count">
-    <h5 class="pt-2 pl-2"><%= pluralize(@commentable.comments.size, "kommentar", locale: :sv) %></h5>
+    <h5 class="pt-2 pl-2"><%= pluralize(@commentable.comments_count, "kommentar", locale: :sv) %></h5>
   </turbo-frame>
 <% end %>

@@ -1,15 +1,22 @@
 class Comment < ActiveRecord::Base
+  include Discard::Model
   include ActsAsCommentable::Comment
+  include PublicActivity::Model
+  tracked
   # include Mention
 
-  belongs_to :commentable, polymorphic: true, counter_cache: true
-  default_scope -> { order('created_at ASC') }
+  belongs_to :commentable, polymorphic: true
+  counter_culture :commentable
 
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
+  default_scope -> { order('created_at ASC') }
+  scope :kept, -> { undiscarded.joins(:commentable).merge(commentable.kept) }
+
+  def kept?
+    undiscarded? && commentable.kept?
+  end
+
   acts_as_votable
 
-  # NOTE: Comments belong to a user
   belongs_to :user
 
   validates_presence_of :comment

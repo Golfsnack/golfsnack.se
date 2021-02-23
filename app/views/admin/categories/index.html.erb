@@ -23,7 +23,7 @@
             <%= link_to "Redigera", edit_admin_category_path(cat) %>
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">
-            <% if cat.articles.size == 0%>
+            <% if cat.articles_count == 0%>
               <%= link_to "Radera", admin_category_path(cat), method: :delete, data: { confirm: "Säker?" } %>
             <% end %>
           </td>

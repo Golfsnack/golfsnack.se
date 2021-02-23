@@ -1,4 +1,4 @@
-    
+
 <h3 class="mb-6">Resultat för "<%= @poll.name %>"</h3>
 <table class="min-w-full divide-y divide-sand-200 text-xs">
   <thead>
@@ -21,11 +21,11 @@
           <%= question.choice %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <%= question.poll_answers.size %>
+          <%= question.poll_answers_count %>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap">
-          <% if question.poll_answers.size > 0 %>
-            <%= ((question.poll_answers.size.to_f  / @poll_answers.size.to_f) * 100).round %> %
+          <% if question.poll_answers_count > 0 %>
+            <%= ((question.poll_answers_count.to_f  / @poll_answers.size.to_f) * 100).round %> %
           <% end %>
         </td>
       </tr>

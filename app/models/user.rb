@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Discard::Model
   rolify
   has_merit
 
@@ -19,10 +20,11 @@ class User < ApplicationRecord
   attr_accessor :invite_code
   validate :invite_code_valid, on: :create
   validates :email, email: true
-  validates :first_name, :last_name, :golf_id, presence: true, on: :update
-  validates :golf_id, length: { is: 10 }, format: { with: /\A[a-z\d]{6}-[a-z\d]{3}/i }, on: :update
+  validates :first_name, :last_name, presence: true, on: :update
+  validates :golf_id, length: { is: 10 }, format: { with: /\A[a-z\d]{6}-[a-z\d]{3}/i }, on: :update, allow_blank: true
 
-  belongs_to :club, optional: true, counter_cache: true
+  belongs_to :club, optional: true
+  counter_culture :club
   has_many :posts
   has_many :comments
 
@@ -43,12 +45,16 @@ class User < ApplicationRecord
   end
 
   def completed_profile?
-    self.first_name.present? && self.last_name.present? && self.golf_id.present?
+    self.first_name.present? && self.last_name.present?
   end
 
   def highest_role
     return nil unless roles
     order = ["admin", "moderator", "premium", "ambassador", "verified"]
     return roles.sort_by { |role| order.index role.name }[0]
+  end
+
+  def active_for_authentication?
+    super && !discarded?
   end
 end

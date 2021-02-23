@@ -49,7 +49,7 @@
     </div>
     <div class="w-full pt-4 text-sm bg-rough-100">
       <turbo-frame id="comments-<%=@post.id%>-count">
-        <h5 class="pt-2 pb-2 pl-2"><%= pluralize(@post.comments.size, "kommentar", locale: :sv) %></h5>
+        <h5 class="pt-2 pb-2 pl-2"><%= pluralize(@post.comments_count, "kommentar", locale: :sv) %></h5>
       </turbo-frame>
       <turbo-frame id="comments-<%=@post.id%>">
         <div class="overflow-auto max-h-96 overscroll-contain">

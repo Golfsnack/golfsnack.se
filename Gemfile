@@ -47,7 +47,9 @@ gem 'merit'
 
 gem 'email_validator'
 
-# gem 'counter_culture', '~> 2.0'
+gem 'counter_culture'
+gem 'public_activity'
+gem 'discard'
 
 gem 'kaminari'
 
@@ -92,7 +94,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  gem "bullet"
+  gem 'prosopite'
 
   gem "letter_opener"
 end

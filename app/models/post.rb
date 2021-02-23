@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  include Discard::Model
+  include PublicActivity::Model
+  tracked
 
   has_many_attached :images
 
@@ -7,7 +10,17 @@ class Post < ApplicationRecord
   acts_as_taggable_on :tags
 
   belongs_to :user
-  belongs_to :club, counter_cache: true, optional: true
+  counter_culture :user
+
+  belongs_to :club, optional: true
+  counter_culture :club
+
+  scope :kept, -> { undiscarded.joins(:user).merge(User.kept) }
+
+  def kept?
+    undiscarded? && user.kept?
+  end
+
   validates :title, :body, presence: true
 
   has_rich_text :body

@@ -11,6 +11,7 @@ class Club < ApplicationRecord
   has_one_attached :logo
 
   resourcify
+  acts_as_followable
 
   attr_accessor :moderator_user_id
 end

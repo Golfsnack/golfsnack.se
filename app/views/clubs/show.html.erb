@@ -45,7 +45,7 @@
       </div>
       <div>
         <span class="px-2 flex items-center">
-          <small class="mr-2"><%= pluralize(@club.users.count, "medlem", locale: :sv) %></small>
+          <small class="mr-2"><%= pluralize(@club_users.size, "medlem", locale: :sv) %></small>
           <strong><%= render "shared/avatar_group", users: @club_users, extra: @extra_users_count %></strong>
         </span>
       </div>

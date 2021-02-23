@@ -71,8 +71,6 @@ Rails.application.configure do
   config.middleware.use(Rack::LiveReload)
 
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.rails_logger = true
-    Bullet.console = false
+    Prosopite.rails_logger = true
   end
 end

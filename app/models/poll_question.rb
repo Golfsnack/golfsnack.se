@@ -1,5 +1,6 @@
 class PollQuestion < ApplicationRecord
   belongs_to :poll
+  counter_culture :poll
   has_many :poll_answers
 
   validates :choice, presence: true
