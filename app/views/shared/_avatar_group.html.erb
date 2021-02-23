@@ -1,12 +1,14 @@
-<div class="flex overflow-hidden">
+<div class="flex justify-center">
   <% users.each_with_index do |user, index| %>
-    <%= link_to user_path(user) do %>
-      <% class_string = "inline-block w-10 h-10 #{index > 0 ? "-ml-2" : ""} rounded-full" %>
+    <%= link_to user_path(user), class: "flex justify-center items-center mr-1" do %>
       <% if user.avatar.attached? %>
-        <%= image_tag user.avatar, class: class_string %>
+        <%= image_tag user.avatar, class: "mini-avatar" %>
       <% else %>
-        <%= image_tag "fallback/avatar-thumb-default.png", size: "40x40", class: class_string %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: "mini-avatar" %>
       <% end %>
     <% end %>
+  <% end %>
+  <% if extra %>
+    <span class="flex items-center justify-center font-semibold text-xs text-golfsnack-200 w-8 h-8 bg-wetsand-700 mini-avatar">+<%=extra%></span>
   <% end %>
 </div>

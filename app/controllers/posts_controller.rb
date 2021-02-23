@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "Sparade golfsnacket"
-      redirect_to @post
+      redirect_to @post, status: 303, notice: 'Sparade golfsnacket'
     else
       @clubs = Club.order(:name).all
       flash.now[:error] = "Något gick fel, kunde inte spara"

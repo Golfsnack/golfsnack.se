@@ -3,7 +3,7 @@
     display: block;
     padding: 1rem;
     border-radius: 0.25rem;
-    background: var(--wetsand-100);
+    background: white;
     margin-bottom: 2rem;
     position: relative;
   }
@@ -14,7 +14,7 @@
   }
 
   .story__avatar {
-    width: 3rem;
+    padding-right: 0.5rem;
   }
 
   .story__meta {
@@ -31,14 +31,12 @@
   }
 
   .story__body {
-    padding-left: 3rem;
-
     .story__body__body {
       width: 100%;
       font-size: 0.875rem;
       line-height: 1.25rem;
-      border-top: 1px solid var(--wetsand-600);
-      border-bottom: 1px solid var(--wetsand-600);
+      border-top: 1px solid var(--wetsand-200);
+      border-bottom: 1px solid var(--wetsand-200);
       padding: 0.5rem 0;
 
       h3 {
@@ -58,8 +56,7 @@
 
   .story__footer {
     display: flex;
-    padding-top: 1rem;
-    padding-left: 3rem;
+    padding-top: 0.5rem;
 
     .story__reaction {
       font-size: 0.875rem;
@@ -73,6 +70,7 @@
         background: var(--sand-100);
         margin-right: 0.25rem;
         border-radius: 0.25rem;
+        color: var(--golfsnack-500);
 
         &:hover {
           background: var(--sand-300);

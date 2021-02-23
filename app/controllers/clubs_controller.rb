@@ -1,5 +1,7 @@
 class ClubsController < ApplicationController
-   before_action :check_if_moderator, except: [:index, :show, :search]
+  before_action :check_if_moderator, except: [:index, :show, :search]
+
+  USERS_COUNT_TO_SHOW = 6
 
   def index
     @clubs = Club.order('users_count DESC').order('posts_count DESC').order(:name).page params[:page]
@@ -7,6 +9,13 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
+    if @club.users_count > USERS_COUNT_TO_SHOW
+      @club_users = @club.users.limit(USERS_COUNT_TO_SHOW)
+      @extra_users_count = @club.users_count - USERS_COUNT_TO_SHOW
+    else
+      @club_users = @club.users
+      @extra_users_count = false
+    end
   end
 
   def search

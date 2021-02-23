@@ -8,11 +8,7 @@ class ProfileController < ApplicationController
 
   def show
     @user = User.includes([avatar_attachment: :blob]).find(params[:id])
-    @posts = @user.posts.includes([:club]).order('created_at DESC')
-  end
-
-  def blog
-    @posts = current_user.posts.order('created_at DESC')
+    @posts = @user.posts.includes([:club]).order('created_at DESC').limit(20)
   end
 
   def avatar;end

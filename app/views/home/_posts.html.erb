@@ -1,13 +1,15 @@
-<div class="stories">
-  <div class="w-full py-2 mb-8 text-center border-t border-b border-wetsand-300 text-golfsnack-300">
+<div class="stories" data-controller="modal">
+  <div class="w-full pb-4 mb-8 text-center border-b border-wetsand-300 text-golfsnack-300 flex">
     <h3>GOLFSNACK</h3>
     <% if @tag %>
       Visar golfsnack taggade med: <span class="font-bold text-golfsnack-400">#<%= @tag%></span>. <a href="/">Visa alla</a>
     <% end %>
+    <%= link_to "Nytt golfsnack", "#", class: "ml-auto btn", "data-action": "click->modal#open" %>
   </div>
   <% @posts.each do |post| %>
-    <article id="post_<%=post.id%>" class="story rounded-lg">
+    <article id="post_<%=post.id%>" class="story rounded-lg shadow-lg">
       <div role="presentation">
+
         <div class="story__top">
           <div class="story__avatar">
             <%= render 'shared/avatar', user: post.user %>
@@ -19,19 +21,22 @@
                 @ <%= link_to post.club.name, post.club, "data-turbo-frame": "_top" %>
               <% end %>
             </div>
-            <%= render 'shared/created_at', activity: post %>
             <%= render 'shared/tags', tags: post.tags %>
+          </div>
+          <div class="ml-auto story__meta">
+            <%= render 'shared/created_at', activity: post %>
           </div>
         </div>
         <div class="story__body">
-          <h4 class="font-semibold mb-2 text-golfsnack-600"><%= post.title %></h4>
-          <% if post.mainimage.attached? %>
-            <%= image_tag post.mainimage, class: "object-cover w-full mb-4" %>
+          <%= link_to post_path(post), "data-turbo-frame": "post-show" do %>
+            <h4 class="font-semibold mb-2 text-golfsnack-600"><%= post.title %></h4>
+            <% if post.mainimage.attached? %>
+              <%= image_tag post.mainimage, class: "object-cover w-full mb-4" %>
+            <% end %>
+            <div class="story__body__body">
+              <%= truncate(strip_tags(post.body.to_s), length: 400) %>
+            </div>
           <% end %>
-          <div class="story__body__body">
-            <%= truncate(strip_tags(post.body.to_s), length: 400) %>
-            <%= link_to "Läs mer", post_path(post), class: "font-bold text-wetsand-700", "data-turbo-frame": "post-show" %>
-          </div>
         </div>
         <div class="story__footer">
           <div class="story__reaction">
@@ -49,4 +54,16 @@
       </div>
     </article>
   <% end %>
+  <div id="new-post-modal" data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+    <div class="modal-container bg-white mx-auto rounded shadow-lg z-50 overflow-y-auto p-12 relative max-w-screen-xl m-12 h-4/6">
+      <button data-action="click->modal#close" class="absolute top-2 right-2">
+        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+        </svg>
+      </button>
+      <%= turbo_frame_tag "post_form", src: new_post_path, loading: "lazy", target: "_top" %>
+    </div>
+  </div>
 </div>
+
+

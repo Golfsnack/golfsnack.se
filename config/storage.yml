@@ -34,7 +34,6 @@ local:
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
 
-
 digitalocean:
   service: S3
   endpoint: <%= ENV['DO_ENDPOINT'] %>

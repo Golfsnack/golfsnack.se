@@ -6,11 +6,11 @@
 <% content_for :meta_type, "article" %>
 <% content_for :meta_url, article_url(@article) %>
 
-<div class="p-6 my-6 bg-white shadow-lg rounded max-w-screen-lg mx-auto">
+<%= image_tag @article.image, class: "object-cover w-full mb-6" %>
+<div class="p-12 my-6 bg-white shadow-lg rounded max-w-screen-lg mx-auto relative -mt-40">
   <h1 class="mb-2 text-3xl font-extrabold leading-snug text-golfsnack-800 uppercase">
     <%=@article.title%>
   </h1>
-  <%= image_tag @article.image, class: "object-cover w-full mb-6" %>
   <div class="my-6 flex gap-4">
     <% if @article.category %>
       <span class="px-2 py-1 text-xs inline-block <%= @article.category.name.downcase %>"><%= @article.category.name %></span>
