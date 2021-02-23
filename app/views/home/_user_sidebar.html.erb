@@ -1,20 +1,13 @@
 <div class="p-4 bg-white border rounded border-wetsand-300">
   <div class="flex items-center justify-center">
-    <%= link_to user do %>
-      <% if user.avatar.attached? %>
-        <%= image_tag user.avatar, class: 'avatar' %>
-      <% else %>
-        <%= image_tag "fallback/avatar-thumb-default.png", class: 'avatar' %>
-      <% end %>
+    <% if user.avatar.attached? %>
+      <%= image_tag user.avatar, class: 'avatar' %>
+    <% else %>
+      <%= image_tag "fallback/avatar-thumb-default.png", class: 'avatar' %>
     <% end %>
   </div>
-  <!--<% if user.highest_role %>
-    <%= image_tag "roleicons/#{user.highest_role.name}.png", width: "24px", height: "32px", class: "float-left", style: "height: 32px;", title: @user.highest_role.name %>
-  <% end %>-->
   <div class="flex flex-col items-center justify-center">
-    <%= link_to user, class: "no-underline hover:underline uppercase text-wetsand-800" do %>
-      <h3 class="mt-4"><%= user.first_name %> <%= user.last_name %></h3>
-    <% end %>
+    <h3 class="mt-4 uppercase text-wetsand-800"><%= user.first_name %> <%= user.last_name %></h3>
     <% if user.club %>
       <h4 class="mt-2 font-normal uppercase text-fairway-600"><%= user.club.name %></h4>
     <% end %>

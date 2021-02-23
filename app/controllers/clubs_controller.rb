@@ -9,11 +9,13 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
-    if @club.users_count > USERS_COUNT_TO_SHOW
-      @club_users = @club.users.limit(USERS_COUNT_TO_SHOW)
-      @extra_users_count = @club.users_count - USERS_COUNT_TO_SHOW
+    @users = Merit::Score.top_scored_by_owner(@club.id, 'club_id').map{ |s| s["user_id"] }
+
+    if @users.size > USERS_COUNT_TO_SHOW
+      @club_users = @club.users.find(@users).limit(USERS_COUNT_TO_SHOW)
+      @extra_users_count = @users.size - USERS_COUNT_TO_SHOW
     else
-      @club_users = @club.users
+      @club_users = @club.users.find(@users)
       @extra_users_count = false
     end
   end
