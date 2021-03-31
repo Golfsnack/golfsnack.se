@@ -64,13 +64,6 @@
       JAG HAR SPELAT PÅ DENNA KLUBB
     <% end %>
   <% end%>
-    <a href="/klubbadmin/<%=@club.id%>" type="button" class="flex gap-2 mb-2 text-sm bg-golfsnack-100 rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out text-golfsnack-600">
-      <!-- Heroicon name: pencil -->
-      <svg class="w-5 h-5 mr-2 -ml-1 text-golfsnack-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-      </svg>
-      Redigera Golfklubb
-    </a>
     <% if current_user.has_role?(:moderator, @club) %>
       <a href="/klubbadmin/<%=@club.id%>" type="button" class="flex gap-2 mb-2 text-sm bg-golfsnack-100 rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out text-golfsnack-600">
         <!-- Heroicon name: pencil -->
