@@ -95,8 +95,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 
-  gem 'prosopite'
-
   gem 'letter_opener'
 
   gem 'rubocop', require: false

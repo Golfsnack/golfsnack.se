@@ -70,8 +70,4 @@ Rails.application.configure do
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   config.middleware.use(Rack::LiveReload)
-
-  config.after_initialize do
-    Prosopite.rails_logger = true
-  end
 end
