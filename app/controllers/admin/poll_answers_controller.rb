@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 module Admin
   class PollAnswersController < BaseController
-
-
     def index
-      @poll = Poll.includes([:poll_questions, :poll_answers]).find(params[:poll_id])
+      @poll = Poll.includes(%i[poll_questions poll_answers]).find(params[:poll_id])
       @poll_questions = @poll.poll_questions
       @poll_answers = @poll.poll_answers
     end

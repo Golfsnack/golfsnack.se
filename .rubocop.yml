@@ -1,0 +1,11 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "lib/tasks/courses.rake"
+
+Layout/LineLength:
+  Max: 120

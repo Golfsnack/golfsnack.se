@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show]
-  layout "application"
+  layout 'application'
 
   def show
     @post = Post.find(params[:id])
@@ -21,20 +23,18 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      flash[:success] = "Sparade golfsnacket"
-      redirect_to @post, status: 303, notice: 'Sparade golfsnacket'
+      flash[:success] = 'Sparade golfsnacket'
+      redirect_to @post, status: :see_other, notice: 'Sparade golfsnacket'
     else
       @clubs = Club.order(:name).all
-      flash.now[:error] = "Något gick fel, kunde inte spara"
+      flash.now[:error] = 'Något gick fel, kunde inte spara'
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
-    if @post.destroy
-      flash[:success] = "Tog bort golfsnack"
-    end
+    flash[:success] = 'Tog bort golfsnack' if @post.destroy
     redirect_to profile_path
   end
 
@@ -42,11 +42,11 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      flash[:success] = "Sparade golfsnack"
+      flash[:success] = 'Sparade golfsnack'
       redirect_to @post
     else
       @clubs = Club.order(:name).all
-      flash.now[:error] = "Något gick fel, kunde inte spara"
+      flash.now[:error] = 'Något gick fel, kunde inte spara'
       render 'edit'
     end
   end

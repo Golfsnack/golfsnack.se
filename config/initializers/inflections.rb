@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Add new inflection rules using the following format. Inflections
@@ -14,7 +16,6 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
-
 
 ActiveSupport::Inflector.inflections(:sv) do |inflect|
   inflect.clear
@@ -97,7 +98,7 @@ ActiveSupport::Inflector.inflections(:sv) do |inflect|
 
   # --- Uncountable ---
 
-  inflect.uncountable %w(hus kar träd får brev namn nummer kön)
+  inflect.uncountable %w[hus kar träd får brev namn nummer kön]
 
   inflect.irregular 'golfklapp', 'golfklappar'
   inflect.irregular 'medlem', 'medlemmar'

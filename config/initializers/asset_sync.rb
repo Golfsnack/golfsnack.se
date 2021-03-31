@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 if defined?(AssetSync)
   AssetSync.configure do |config|
     config.fog_provider = 'AWS'
-    config.aws_access_key_id =  ENV['DO_KEY']
+    config.aws_access_key_id = ENV['DO_KEY']
     config.aws_secret_access_key = ENV['DO_SECRET']
     # config.aws_session_token = ENV['AWS_SESSION_TOKEN'] if ENV.key?('AWS_SESSION_TOKEN')
     # To use AWS reduced redundancy storage.
@@ -18,7 +20,7 @@ if defined?(AssetSync)
     #
     # Use http instead of https. Default should be "https" (at least for fog-aws)
     # config.fog_scheme = "http"
-    config.fog_directory = ENV["DO_ASSET_SPACE"]
+    config.fog_directory = ENV['DO_ASSET_SPACE']
 
     # Invalidate a file on a cdn after uploading files
     # config.cdn_distribution_id = "12345"

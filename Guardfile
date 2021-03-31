@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -23,7 +25,7 @@ guard 'livereload' do
     jpg: :jpg,
     jpeg: :jpeg,
     css: :css,
-    sass: :scss,
+    sass: :scss
   }
 
   rails_view_exts = %w[erb haml slim]

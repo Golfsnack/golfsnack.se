@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class CategoriesController < BaseController
-
     def new
       @category = Category.new
     end
@@ -16,10 +17,10 @@ module Admin
     def create
       @category = Category.new(category_params)
       if @category.save
-        flash[:success] = "Kategori skapad"
+        flash[:success] = 'Kategori skapad'
         redirect_to admin_categories_path
       else
-        flash[:error] = "Något gick fel"
+        flash[:error] = 'Något gick fel'
         redirect_to admin_categories_path
       end
     end
@@ -27,10 +28,10 @@ module Admin
     def update
       @category = Category.find(params[:id])
       if @category.update(category_params)
-        flash[:success] = "Kategori uppdaterad"
+        flash[:success] = 'Kategori uppdaterad'
         redirect_to admin_categories_path
       else
-        flash[:error] = "Något gick fel"
+        flash[:error] = 'Något gick fel'
         redirect_to admin_categories_path
       end
     end

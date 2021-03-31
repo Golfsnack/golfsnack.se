@@ -1,28 +1,40 @@
-<div class="p-4 bg-white border rounded border-wetsand-300">
+<div class="p-4 bg-white rounded shadow">
   <div class="flex items-center justify-center">
-    <% if user.avatar.attached? %>
-      <%= image_tag user.avatar, class: 'avatar' %>
-    <% else %>
-      <%= image_tag "fallback/avatar-thumb-default.png", class: 'avatar' %>
+    <%= link_to user do %>
+      <% if user.avatar.attached? %>
+        <%= image_tag user.avatar, class: 'avatar' %>
+      <% else %>
+        <%= image_tag "fallback/avatar-thumb-default.png", class: 'avatar' %>
+      <% end %>
     <% end %>
   </div>
   <div class="flex flex-col items-center justify-center">
-    <h3 class="mt-4 uppercase text-wetsand-800"><%= user.first_name %> <%= user.last_name %></h3>
+    <%= link_to user do %>
+      <h3 class="mt-4 uppercase text-wetsand-800"><%= user.first_name %> <%= user.last_name %></h3>
+    <% end %>
     <% if user.club %>
-      <h4 class="mt-2 font-normal uppercase text-fairway-600"><%= user.club.name %></h4>
+      <%= link_to user.club do %>
+        <h4 class="mt-2 font-normal uppercase text-fairway-600"><%= user.club.name %></h4>
+      <% end %>
     <% end %>
     <div class="grid grid-cols-3 w-full my-6 divide-x divide-golfsnack-500">
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Följare</span>
-        <h5 class="w-full font-mono text-xl text-center text-gray-700"><%= user.followers_count %></h5>
+        <%= link_to friends_path do %>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.followers_count %></h5>
+        <% end %>
       </div>
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Följer</span>
-        <h5 class="w-full font-mono text-xl text-center text-gray-700"><%= user.follows_count %></h5>
+        <%= link_to friends_path do %>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.follows_count %></h5>
+        <% end %>
       </div>
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Rundor</span>
-        <h5 class="w-full font-mono text-xl text-center text-gray-700">0</h5>
+        <%= link_to rounds_path do %>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.rounds_count %></h5>
+        <% end %>
       </div>
     </div>
   </div>

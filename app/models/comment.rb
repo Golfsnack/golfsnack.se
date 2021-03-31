@@ -1,4 +1,6 @@
-class Comment < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Comment < ApplicationRecord
   include Discard::Model
   include ActsAsCommentable::Comment
   include PublicActivity::Model
@@ -19,7 +21,7 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :comment
-  validates_presence_of :commentable
-  validates_presence_of :user
+  validates :comment, presence: true
+  validates :commentable, presence: true
+  validates :user, presence: true
 end

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'rails', '~> 6.1.1'
-gem 'puma', '~> 5.0'
-gem 'sass-rails', '>= 6'
 gem 'pg'
+gem 'puma', '~> 5.0'
+gem 'rails', '~> 6.1.1'
+gem 'sass-rails', '>= 6'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
@@ -20,15 +22,14 @@ gem 'hotwire-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-
 gem 'devise'
 gem 'devise_lastseenable'
 
 gem 'mailgun-ruby'
 
-gem 'fog-aws'
 gem 'asset_sync'
 gem 'aws-sdk-s3'
+gem 'fog-aws'
 
 # Use Active Storage variant
 gem 'image_processing'
@@ -38,8 +39,8 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'active_link_to'
 
 gem 'acts_as_commentable'
-gem 'acts_as_votable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem 'acts_as_votable'
 
 gem 'goldiloader'
 
@@ -48,15 +49,15 @@ gem 'merit'
 gem 'email_validator'
 
 gem 'counter_culture'
-gem 'public_activity'
 gem 'discard'
+gem 'public_activity'
 
 gem 'kaminari'
 
 # For import
+gem 'dalli'
 gem 'nokogiri'
 gem 'typhoeus'
-gem 'dalli'
 
 gem 'rolify'
 
@@ -77,13 +78,13 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -91,12 +92,16 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
 
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   gem 'prosopite'
 
-  gem "letter_opener"
+  gem 'letter_opener'
+
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
@@ -107,8 +112,5 @@ group :test do
   gem 'webdrivers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "tailwindcss-rails", "~> 0.3.1"
-gem "trix-rails", require: "trix"
+gem 'tailwindcss-rails', '~> 0.3.1'
+gem 'trix-rails', require: 'trix'

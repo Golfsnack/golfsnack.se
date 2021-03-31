@@ -26,7 +26,7 @@
         </a>
       </div>
       <% if current_user %>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 font-mono uppercase sm:static sm:inset-auto sm:pr-0">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 uppercase sm:static sm:inset-auto sm:pr-0">
           <%= render partial: 'header/profile_dropdown'%>
         </div>
       </div>
@@ -37,7 +37,7 @@
   <% if current_user %>
     <div class="relative">
       <nav class="absolute z-10 sm:static hidden py-2 subnav sm:block w-full" data-navbar-target="mobileMenu">
-        <div class="flex flex-col sm:flex-row items-center justify-center w-full font-mono uppercase">
+        <div class="flex flex-col sm:flex-row items-center justify-center w-full uppercase">
           <%= render partial: 'header/mainlinks', locals: {class_name: 'navlink' }%>
         </div>
       </nav>

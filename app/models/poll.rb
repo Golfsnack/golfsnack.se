@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Poll < ApplicationRecord
   has_many :poll_questions
   has_many :poll_answers
@@ -7,5 +9,5 @@ class Poll < ApplicationRecord
 
   accepts_nested_attributes_for :poll_questions, allow_destroy: true
 
-  scope :active, -> { where.not(archived: true ) }
+  scope :active, -> { where.not(archived: true) }
 end

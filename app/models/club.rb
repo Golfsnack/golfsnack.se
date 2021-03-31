@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class Club < ApplicationRecord
   has_many :courses, dependent: :destroy
   has_many :users
   has_many :posts
+  has_many :rounds
 
   searchkick word_middle: [:name], callbacks: :async
 

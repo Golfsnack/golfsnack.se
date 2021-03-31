@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include Discard::Model
   rolify
   has_merit
 
-  searchkick highlight: [:first_name, :last_name], callbacks: :async
+  searchkick highlight: %i[first_name last_name], callbacks: :async
 
   acts_as_voter
   acts_as_followable
@@ -13,11 +15,12 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         # :lastseenable (Create own events instead?)
-         # :confirmable, TODO: Activate when we don't invite specific users
-         # :trackable (Create own events instead?)
+  # :lastseenable (Create own events instead?)
+  # :confirmable, TODO: Activate when we don't invite specific users
+  # :trackable (Create own events instead?)
 
   attr_accessor :invite_code
+
   validate :invite_code_valid, on: :create
   validates :email, email: true
   validates :first_name, :last_name, presence: true, on: :update
@@ -27,12 +30,13 @@ class User < ApplicationRecord
   counter_culture :club
   has_many :posts
   has_many :comments
+  has_many :rounds
 
   has_one_attached :cover
   has_one_attached :avatar
 
   def invite_code_valid
-    invite = Invitation.where(email: self.email, code: self.invite_code).first
+    invite = Invitation.where(email: email, code: invite_code).first
     errors.add(:invite_code, :invalid) unless invite
   end
 
@@ -41,20 +45,25 @@ class User < ApplicationRecord
   end
 
   def email=(value)
-    write_attribute(:email, value.strip.downcase) if value
+    self[:email] = value.strip.downcase if value
   end
 
   def completed_profile?
-    self.first_name.present? && self.last_name.present?
+    first_name.present? && last_name.present?
   end
 
   def highest_role
     return nil unless roles
-    order = ["admin", "moderator", "premium", "ambassador", "verified"]
-    return roles.sort_by { |role| order.index role.name }[0]
+
+    order = %w[admin moderator premium ambassador verified]
+    roles.min_by { |role| order.index role.name }
   end
 
   def active_for_authentication?
     super && !discarded?
+  end
+
+  def rounds_count
+    0
   end
 end

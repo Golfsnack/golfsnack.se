@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class ArticlesController < BaseController
-
     def new
       @article = Article.new
     end
@@ -16,10 +17,10 @@ module Admin
     def create
       @article = Article.new(article_params)
       if @article.save
-        flash[:success] = "Artikel skapad"
+        flash[:success] = 'Artikel skapad'
         redirect_to admin_articles_path
       else
-        flash.now[:error] = "Något gick fel"
+        flash.now[:error] = 'Något gick fel'
         render :new
       end
     end
@@ -27,10 +28,10 @@ module Admin
     def update
       @article = Article.friendly.find(params[:id])
       if @article.update(article_params)
-        flash[:success] = "Artikel uppdaterad"
+        flash[:success] = 'Artikel uppdaterad'
         redirect_to admin_articles_path
       else
-        flash.now[:error] = "Något gick fel"
+        flash.now[:error] = 'Något gick fel'
         render :edit
       end
     end

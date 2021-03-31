@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   include Discard::Model
   include PublicActivity::Model
@@ -29,6 +31,6 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   def name
-    self.title
+    title
   end
 end

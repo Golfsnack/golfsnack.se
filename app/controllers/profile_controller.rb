@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfileController < ApplicationController
   before_action :set_user
 
@@ -11,8 +13,9 @@ class ProfileController < ApplicationController
     @posts = @user.posts.includes([:club]).order('created_at DESC').limit(20)
   end
 
-  def avatar;end
-  def coverimage;end
+  def avatar; end
+
+  def coverimage; end
 
   def delete_avatar
     @user.avatar.purge_later

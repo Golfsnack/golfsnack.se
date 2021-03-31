@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDiscardedAtToPosts < ActiveRecord::Migration[6.1]
   def change
     add_column :posts, :discarded_at, :datetime

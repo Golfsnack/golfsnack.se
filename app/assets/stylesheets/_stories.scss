@@ -24,7 +24,7 @@
     line-height: 1.25rem;
     color: var(--wetsand-600);
 
-    a {
+    a:not(.tag) {
       color: var(--wetsand-700);
       font-weight: 700;
     }
@@ -61,7 +61,7 @@
     .story__reaction {
       font-size: 0.875rem;
       line-height: 1.25rem;
-      font-weight: 700 font-mono leading-relaxed;
+      font-weight: 700;
 
       button,
       a.btn {
@@ -97,7 +97,7 @@
   .story__reaction {
     font-size: 0.875rem;
     line-height: 1.25rem;
-    font-weight: 700 font-mono leading-relaxed;
+    font-weight: 700;
 
     button,
     a.btn {

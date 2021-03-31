@@ -1,7 +1,7 @@
 <div class="relative mr-4">
   <div>
     <button
-      class="flex text-sm transition duration-150 ease-in-out focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true" data-action="click->navbar#toggleProfileMenu">
+      class="usernavbtn flex text-sm transition duration-150 ease-in-out focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true" data-action="click->navbar#toggleProfileMenu">
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar, class: "object-cover w-8 h-8 mini-avatar border border-fairway-600"  %>
       <% else %>
@@ -16,6 +16,9 @@
       <%= link_to "Logga ut", destroy_user_session_path, role: "menuitem", method: :delete, class: "profilelink" %>
       <% if current_user.has_role?(:admin) %>
         <%= active_link_to "ADMIN", admin_root_path, class: 'profilelink block w-full pl-4 my-2 border-t border-golfsnack-100', role: "menuitem" %>
+      <% end %>
+      <% if current_user.roles.size > 0 && current_user.roles.first.resource_type == "Club" %>
+        <%= active_link_to "KLUBB-ADMIN", club_admin_path(current_user.roles.first.resource_id), class: 'profilelink block w-full pl-4 my-2 border-t border-golfsnack-100', role: "menuitem" %>
       <% end %>
     </div>
   </div>

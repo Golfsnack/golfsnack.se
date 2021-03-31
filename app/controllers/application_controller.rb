@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include SessionCurrentUser
   before_action do
@@ -8,7 +10,6 @@ class ApplicationController < ActionController::Base
     Prosopite.finish
   end
 
-
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -16,7 +17,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:invite_code])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:golf_id, :first_name, :last_name, :avatar, :remove_avatar, :cover, :remove_cover, :club_id, :info])
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys: %i[golf_id first_name last_name avatar remove_avatar cover remove_cover
+                                               club_id info])
   end
 
   def after_sign_in_path_for(resource)
@@ -29,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def determine_layout
-      current_user ? "application" : "private"
-    end
+  def determine_layout
+    current_user ? 'application' : 'private'
+  end
 end

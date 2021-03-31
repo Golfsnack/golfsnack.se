@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PollAnswer < ApplicationRecord
   belongs_to :poll
   counter_culture :poll

@@ -1,5 +1,5 @@
 <% @polls.each do |poll| %>
-  <div class="relative p-4 bg-white border rounded border-wetsand-300">
+  <div class="relative p-4 bg-white rounded shadow">
     <%=turbo_frame_tag dom_id(poll) do %>
       <h3 class="absolute left-0 block arrow-title top-2">OMRÖSTNING</h3>
       <h4 class="block w-full px-4 py-4 mt-12 text-lg text-center uppercase border-t border-b border-wetsand-300 text-golfsnack-500"><%=poll.name%></h4>

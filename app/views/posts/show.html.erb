@@ -1,6 +1,6 @@
 <% content_for :meta_title, "Golfsnack: #{@post.title}" %>
 <% content_for :meta_description, truncate(strip_tags(@post.body.to_s), length: 200) %>
-<% if @post.mainimage.attached? && Rails.env.production? %>
+<% if Rails.env.production? && @post.mainimage.attached?  %>
   <% content_for :meta_image, @post.mainimage.service_url %>
 <% end %>
 <% content_for :meta_type, "article" %>
@@ -32,9 +32,11 @@
         <%= image_tag @post.mainimage, class: "object-cover w-full h-full", "data-lightgallery-target": "mainimage" %>
       <% end %>
     </div>
-    <% if @post.images.attached? %>
+    <% if @post.images %>
       <div class="grid grid-cols-4 gap-4 my-4" data-lightgallery-target="images">
-        <%= image_tag @post.mainimage, class: "object-cover w-full h-24 border-2 active-image", data: { action: "click->lightgallery#showImg"} %>
+        <% if @post.mainimage.attached? %>
+          <%= image_tag @post.mainimage, class: "object-cover w-full h-24 border-2 active-image", data: { action: "click->lightgallery#showImg"} %>
+        <% end %>
         <% @post.images.each do |image| %>
           <%= image_tag image, class: "object-cover w-full h-24 border-2", data: { action: "click->lightgallery#showImg"} %>
         <% end %>

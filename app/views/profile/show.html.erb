@@ -13,7 +13,7 @@
       <%= image_tag @user.cover, class: "object-cover w-full h-full" %>
     <% end %>
     <% if @user.highest_role %>
-      <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "18px", height: "24px", class: "absolute -bottom-12 left-12", style: "height: 40px; width: 32px;", title: @user.highest_role.name %>
+      <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "18px", height: "24px", class: "absolute -bottom-9 left-12", style: "height: 40px; width: 32px;", title: @user.highest_role.name.capitalize %>
     <% end %>
   </div>
   <div class="flex flex-col items-center justify-center w-full -mt-32">

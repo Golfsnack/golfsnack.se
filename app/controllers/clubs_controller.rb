@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 class ClubsController < ApplicationController
-  before_action :check_if_moderator, except: [:index, :show, :search]
+  before_action :check_if_moderator, except: %i[index show search]
 
   USERS_COUNT_TO_SHOW = 6
 
   def index
-    @clubs = Club.order('users_count DESC').order('posts_count DESC').order(:name).page params[:page]
+    @clubs = Round.limit(5).map(&:club)
   end
 
   def show
     @club = Club.find(params[:id])
-    @users = Merit::Score.top_scored_by_owner(@club.id, 'club_id').map{ |s| s["user_id"] }
+    @users = Merit::Score.top_scored_by_owner(@club.id, 'club_id').map { |s| s['user_id'] }
+    @players = Round.where(club_id: @club.id).includes(:user).limit(100).map(&:user)
 
     if @users.size > USERS_COUNT_TO_SHOW
       @club_users = @club.users.find(@users).limit(USERS_COUNT_TO_SHOW)
@@ -21,12 +24,13 @@ class ClubsController < ApplicationController
   end
 
   def search
-    @clubs = Club.search params[:query], operator: "or", fields: [:name], match: :word_middle, page: 0, per_page: 5
+    @clubs = Club.search params[:query], operator: 'or', fields: [:name], match: :word_middle, page: 0, per_page: 5
     render layout: false
   end
 
-  def cover;end
-  def logo;end
+  def cover; end
+
+  def logo; end
 
   def delete_logo
     @club.logo.purge_later
@@ -64,8 +68,8 @@ class ClubsController < ApplicationController
 
   def check_if_moderator
     @club = Club.find(params[:club_id])
-    if !current_user.has_role?(:moderator, @club)
-      render :file => "#{Rails.root}/public/403.html", status: 403, layout: false
+    unless current_user.has_role?(:moderator, @club)
+      render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false
     end
   end
 

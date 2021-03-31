@@ -9,5 +9,6 @@ names = %w(golfsnack rough fairway sand wetsand blue yellow red)
     <%= ".bg-#{name}-#{number} { background-color: var(--#{name}-#{number}); }"%>
     <%= ".text-#{name}-#{number} { color: var(--#{name}-#{number}); }"%>
     <%= ".border-#{name}-#{number} { border-color: var(--#{name}-#{number}); }"%>
+    <%= ".hover:bg-#{name}-#{number} { &:hover { background-color: var(--#{name}-#{number}); } }"%>
   <% end%>
 <% end %>

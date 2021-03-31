@@ -3,7 +3,7 @@
     <li><%= message %></li>
   <% end %>
 </ul>
-<%= form_for [:admin, @club], html: { multipart: true }, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+<%= form_for [:admin, @club], url: @url, html: { multipart: true }, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
   <template data-nested-form-target="template">
     <%= f.fields_for :courses, Course.new, child_index: 'NEW_RECORD' do |course_fields| %>
       <%= render "course_form", f: course_fields %>
@@ -24,10 +24,12 @@
         <%= f.text_field :lng %>
       </div>
     </div>
-    <div data-controller="autocomplete">
-      <%= f.label :moderator_user_id %>
-      <%= f.collection_select :moderator_user_id, User.order(:first_name).all, :id, :name, {include_blank: true, multiple: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
-    </div>
+    <% if current_user.has_role?(:admin) %>
+      <div data-controller="autocomplete">
+        <%= f.label :moderator_user_id %>
+        <%= f.collection_select :moderator_user_id, User.order(:first_name).all, :id, :name, {include_blank: true, multiple: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
+      </div>
+    <% end %>
     <div>
       <%= f.label :description %>
       <%= f.text_area :description, class: "w-full", rows: 5 %>

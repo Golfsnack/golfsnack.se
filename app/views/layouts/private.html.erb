@@ -2,6 +2,9 @@
 <html lang="sv">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" />
     <%= render partial: 'og' %>
     <%= csrf_meta_tags %>
@@ -13,12 +16,13 @@
   <body class="private">
     <style type="text/css">
       body {
+        font-family: "PT Sans Caption", sans-serif;
         background: url(<%=asset_url("bg.jpg")%>) no-repeat center center fixed;
         background-size: cover;
         height: 100vh;
         width: 100vw;
       }
-      
+
       form h2 {
         font-weight: 700;
         text-transform: uppercase;
@@ -27,68 +31,68 @@
         border-bottom: 1px solid #D0D2C6;
          font-size: 1.5rem;
         line-height: 2rem;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-family: font-family: 'PT Serif', serif;
         letter-spacing: -0.05em;
       }
-      
+
       .devise-links {
         background: rgba(240, 232, 208, 0.48)
       }
-      
+
       a {
         color: #223746;
         text-decoration: none;
       }
-      
+
       a:hover {
         text-decoration: underline;
       }
-      
+
       .input {
         padding: 0.5rem 0;
         display: grid;
       }
-      
+
       label {
         font-weight: 600;
         padding: 0.5rem 0;
       }
-      
+
       input:not([type='checkbox']) {
         grid-column: span 2 / span 2;
         padding: 0.5rem;
         border-color: #707355;
       }
-      
+
       div {
         display: flex;
         flex-direction: column;
       }
-      
+
       div input {
         width: 100%;
       }
-      
+
       .hint {
         font-size: 0.875rem;
         line-height: 1.25rem;
         color: #6D740E;
       }
-      
+
       .checkbox {
         flex-direction: row;
       }
-      
+
       .checkbox input {
         width: 1rem;
         height: 1rem;
         margin-top: 0.25rem;
       }
-      
+
       .checkbox label {
         padding: 0;
       }
-      
+
       input[type='submit'] {
           margin-top: 1rem;
           padding: 0.5rem 1.5rem;
@@ -98,41 +102,41 @@
           width: 100%;
           float: right;
       }
-      
+
       input[type='submit']:hover {
         background-color: #363A07;
       }
-      
+
       @media (min-width: 768px) {
         .input {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-      
+
         div {
             grid-column: span 2 / span 2;
         }
-      
+
         label {
           grid-column: span 1 / span 1;
         }
-      
+
         .checkbox {
             grid-column-start: 2;
         }
-      
+
         input[type='submit'] {
           width: auto;
         }
       }
-      
+
       .bg-white-opacity-95 {
         background: rgba(255, 255, 255, 0.95);
       }
-      
+
       header h2 {
         color: #494d0a;
       }
-      
+
       #error_explanation {
         color: #8d1a14;
         background: #e3c6c4;

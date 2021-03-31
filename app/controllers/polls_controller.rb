@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class PollsController < ApplicationController
   before_action :authenticate_user!
 
   def vote
-    if (poll_params[:poll_question_id])
+    if poll_params[:poll_question_id]
       answer = PollAnswer.new(poll_params)
       answer.user = current_user
       answer.save!

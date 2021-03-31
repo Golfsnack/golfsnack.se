@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  authenticate :user, -> (user) { user.has_role?(:admin) } do
-    mount PgHero::Engine, at: "pghero"
-    mount Sidekiq::Web, at: "sidekiq"
+  authenticate :user, ->(user) { user.has_role?(:admin) } do
+    mount PgHero::Engine, at: 'pghero'
+    mount Sidekiq::Web, at: 'sidekiq'
   end
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   get 'discourse/sso' => 'discourse_sso#sso'
 
-  authenticate :user, -> (user) { user.has_role?(:admin) } do
+  authenticate :user, ->(user) { user.has_role?(:admin) } do
     namespace :admin do
       resources :invites
       resources :articles
@@ -24,8 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/klubbadmin/:id', to: 'admin/clubs#edit', as: :club_admin
+  patch '/klubbadmin/:id', to: 'admin/clubs#update'
 
-  #TODO: Break out into users_controller and profile_controller?
+  # TODO: Break out into users_controller and profile_controller?
   get '/golfare', to: 'users#index', as: :users
   get '/golfare/:id', to: 'profile#show', as: :user
   get '/profil', to: 'profile#index', as: :profile
@@ -38,24 +42,25 @@ Rails.application.routes.draw do
   delete '/profil/bild', to: 'profile#delete_avatar', as: :delete_avatar
   delete '/profil/omslagsbild', to: 'profile#delete_cover', as: :delete_cover
 
-  resources :articles, only: [:index, :show], path: 'artiklar'
+  resources :rounds, path: 'rundor'
+  resources :articles, only: %i[index show], path: 'artiklar'
   resources :posts, except: [:index], path: 'golfsnack' do
     resources :images, only: [:destroy]
-    delete '/mainimage', to: "images#mainimage", as: :destroy_mainimage
+    delete '/mainimage', to: 'images#mainimage', as: :destroy_mainimage
   end
-  resources :comments, only: [:create, :destroy], path: 'kommentarer'
-  resources :clubs, only: [:index, :show], path: 'golfklubbar' do
+  resources :comments, only: %i[create destroy], path: 'kommentarer'
+  resources :clubs, only: %i[index show], path: 'golfklubbar' do
     collection { get 'search' }
-    get '/bild', to: "clubs#logo", as: :logo
-    get '/omslagsbild', to: "clubs#cover", as: :cover
-    put '/bild', to: "clubs#update_logo", as: :update_logo
-    put '/omslagsbild', to: "clubs#update_cover", as: :update_cover
-    delete '/bild', to: "clubs#delete_logo", as: :delete_logo
-    delete '/omslagsbild', to: "clubs#delete_cover", as: :delete_cover
+    get '/bild', to: 'clubs#logo', as: :logo
+    get '/omslagsbild', to: 'clubs#cover', as: :cover
+    put '/bild', to: 'clubs#update_logo', as: :update_logo
+    put '/omslagsbild', to: 'clubs#update_cover', as: :update_cover
+    delete '/bild', to: 'clubs#delete_logo', as: :delete_logo
+    delete '/omslagsbild', to: 'clubs#delete_cover', as: :delete_cover
   end
 
   post '/follow', to: 'follows#create', as: :follow
-  post "/unfollow", to: 'follows#destroy', as: :unfollow
+  post '/unfollow', to: 'follows#destroy', as: :unfollow
   post '/like', to: 'likes#create', as: :like
   post '/unlike', to: 'likes#destroy', as: :unlike
 
@@ -68,7 +73,5 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  if Rails.env.development?
-    get '/styleguide', to: 'styleguide#index'
-  end
+  get '/styleguide', to: 'styleguide#index' if Rails.env.development?
 end

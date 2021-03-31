@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 #
 # Points are a simple integer value which are given to "meritable" resources
@@ -20,7 +22,7 @@ module Merit
 
       score 1, on: 'RegistrationsController#create'
       score 1, on: 'likes#create'
-      score -1, on: 'likes#destroy'
+      score(-1, on: 'likes#destroy')
 
       # score 15, :on => 'reviews#create', :to => [:reviewer, :reviewed]
 

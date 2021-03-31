@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :courses do
   desc 'Import courses from golfguide'
-  task :fetch do
+  task fetch: :environment do
     # http://golfguide.golfbox.dk/APIS/ScriptHandler.ashx?methodName=GolfSe_GetClubs
     # http://golfguide.golfbox.dk/APIS/ScriptHandler.ashx?methodName=GetClub&guid=72290d5e-b809-4cbf-89e3-38f831b482e6
 
@@ -26,21 +28,21 @@ namespace :courses do
     Typhoeus::Config.cache = Cache.new
     Typhoeus::Config.memoize = true
 
-    hydra = Typhoeus::Hydra.new(:max_concurrency => 1000)
-    puts "- STARTING ---------------------------------------------------------------"
+    hydra = Typhoeus::Hydra.new(max_concurrency: 1000)
+    puts '- STARTING ---------------------------------------------------------------'
 
-    courses_json = open("http://golfguide.golfbox.dk/APIS/ScriptHandler.ashx?methodName=GolfSe_GetClubs").read
-    File.open("_data/golfclubs.json","w+") do |f|
+    courses_json = open('http://golfguide.golfbox.dk/APIS/ScriptHandler.ashx?methodName=GolfSe_GetClubs').read
+    File.open('_data/golfclubs.json', 'w+') do |f|
       f.write(courses_json)
     end
 
     courses = JSON.parse(courses_json)
 
     courses.each do |course|
-      guid = course["GUID"]
+      guid = course['GUID']
 
       course_json = open("http://golfguide.golfbox.dk/APIS/ScriptHandler.ashx?methodName=GetClub&guid=#{guid}").read
-      File.open("_data/courses/#{guid}.json","w+") do |f|
+      File.open("_data/courses/#{guid}.json", 'w+') do |f|
         f.write(course_json)
       end
       c = JSON.parse(course_json)
@@ -48,30 +50,30 @@ namespace :courses do
     end
 
     hydra.run
-    puts "- FINISHED ------------------------------------------------------------------------"
+    puts '- FINISHED ------------------------------------------------------------------------'
   end
 
-  desc "Import courses from json files in _data"
-  task :import => :environment do
-    Dir["_data/courses/*.json"].each do |file|
+  desc 'Import courses from json files in _data'
+  task import: :environment do
+    Dir['_data/courses/*.json'].each do |file|
       data = JSON.parse(File.read(file))
 
-      next if data["Data"]["Courses"].nil?
+      next if data['Data']['Courses'].nil?
 
-      lat = data["MapLat"]
-      lng = data["MapLng"]
-      guid = data["GUID"]
-      club_name = data["Name"]
-      note = data["Data"]["Note"]
+      lat = data['MapLat']
+      lng = data['MapLng']
+      guid = data['GUID']
+      club_name = data['Name']
+      note = data['Data']['Note']
 
       club = Club.create(import_guid: guid, name: club_name, lat: lat, lng: lng, description: note)
 
-      data["Data"]["Courses"].each do |c|
-        name        = c["Name"]
-        holes_count = c["NumberOfHoles"]
-        par         = c["Par"]
-        desc        = c["Note"]
-        architect   = c["Architect"]
+      data['Data']['Courses'].each do |c|
+        name        = c['Name']
+        holes_count = c['NumberOfHoles']
+        par         = c['Par']
+        desc        = c['Note']
+        architect   = c['Architect']
 
         course = Course.create(
           club: club,
@@ -82,10 +84,10 @@ namespace :courses do
           architect: architect
         )
 
-        c["Loop"]["Holes"].each do |h|
-          number            = h["Number"]
-          par               = h["Par"]
-          index             = h["Index"]
+        c['Loop']['Holes'].each do |h|
+          number            = h['Number']
+          par               = h['Par']
+          index             = h['Index']
 
           hole = Hole.create(course: course, number: number, par: par, index: index)
         end

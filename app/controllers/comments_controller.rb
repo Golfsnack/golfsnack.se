@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class CommentsController < ApplicationController
   before_action :authenticate_user!
@@ -11,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.save
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_back(fallback_location: root_path) }
+      format.html {  redirect_back(fallback_location: root_path) }
     end
   end
 
@@ -27,6 +28,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def find_commentable
     @commentable_type = params[:commentable_type].classify
     @commentable = @commentable_type.constantize.find(params[:commentable_id])
