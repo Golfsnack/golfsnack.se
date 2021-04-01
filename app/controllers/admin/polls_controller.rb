@@ -45,7 +45,7 @@ module Admin
     private
 
     def poll_params
-      params.require(:poll).permit(:name, poll_questions_attributes: %i[id choice _destroy])
+      params.require(:poll).permit(:name, :archived, poll_questions_attributes: %i[id choice _destroy])
     end
 
     def param_clean(_params)
