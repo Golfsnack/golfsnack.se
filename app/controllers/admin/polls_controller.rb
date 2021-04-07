@@ -48,8 +48,8 @@ module Admin
       params.require(:poll).permit(:name, :archived, poll_questions_attributes: %i[id choice _destroy])
     end
 
-    def param_clean(_params)
-      _params.delete_if do |_k, v|
+    def param_clean(params_to_clean)
+      params_to_clean.delete_if do |_k, v|
         param_clean(v) if v.instance_of?(ActionController::Parameters)
         v.empty?
       end

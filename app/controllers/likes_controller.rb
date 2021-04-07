@@ -8,8 +8,10 @@ class LikesController < ApplicationController
     @likeable.liked_by current_user
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("#{@likeable.class}-#{@likeable.id}-reactions",
-                                                  partial: 'shared/reactions', locals: { item: @likeable, animate: 'boop' })
+        render turbo_stream: turbo_stream.replace(
+          "#{@likeable.class}-#{@likeable.id}-reactions",
+          partial: 'shared/reactions', locals: { item: @likeable, animate: 'boop' }
+        )
       end
       format.html do
         redirect_back(fallback_location: root_path)
@@ -21,8 +23,10 @@ class LikesController < ApplicationController
     @likeable.disliked_by current_user
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("#{@likeable.class}-#{@likeable.id}-reactions",
-                                                  partial: 'shared/reactions', locals: { item: @likeable, animate: 'boop' })
+        render turbo_stream: turbo_stream.replace(
+          "#{@likeable.class}-#{@likeable.id}-reactions",
+          partial: 'shared/reactions', locals: { item: @likeable, animate: 'boop' }
+        )
       end
       format.html do
         redirect_back(fallback_location: root_path)

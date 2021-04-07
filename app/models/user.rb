@@ -36,7 +36,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def invite_code_valid
-    invite = Invitation.where(email: email, code: invite_code).first
+    invite = Invitation.find_by(email: email, code: invite_code)
     errors.add(:invite_code, :invalid) unless invite
   end
 

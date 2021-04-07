@@ -6,7 +6,27 @@ AllCops:
   NewCops: enable
   Exclude:
     - "lib/tasks/courses.rake"
-    - "node_modules/"
+    - "node_modules/**/*"
+    - bin/**/*
+    - vendor/**/*
+    - db/**/*
+    - "lib/single_sign_on.rb"
+    - "config/initializers/**/*"
+
+Rails:
+  Enabled: true
 
 Layout/LineLength:
   Max: 120
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/environments/**/*"
+    - "config/routes.rb"
+    - Guardfile

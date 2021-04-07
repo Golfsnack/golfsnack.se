@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoundsController < ApplicationController
   def create
     @club = Club.find(params[:club_id])

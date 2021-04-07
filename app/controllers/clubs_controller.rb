@@ -68,9 +68,9 @@ class ClubsController < ApplicationController
 
   def check_if_moderator
     @club = Club.find(params[:club_id])
-    unless current_user.has_role?(:moderator, @club)
-      render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false
-    end
+    return if current_user.has_role?(:moderator, @club)
+
+    render file: Rails.root.join('/public/403.html'), status: :forbidden, layout: false
   end
 
   def club_params

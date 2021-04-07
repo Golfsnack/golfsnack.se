@@ -29,7 +29,7 @@ module Admin
     def create
       @club = Club.new(club_params)
       if @club.save
-        set_club_admin(club_params[:moderator_user_id])
+        grant_club_admin(club_params[:moderator_user_id])
         flash[:success] = 'Golfklubb skapad'
         redirect_to admin_clubs_path
       else
@@ -43,7 +43,7 @@ module Admin
       raise 'Not allowed' if !current_user.has_role?(:admin) && !current_user.has_role?(:moderator, @club)
 
       if @club.update(club_params)
-        set_club_admin(club_params[:moderator_user_id]) unless club_params[:moderator_user_id].nil?
+        grant_club_admin(club_params[:moderator_user_id]) unless club_params[:moderator_user_id].nil?
         flash[:success] = 'Golfklubb uppdaterad'
         if current_user.has_role?(:moderator, @club)
           redirect_to club_admin_path(@club)
@@ -58,12 +58,12 @@ module Admin
 
     private
 
-    def set_club_admin(moderator_user_id)
+    def grant_club_admin(moderator_user_id)
       @club.roles.map(&:destroy)
-      if moderator_user_id && moderator_user_id != ''
-        user = User.find(moderator_user_id)
-        user.grant :moderator, @club
-      end
+      return unless moderator_user_id && moderator_user_id != ''
+
+      user = User.find(moderator_user_id)
+      user.grant :moderator, @club
     end
 
     def club_params
