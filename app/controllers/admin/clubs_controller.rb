@@ -8,15 +8,13 @@ module Admin
 
     def edit
       @club = Club.find(params[:id])
-      if !current_user.has_role?(:admin) && !current_user.has_role?(:moderator, @club)
-        raise 'Not allowed'
-      end
+      raise 'Not allowed' if !current_user.has_role?(:admin) && !current_user.has_role?(:moderator, @club)
 
-      if !current_user.has_role?(:admin) && current_user.has_role?(:moderator, @club)
-        @url = club_admin_path(@club)
-      else
-        @url = admin_club_path(@club)
-      end
+      @url = if !current_user.has_role?(:admin) && current_user.has_role?(:moderator, @club)
+               club_admin_path(@club)
+             else
+               admin_club_path(@club)
+             end
       @club.moderator_user_id = @club.applied_roles.first.user_ids.first if @club.applied_roles.size.positive?
     end
 
@@ -42,9 +40,8 @@ module Admin
 
     def update
       @club = Club.find(params[:id])
-      if !current_user.has_role?(:admin) && !current_user.has_role?(:moderator, @club)
-        raise 'Not allowed'
-      end
+      raise 'Not allowed' if !current_user.has_role?(:admin) && !current_user.has_role?(:moderator, @club)
+
       if @club.update(club_params)
         set_club_admin(club_params[:moderator_user_id]) unless club_params[:moderator_user_id].nil?
         flash[:success] = 'Golfklubb uppdaterad'

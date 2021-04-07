@@ -2,9 +2,9 @@
 
 class Club < ApplicationRecord
   has_many :courses, dependent: :destroy
-  has_many :users
-  has_many :posts
-  has_many :rounds
+  has_many :users, dependent: :nullify
+  has_many :posts, dependent: :nullify
+  has_many :rounds, dependent: :nullify
 
   searchkick word_middle: [:name], callbacks: :async
 

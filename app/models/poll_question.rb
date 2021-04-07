@@ -3,7 +3,7 @@
 class PollQuestion < ApplicationRecord
   belongs_to :poll
   counter_culture :poll
-  has_many :poll_answers
+  has_many :poll_answers, dependent: :destroy
 
   validates :choice, presence: true
 end

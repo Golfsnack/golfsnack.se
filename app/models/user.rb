@@ -28,9 +28,9 @@ class User < ApplicationRecord
 
   belongs_to :club, optional: true
   counter_culture :club
-  has_many :posts
-  has_many :comments
-  has_many :rounds
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :rounds, dependent: :destroy
 
   has_one_attached :cover
   has_one_attached :avatar

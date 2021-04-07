@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Poll < ApplicationRecord
-  has_many :poll_questions
-  has_many :poll_answers
+  has_many :poll_questions, dependent: :destroy
+  has_many :poll_answers, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3 }
   validates :poll_questions, presence: true, length: { minimum: 2 }
