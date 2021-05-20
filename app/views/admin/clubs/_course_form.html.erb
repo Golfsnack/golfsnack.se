@@ -1,24 +1,36 @@
 <div class="nested-form-wrapper bg-golfsnack-100 mb-12 p-12 flex flex-col gap-4" data-new-record="<%= f.object.new_record? %>">
   <div class="grid grid-cols-6 gap-4">
     <div class="col-span-2">
-      <%= f.label :name %>
+      <%= f.label "Banans namn" %>
       <%= f.text_field :name %>
     </div>
     <div class="col-span-2">
-      <%= f.label :architect %>
+      <%= f.label "Arkitekt" %>
       <%= f.text_field :architect %>
     </div>
     <div>
-      <%= f.label :holes_count %>
+      <%= f.label "Antal hål" %>
       <%= f.text_field :holes_count %>
     </div>
     <div>
       <%= f.label :par %>
       <%= f.text_field :par %>
     </div>
+    <div>
+      <%= f.label "Bygg-år" %>
+      <%= f.text_field :build_year %>
+    </div>
+    <div>
+      <%= f.label "Ban-typ" %>
+      <%= f.text_field :kind %>
+    </div>
+    <div>
+      <%= f.label "Greenfee" %>
+      <%= f.text_field :greenfee_cost %>
+    </div>
   </div>
   <div>
-    <%= f.label :description %>
+    <%= f.label "Beskrivning" %>
     <%= f.text_area :description, class: "w-full", rows: 5 %>
   </div>
   <button type="button" data-action="nested-form#remove" class="mt-6 text-red-500">

@@ -13,6 +13,15 @@
     <%= yield :head %>
     <%= javascript_include_tag "turbo", type: "module" %>
     <%= stimulus_include_tags %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYCH123NZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TYCH123NZT');
+    </script>
   </head>
   <body class="admin">
     <%= render partial: 'header' %>
@@ -30,6 +39,7 @@
               <%= active_link_to "Kategorier", admin_categories_path, class: 'adminlink', role: "menuitem" %>
               <%= active_link_to "Omröstningar", admin_polls_path, class: 'adminlink', role: "menuitem" %>
               <%= active_link_to "Golfklubbar", admin_clubs_path, class: 'adminlink', role: "menuitem" %>
+              <%= active_link_to "Användare", admin_users_path, class: 'adminlink', role: "menuitem" %>
             </nav>
           <% else %>
             <%= link_to "Tillbaka till Golfklubb", club_path(current_user.roles.first.resource_id), class: 'adminlink', role: "menuitem" %>

@@ -69,7 +69,7 @@ module Admin
     def club_params
       params.require(:club).permit(
         :name, :description, :lat, :lng, :moderator_user_id,
-        courses_attributes: %i[name par architect description _destroy id holes_count]
+        courses_attributes: %i[name par architect description _destroy id holes_count build_year kind greenfee_cost]
       )
     end
   end

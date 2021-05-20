@@ -370,3 +370,20 @@ form {
     transform: scale(1.025);
   }
 }
+
+.hero {
+  position: relative;
+
+  h4 {
+    position: absolute;
+    bottom: 50%;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+    font-size: 20px;
+    text-shadow: 2px 2px #000;
+  }
+}

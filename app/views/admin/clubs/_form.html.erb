@@ -12,7 +12,7 @@
   <div class="flex flex-col gap-4">
     <div class="grid grid-cols-4 gap-4">
       <div class="col-span-2">
-        <%= f.label :name %>
+        <%= f.label "Namn" %>
         <%= f.text_field :name %>
       </div>
       <div>
@@ -26,12 +26,12 @@
     </div>
     <% if current_user.has_role?(:admin) %>
       <div data-controller="autocomplete">
-        <%= f.label :moderator_user_id %>
+        <%= f.label "Välj vem som ska vara moderator" %>
         <%= f.collection_select :moderator_user_id, User.order(:first_name).all, :id, :name, {include_blank: true, multiple: true}, { class: "form-input", "data-autocomplete-target": "field" } %>
       </div>
     <% end %>
     <div>
-      <%= f.label :description %>
+      <%= f.label "Beskrivning" %>
       <%= f.text_area :description, class: "w-full", rows: 5 %>
     </div>
   </div>

@@ -27,18 +27,20 @@
         </div>
       </div>
     </div>
-    <% if @post.mainimage.attached? %>
+    <% if @post.youtube_url %>
+      <iframe width="100%" height="400" src="<%= @post.youtube_url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <% elsif @post.mainimage.attached? %>
       <div style="height: 440px" class="overflow-hidden">
-        <%= image_tag @post.mainimage, class: "object-cover w-full h-full", "data-lightgallery-target": "mainimage" %>
+        <%= image_tag @post.mainimage, class: "object-scale-down w-full h-full", "data-lightgallery-target": "mainimage" %>
       </div>
     <% end %>
     <% if @post.images %>
       <div class="grid grid-cols-4 gap-4 my-4" data-lightgallery-target="images">
         <% if @post.mainimage.attached? %>
-          <%= image_tag @post.mainimage, class: "object-cover w-full h-24 border-2 active-image", data: { action: "click->lightgallery#showImg"} %>
+          <%= image_tag @post.mainimage, class: "object-scale-down w-full h-24 border-2 active-image", data: { action: "click->lightgallery#showImg"} %>
         <% end %>
         <% @post.images.each do |image| %>
-          <%= image_tag image, class: "object-cover w-full h-24 border-2", data: { action: "click->lightgallery#showImg"} %>
+          <%= image_tag image, class: "object-scale-down w-full h-24 border-2", data: { action: "click->lightgallery#showImg"} %>
         <% end %>
       </div>
     <% end %>

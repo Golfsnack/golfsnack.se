@@ -1,0 +1,31 @@
+<div class="flex pb-12">
+  <h2>Användare</h2>
+</div>
+<div class="overflow-hidden border-b shadow border-sand-200">
+  <table class="min-w-full divide-y divide-sand-200">
+    <thead>
+      <tr>
+        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-sand-50">
+          Namn
+        </th>
+        <th>Roller</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-sand-200 text-xs">
+      <% @users.each do |user| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= user.name %>
+          </td>
+          <td><%= user.roles.where(resource_type: nil).all.map(&:name).join(', ')%></td>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= link_to "Redigera", edit_admin_user_path(user) %>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap">
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

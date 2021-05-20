@@ -9,4 +9,6 @@ class PublicController < ApplicationController
   def faq; end
 
   def about_us; end
+
+  def shop; end
 end

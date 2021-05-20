@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         resources :poll_answers
       end
       resources :clubs
+      resources :users
 
       root to: 'invites#index'
     end
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
   get '/ledartavla', to: 'leaderboard#index', as: :leaderboard
   get '/anvandaravtal', to: 'public#useragreement', as: :user_agreement
   get '/vanliga-fragor-och-svar', to: 'public#faq', as: :faq
+  get '/shop', to: 'public#shop', as: :shop
   get '/om-golfsnack', to: 'public#about_us', as: :about_us
 
   root to: 'home#index'

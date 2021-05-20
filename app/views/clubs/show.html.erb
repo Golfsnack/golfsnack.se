@@ -30,118 +30,60 @@
       <% end %>
     </div>
     <h2 class="mt-4 uppercase text-golfsnack-500"><%= @club.name %></h2>
+    <p class="text-sm mt-2 text-golfsnack-500"><%= @club.description %></p>
     <div class="flex flex-col items-center justify-between w-full p-4 my-12 text-white uppercase bg-wetsand-600 md:flex-row">
       <div>
-        <span class="px-2 border-r border-white">
-          <small class="font-light">antal hål</small> <strong class="text-lg font-bold"><%= @club.courses.sum(&:holes_count) %></strong>
-        </span>
-        <span class="px-2 border-r border-white">
-          <small class="font-light">antal banor</small> <strong class="text-lg font-bold"><%= @club.courses.size %></strong>
-        </span>
-        <span class="px-2 ">
-          <small class="font-light">par</small>
-          <strong class="text-lg font-bold"><%= @club.courses.map(&:par).join(", ") %></strong>
-        </span>
-      </div>
-      <div>
         <span class="px-2 flex items-center">
-          <small class="mr-2"><%= pluralize(@club_users.size, "medlem", locale: :sv) %></small>
           <strong><%= render "shared/avatar_group", users: @club_users, extra: @extra_users_count %></strong>
+          <small class="mr-2"><%= pluralize(@club_users.size, "medlem", locale: :sv) %></small>
         </span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="grid grid-cols-4 gap-4">
-  <div class="col-span-3">
-    <h4>Senaste golfsnacksmedlemmar som har spelat här</h4>
-    <%= render "shared/avatar_group", users: @players, extra: false %>
-  </div>
-  <div class="col-span-1">
-  <% if !current_user.rounds.map(&:club_id).include?(@club.id) %>
-    <%= button_to rounds_path(club_id: @club.id, user_id: current_user.id), method: :post do %>
-      JAG HAR SPELAT PÅ DENNA KLUBB
-    <% end %>
-  <% end%>
-    <% if current_user.has_role?(:moderator, @club) %>
-      <a href="/klubbadmin/<%=@club.id%>" type="button" class="flex gap-2 mb-2 text-sm bg-golfsnack-100 rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out text-golfsnack-600">
-        <!-- Heroicon name: pencil -->
-        <svg class="w-5 h-5 mr-2 -ml-1 text-golfsnack-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-        </svg>
-        Redigera Golfklubb
-      </a>
-    <% end %>
-    <%#= render partial: 'rating' %>
-  </div>
+<div class="gap-6 sm:grid sm:grid-cols-6">
+    <div class="sm:col-span-4">
+      <% @club.courses.each do |course| %>
+        <div class="bg-white mt-6 p-4 rounded border border-color-wetsand-400">
+          <h5><%= course.name %></h5>
+          <%= course.description %>
+          <dl class="grid grid-cols-2">
+            <dt class="p-4 border-b">Arkitekt</dt>
+            <dd class="p-4 border-b"><%= course.architect %></dd>
+            <dt class="p-4 border-b">Antal hål</dt>
+            <dd class="p-4 border-b"><%= course.holes_count %></dd>
+            <dt class="p-4 border-b">Par</dt>
+            <dd class="p-4 border-b"><%= course.par %></dd>
+            <dt class="p-4 border-b">Byggår</dt>
+            <dd class="p-4 border-b"><%= course.build_year %></dd>
+            <dt class="p-4 border-b">Bantyp</dt>
+            <dd class="p-4 border-b"><%= course.kind %></dd>
+            <dt class="p-4 border-b">Greenfee</dt>
+            <dd class="p-4 border-b"><%= course.greenfee_cost %></dd>
+          </dl>
+        </div>
+      <% end %>
+    </div>
+    <div class="sm:col-span-2">
+      <% if !current_user.rounds.map(&:club_id).include?(@club.id) %>
+        <%= button_to rounds_path(club_id: @club.id, user_id: current_user.id), method: :post do %>
+          JAG HAR SPELAT PÅ DENNA KLUBB
+        <% end %>
+      <% end%>
+      <%#= render partial: 'rating' %>
+
+      <h4>Senaste golfsnacksmedlemmar som har spelat här</h4>
+      <%= render "shared/avatar_group", users: @players, extra: false %>
+
+      <% if current_user.has_role?(:moderator, @club) %>
+        <a href="/klubbadmin/<%=@club.id%>" type="button" class="flex gap-2 mb-2 text-sm bg-golfsnack-100 rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out text-golfsnack-600">
+          <!-- Heroicon name: pencil -->
+          <svg class="w-5 h-5 mr-2 -ml-1 text-golfsnack-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+          </svg>
+          Redigera Golfklubb
+        </a>
+      <% end %>
+    </div>
 </div>
-
-<!-- <div class="grid md:grid-cols-2 my-12 gap-4 bg-wetsand-600 p-6">
-  <div class="grid md:grid-cols-2 gap-4">
-    <dl class="text-white uppercase grid grid-cols-2">
-      <dt>Övninsgreen</dt>
-      <dd>...</dd>
-      <dt>Övningsbana</dt>
-      <dd>...</dd>
-      <dt>Grästyp</dt>
-      <dd>...</dd>
-      <dt>Övninsgreen</dt>
-      <dd>...</dd>
-      <dt>Övningsbana</dt>
-      <dd>...</dd>
-      <dt>Grästyp</dt>
-      <dd>...</dd>
-    </dl>
-    <dl class="text-white uppercase grid grid-cols-2">
-      <dt>Övninsgreen</dt>
-      <dd>...</dd>
-      <dt>Övningsbana</dt>
-      <dd>...</dd>
-      <dt>Grästyp</dt>
-      <dd>...</dd>
-      <dt>Övninsgreen</dt>
-      <dd>...</dd>
-      <dt>Övningsbana</dt>
-      <dd>...</dd>
-      <dt>Grästyp</dt>
-      <dd>...</dd>
-    </dl>
-  </div>
-  <div>
-    <h5>Väder här...</h5>
-  </div>
-</div> -->
-
-<% @club.courses.each do |course| %>
-  <div class="bg-white mt-6 p-4 rounded border border-color-wetsand-400">
-    <h5><%= course.name %></h5>
-    <table class="w-full divide-y divide-sand-200 mt-6">
-      <thead>
-        <tr class="text-xs divide-x text-center">
-          <th class="p-2"></th>
-          <% course.holes.each do |hole|%>
-            <th class="p-2"><%= hole.number %></th>
-          <% end %>
-          <th class="p-2">Total</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-sand-200 text-xs">
-        <tr class="text-xs divide-x text-center">
-          <td class="p-2">Par</td>
-          <% course.holes.each do |hole|%>
-            <td class="p-2"><%= hole.par %></td>
-          <% end %>
-          <td class="p-2"><%= course.par%></td>
-        </tr>
-        <tr class="text-xs divide-x text-center">
-          <td class="p-2">Index</td>
-          <% course.holes.each do |hole|%>
-            <td class="p-2"><%= hole.index %></td>
-          <% end %>
-          <td class="p-2"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-<% end %>

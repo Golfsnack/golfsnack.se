@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   include Discard::Model
   rolify
+  attr_accessor :input_roles
   has_merit
 
   searchkick highlight: %i[first_name last_name], callbacks: :async
