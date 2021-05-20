@@ -21,19 +21,19 @@
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Följare</span>
         <%= link_to friends_path do %>
-          <h5 class="w-full text-xl text-center text-gray-700"><%= user.followers_count %></h5>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.user_followers.size %></h5>
         <% end %>
       </div>
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Följer</span>
         <%= link_to friends_path do %>
-          <h5 class="w-full text-xl text-center text-gray-700"><%= user.follows_count %></h5>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.following_users.size %></h5>
         <% end %>
       </div>
       <div class="flex flex-col gap-2 w-full">
         <span class="w-full text-center text-sm text-gray-500 uppercase">Rundor</span>
-        <%= link_to rounds_path do %>
-          <h5 class="w-full text-xl text-center text-gray-700"><%= user.rounds_count %></h5>
+        <%= link_to user_rounds_path do %>
+          <h5 class="w-full text-xl text-center text-gray-700"><%= user.rounds.size %></h5>
         <% end %>
       </div>
     </div>

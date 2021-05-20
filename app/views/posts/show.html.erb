@@ -27,11 +27,11 @@
         </div>
       </div>
     </div>
-    <div style="height: 440px" class="overflow-hidden">
-      <% if @post.mainimage.attached? %>
+    <% if @post.mainimage.attached? %>
+      <div style="height: 440px" class="overflow-hidden">
         <%= image_tag @post.mainimage, class: "object-cover w-full h-full", "data-lightgallery-target": "mainimage" %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <% if @post.images %>
       <div class="grid grid-cols-4 gap-4 my-4" data-lightgallery-target="images">
         <% if @post.mainimage.attached? %>

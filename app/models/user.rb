@@ -62,8 +62,4 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !discarded?
   end
-
-  def rounds_count
-    0
-  end
 end

@@ -12,11 +12,18 @@
 body {
   background: var(--fairway-100);
   font-family: "PT Sans Caption", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .container {
   margin: 0 auto;
   padding: 0 1rem;
+
+  &.main {
+    flex: 1;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -283,6 +290,14 @@ a.btn {
 
   &:disabled {
     opacity: 0.5;
+  }
+
+  &.white {
+    background: white;
+  }
+
+  &.nopad {
+    padding: 0;
   }
 }
 

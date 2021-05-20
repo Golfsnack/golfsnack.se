@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/golfare/:id', to: 'profile#show', as: :user
   get '/profil', to: 'profile#index', as: :profile
   get '/profil/vanner/', to: 'profile#friends', as: :friends
+  get '/profil/rundor', to: 'profile#rounds', as: :user_rounds
 
   get '/profil/bild', to: 'profile#avatar', as: :profile_avatar
   get '/profil/omslagsbild', to: 'profile#coverimage', as: :profile_cover

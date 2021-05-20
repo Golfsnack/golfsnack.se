@@ -35,10 +35,10 @@
             <% if post.mainimage.attached? %>
               <%= image_tag post.mainimage, class: "object-cover w-full mb-4" %>
             <% end %>
-            <div class="story__body__body">
-              <%= truncate(strip_tags(post.body.to_s), length: 400) %>
-            </div>
           <% end %>
+            <div class="story__body__body">
+              <%= simple_format(post.body.to_plain_text.truncate(400)) %>
+            </div>
         </div>
         <div class="story__footer">
           <div class="story__reaction">
