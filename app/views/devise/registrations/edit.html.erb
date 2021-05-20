@@ -1,15 +1,27 @@
 <div class="mt-12">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h4 class="mb-6 text-2xl font-bold">Redigera information</h4>
+    <div class="md:grid md:grid-cols-4 md:gap-6">
+      <div class="md:col-span-2">
+        <div class="p-8 bg-sand-200">
+          <div class="px-4 sm:px-0">
+            <h2 class="mb-6 text-xl font-bold">Välkommen upp på första tee!</h2>
+          </div>
+          <p class="mb-4">Du har hittat hit vilket betyder att du är en av få utvalda som får vara med och testa betaversionen av Golfsnack.se, grattis!</p>
+          <h3 class="font-bold text-lg mt-4 mb-4">Vad är Golfsnack?</h3>
+          <p class="mb-4">Golfsnack är ett aktivitetsbaserad community. Du får poäng för hur aktiv du är på sidan samt hur aktiv du är som golfspelare. Här kan man dela med sig av sin runda, sin score, dela bilder och mycket mycket mer, det är också här du kommer in i bilden...</p>
+          <p class="mb-4">Som vi nämnde tidigare är det en betaversion så vi hoppas att ni har överseende med eventuella buggar och att innehållet är under ständigt arbete.</p>
+          <p class="mb-4">Golfsnack ska vara en community “Av golfare, för golfare!“ så därför önskar vi från dig att du klickar dig runt bland funktionerna som finns och sen återkommer med feedback.</p>
+          <p class="mb-4">Vi önskar så mycket feedback som möjligt, bra som dåligt, stort som smått, högt & lågt helt enkelt! Det finns en tråd i forumet där du kan lämna din feedback!</p>
+          <p class="mb-4">Nu ska vi inte uppehålla dig längre, stort tack för att du tar dig tiden!</p>
+          <p class="mb-4">//Golfsnack-redaktionen</p>
         </div>
+
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white sm:p-6">
+            <h4 class="mb-6 text-2xl font-bold">Redigera information</h4>
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
                 <%= f.label :first_name %>
