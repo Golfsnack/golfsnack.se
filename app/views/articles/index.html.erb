@@ -1,9 +1,4 @@
 <% if @latest_articles %>
-  <style>
-    #header {
-      background-image: url("<%= url_for @latest_articles[0].image %>");
-    }
-  </style>
   <div class="mt-6 articles_grid">
     <% @latest_articles.each_with_index do |article, index| %>
       <div class="article_item article<%= index+1 %> relative overflow-hidden p-4 cover_image" style="background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(<%= url_for article.image %>)">

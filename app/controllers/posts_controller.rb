@@ -7,6 +7,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.all
+    @allmediasize = 0
+    @allmediasize = @allmediasize + 1 if @post.youtube_url.present?
+    @allmediasize = @allmediasize + 1 if @post.mainimage.attached?
+    @allmediasize = @allmediasize + @post.images.size
   end
 
   def new

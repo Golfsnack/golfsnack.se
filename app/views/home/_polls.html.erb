@@ -29,7 +29,7 @@
           <% end %>
         </ul>
         <div class="w-full py-2 mt-6 mb-8 text-center border-t border-b border-wetsand-300 text-wetsand-400">
-          <h4><%= pluralize(poll.poll_answers.size, "RÖST", locale: :sv) %></h4>
+          <h4><%= pluralize(poll.poll_answers.size, "RÖST", locale: :sv).upcase %></h4>
         </div>
       <% else %>
         <%= form_for(poll.poll_answers.new, url: vote_path) do |f| %>

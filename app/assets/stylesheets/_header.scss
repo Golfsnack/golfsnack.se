@@ -77,8 +77,6 @@
 }
 
 #header {
-  background: asset-url("bg2.jpg") no-repeat center center;
-  background-size: cover;
   text-align: center;
   width: 100%;
 
@@ -91,10 +89,14 @@
   }
 }
 
-.home #header nav {
-  background: rgba(59, 66, 25, 0.9);
+.home #header {
+  background: asset-url("bg2.jpg") no-repeat center center;
+  background-size: cover;
+  nav {
+    background: rgba(59, 66, 25, 0.9);
 
-  &.subnav {
-    background: rgba(179, 142, 58, 0.9);
+    &.subnav {
+      background: rgba(179, 142, 58, 0.9);
+    }
   }
 }
