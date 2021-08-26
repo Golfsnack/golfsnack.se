@@ -32,7 +32,10 @@ class PostsController < ApplicationController
     else
       @clubs = Club.order(:name).all
       flash.now[:error] = 'Något gick fel, kunde inte spara'
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 

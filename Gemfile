@@ -63,14 +63,14 @@ gem 'rolify'
 
 gem 'searchkick'
 
-gem 'skylight', '5.0.0.beta4'
+gem 'skylight', '5.1.0'
 
 gem 'acts-as-taggable-on', '~> 7.0'
 
 gem 'pghero'
 gem 'pg_query', '>= 0.9.0'
 
-gem 'sidekiq', '~> 6.1.3'
+gem 'sidekiq', '~> 6.2.1'
 
 group :production do
   gem 'tunemygc'

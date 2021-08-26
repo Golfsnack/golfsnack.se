@@ -1,110 +1,108 @@
 <% content_for :meta_title, "#{@user.name} är aktiv på Golfsnack.se" %>
-<div class="">
-  <div class="block mt-6 w-full bg-wetsand-100 relative" style="height: 420px;">
+<div class="block mt-6 w-full bg-wetsand-100 relative" style="height: 420px;">
+  <% if is_current_user? @user %>
+    <a href="/profil/omslagsbild" type="button" class="flex gap-2 text-sm bg-white rounded px-4 py-2 absolute bottom-4 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out hover:no-underline">
+      <svg class="mx-auto h-5 w-5 text-goflsnack-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>Ändra omslagsbild</span>
+    </a>
+  <% end %>
+  <% if @user.cover.attached? %>
+    <%= image_tag @user.cover, class: "object-cover w-full h-full" %>
+  <% end %>
+  <% if @user.highest_role %>
+    <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "18px", height: "24px", class: "absolute -bottom-9 left-12", style: "height: 40px; width: 32px;", title: @user.highest_role.name.capitalize %>
+  <% end %>
+</div>
+<div class="flex flex-col items-center justify-center w-full -mt-32">
+  <div class="relative">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: 'big-avatar' %>
+    <% else %>
+      <%= image_tag "fallback/avatar-thumb-default.png", class: 'big-avatar' %>
+    <% end %>
     <% if is_current_user? @user %>
-      <a href="/profil/omslagsbild" type="button" class="flex gap-2 text-sm bg-white rounded px-4 py-2 absolute bottom-4 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out hover:no-underline">
+      <a href="/profil/bild" class="flex gap-2 text-sm bg-white rounded p-2 absolute top-2 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out">
         <svg class="mx-auto h-5 w-5 text-goflsnack-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
           <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <span>Ändra omslagsbild</span>
       </a>
     <% end %>
-    <% if @user.cover.attached? %>
-      <%= image_tag @user.cover, class: "object-cover w-full h-full" %>
-    <% end %>
-    <% if @user.highest_role %>
-      <%= image_tag "roleicons/#{@user.highest_role.name}.png", width: "18px", height: "24px", class: "absolute -bottom-9 left-12", style: "height: 40px; width: 32px;", title: @user.highest_role.name.capitalize %>
-    <% end %>
   </div>
-  <div class="flex flex-col items-center justify-center w-full -mt-32">
-    <div class="relative">
-      <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar, class: 'big-avatar' %>
-      <% else %>
-        <%= image_tag "fallback/avatar-thumb-default.png", class: 'big-avatar' %>
+  <h2 class="mt-4 uppercase text-golfsnack-500"><%= @user.name %></h2>
+  <% if @user.club %>
+    <%= link_to @user.club do %>
+      <h4 class="mt-1 uppercase font-medium text-golfsnack-400"><%= @user.club.name %></h2>
+    <% end %>
+  <% end %>
+  <div class="flex flex-col items-center justify-between w-full p-4 my-12 text-white uppercase bg-wetsand-600 md:flex-row">
+    <div class="divide-x divide-sand-100">
+      <span class="pl-2 pr-6">
+        <strong class="text-2xl mx-1 font-bold"><%= @user.points %></strong>
+        <small class="font-light text-lg">poäng</small>
+      </span>
+      <span class="px-2">
+        <strong class="text-lg mx-1 font-bold"><%= @user.followers_count %></strong>
+        <small class="font-light">följare</small>
+      </span>
+      <span class="px-2">
+        <strong class="text-lg mx-1 font-bold"><%= @user.posts_count %></strong>
+        <small class="font-light">golfsnack</small>
+      </span>
+      <span class="px-2 ">
+        <strong class="text-lg mx-1 font-bold"><%= @user.rounds.size %></strong>
+        <small class="font-light"> rundor</small>
+      </span>
+    </div>
+    <div class="divide-x divide-sand-100">
+      <span class="px-2">
+        <small class="font-light">Medlem sedan</small> <strong class="text-lg ml-2 font-bold"><%= l(@user.created_at, format: "%b %Y") %></strong>
+      </span>
+      <% unless @user.golf_id.blank? %>
+        <span class="px-2">
+          <small class="font-light">golf-id</small> <strong class="text-lg ml-2 font-bold"><%= @user.golf_id %></strong>
+        </span>
       <% end %>
+    </div>
+  </div>
+</div>
+<div class="gap-6 sm:grid sm:grid-cols-6">
+  <div class="sm:col-span-4">
+    <%= render partial: '/home/posts' %>
+  </div>
+  <div class="sm:col-span-2">
+    <div class="mb-4">
       <% if is_current_user? @user %>
-        <a href="/profil/bild" class="flex gap-2 text-sm bg-white rounded p-2 absolute top-2 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out">
-          <svg class="mx-auto h-5 w-5 text-goflsnack-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <a href="/users/edit" type="button" class="flex gap-2 text-sm rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out">
+          <!-- Heroicon name: pencil -->
+          <svg class="w-5 h-5 mr-2 -ml-1 text-golfsnack-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
           </svg>
+          Redigera profil
         </a>
+      <% else %>
+        <button type="button" class="inline-flex items-center w-full px-4 py-2 text-sm font-medium leading-5 text-center transition duration-150 ease-in-out border hover:bg-yellow-50 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
+          <!-- Heroicon name: link -->
+          <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
+          </svg>
+          <%= render partial: 'follows/form' %>
+        </button>
       <% end %>
     </div>
-    <h2 class="mt-4 uppercase text-golfsnack-500"><%= @user.name %></h2>
-    <% if @user.club %>
-      <%= link_to @user.club do %>
-        <h4 class="mt-1 uppercase font-medium text-golfsnack-400"><%= @user.club.name %></h2>
-      <% end %>
+    <p class="pb-12"><%= @user.info%></p>
+    <h4 class="text-golfsnack-300">BADGES</h4>
+    <% @user.badges.each do |badge| %>
+      <div class="flex px-2 py-1 mt-2 mr-1 text-sm font-semibold leading-5 uppercase rounded text-sand-100 bg-rough-500 last:mr-0 sm:mr-6">
+        <%= badge.name %>
+      </div>
     <% end %>
-    <div class="flex flex-col items-center justify-between w-full p-4 my-12 text-white uppercase bg-wetsand-600 md:flex-row">
-      <div class="divide-x divide-sand-100">
-        <span class="pl-2 pr-6">
-          <strong class="text-2xl mx-1 font-bold"><%= @user.points %></strong>
-          <small class="font-light text-lg">poäng</small>
-        </span>
-        <span class="px-2">
-          <strong class="text-lg mx-1 font-bold"><%= @user.followers_count %></strong>
-          <small class="font-light">följare</small>
-        </span>
-        <span class="px-2">
-          <strong class="text-lg mx-1 font-bold"><%= @user.posts_count %></strong>
-          <small class="font-light">golfsnack</small>
-        </span>
-        <span class="px-2 ">
-          <strong class="text-lg mx-1 font-bold"><%= @user.rounds.size %></strong>
-          <small class="font-light"> rundor</small>
-        </span>
-      </div>
-      <div class="divide-x divide-sand-100">
-        <span class="px-2">
-          <small class="font-light">Medlem sedan</small> <strong class="text-lg ml-2 font-bold"><%= l(@user.created_at, format: "%b %Y") %></strong>
-        </span>
-        <% unless @user.golf_id.blank? %>
-          <span class="px-2">
-            <small class="font-light">golf-id</small> <strong class="text-lg ml-2 font-bold"><%= @user.golf_id %></strong>
-          </span>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="gap-6 sm:grid sm:grid-cols-6">
-    <div class="sm:col-span-4">
-      <%= render partial: '/home/posts' %>
-    </div>
-    <div class="sm:col-span-2">
-      <div class="mb-4">
-        <% if is_current_user? @user %>
-          <a href="/users/edit" type="button" class="flex gap-2 text-sm rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out">
-            <!-- Heroicon name: pencil -->
-            <svg class="w-5 h-5 mr-2 -ml-1 text-golfsnack-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-            </svg>
-            Redigera profil
-          </a>
-        <% else %>
-          <button type="button" class="inline-flex items-center w-full px-4 py-2 text-sm font-medium leading-5 text-center transition duration-150 ease-in-out border hover:bg-yellow-50 border-sand-300 hover:text-sand-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-sand-800 active:bg-sand-50">
-            <!-- Heroicon name: link -->
-            <svg class="w-5 h-5 mr-2 -ml-1 text-sand-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-            </svg>
-            <%= render partial: 'follows/form' %>
-          </button>
-        <% end %>
-      </div>
-      <p class="pb-12"><%= @user.info%></p>
-      <h4 class="text-golfsnack-300">BADGES</h4>
-      <% @user.badges.each do |badge| %>
-        <div class="flex px-2 py-1 mt-2 mr-1 text-sm font-semibold leading-5 uppercase rounded text-sand-100 bg-rough-500 last:mr-0 sm:mr-6">
-          <%= badge.name %>
-        </div>
+    <h4 class="mt-6 text-golfsnack-300">SENAST SPELADE BANOR</h4>
+    <ul>
+      <% @user.rounds.each do |round| %>
+        <li><%= round.club.name %></li>
       <% end %>
-      <h4 class="mt-6 text-golfsnack-300">SENAST SPELADE BANOR</h4>
-      <ul>
-        <% @user.rounds.each do |round| %>
-          <li><%= round.club.name %></li>
-        <% end %>
-      </ul>
-    </div>
+    </ul>
   </div>
 </div>

@@ -10,8 +10,8 @@
     event.preventDefault()
   });
 </script>
-<%= render "devise/shared/error_messages", resource: @post %>
-<%= form_for @post do |f| %>
+<%= form_for @post, id: dom_id(@post) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @post %>
   <div class="grid grid-cols-3 gap-12">
     <div class="col-span-2 bg-white p-12 shadow-lg rounded border">
       <div class="flex my-4">

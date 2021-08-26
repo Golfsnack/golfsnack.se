@@ -1,5 +1,5 @@
 <% content_for :meta_title, "#{@club.name} - Golfsnack.se" %>
-<div class="">
+<div>
   <div class="mt-6 block w-full bg-wetsand-100 relative" style="height: 420px;">
     <% if current_user.has_role?(:moderator, @club) %>
       <%= link_to club_cover_path(@club), class: "flex gap-2 text-sm bg-white rounded px-4 py-2 absolute bottom-4 right-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out hover:no-underline" do %>
@@ -45,7 +45,7 @@
 <div class="gap-6 sm:grid sm:grid-cols-6">
     <div class="sm:col-span-4">
       <% @club.courses.each do |course| %>
-        <div class="bg-white mt-6 p-4 rounded border border-color-wetsand-400">
+        <div class="bg-white mb-6 p-4 rounded border border-color-wetsand-400">
           <h5><%= course.name %></h5>
           <%= course.description %>
           <dl class="grid grid-cols-2">
@@ -67,14 +67,17 @@
     </div>
     <div class="sm:col-span-2">
       <% if !current_user.rounds.map(&:club_id).include?(@club.id) %>
-        <%= button_to rounds_path(club_id: @club.id, user_id: current_user.id), method: :post do %>
+        <%= button_to rounds_path(club_id: @club.id, user_id: current_user.id), method: :post, class: 'mb-6 block w-full' do %>
           JAG HAR SPELAT PÅ DENNA KLUBB
         <% end %>
       <% end%>
-      <%#= render partial: 'rating' %>
 
-      <h4>Senaste golfsnacksmedlemmar som har spelat här</h4>
-      <%= render "shared/avatar_group", users: @players, extra: false %>
+      <%= render partial: 'rating' %>
+
+      <div class="my-6">
+        <h4>Senaste golfsnacksmedlemmar som har spelat här</h4>
+        <%= render "shared/avatar_group", users: @players, extra: false %>
+      </div>
 
       <% if current_user.has_role?(:moderator, @club) %>
         <a href="/klubbadmin/<%=@club.id%>" type="button" class="flex gap-2 mb-2 text-sm bg-golfsnack-100 rounded px-4 py-2 bg-opacity-50 hover:bg-opacity-100 transition duration-150 ease-in-out text-golfsnack-600">
