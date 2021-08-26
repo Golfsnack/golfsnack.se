@@ -22,10 +22,10 @@
         <% @users.each do |user| %>
           <tr>
             <td class="px-6 py-4 whitespace-no-wrap">
-              T1
+              <%= user.position %>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap">
-              <%= link_to user_path(user) do %>
+              <%= link_to user_path(user.id) do %>
                 <div class="flex flex-row">
                   <% if user.avatar.attached? %>
                     <%= image_tag user.avatar, class: 'small-avatar mr-2' %>
@@ -37,7 +37,7 @@
               <% end %>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap">
-              <%= user.points %>
+              <%= user.sum_points %>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap">
               <%= user.posts_count %>

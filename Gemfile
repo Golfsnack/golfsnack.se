@@ -72,6 +72,13 @@ gem 'pg_query', '>= 0.9.0'
 
 gem 'sidekiq', '~> 6.2.1'
 
+gem 'grape-active_model_serializers'
+gem 'grape-jwt-authentication'
+gem 'grape-swagger-ui'
+gem 'grape-swagger'
+gem 'grape'
+gem 'rack-cors'
+
 group :production do
   gem 'tunemygc'
 end

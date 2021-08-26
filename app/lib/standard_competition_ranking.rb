@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StandardCompetitionRankings
+class StandardCompetitionRanking
   def initialize(data, options = {})
     @data = data
     @options = options.reverse_merge(sort_direction: :desc, set: :position)

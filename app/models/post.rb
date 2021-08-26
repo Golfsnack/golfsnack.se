@@ -5,8 +5,6 @@ class Post < ApplicationRecord
   include PublicActivity::Model
   tracked
 
-  has_many_attached :images
-
   acts_as_commentable
   acts_as_votable
   acts_as_taggable_on :tags

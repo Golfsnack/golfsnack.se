@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   include Discard::Model
   rolify
-  attr_accessor :input_roles
+  attr_accessor :input_roles, :invite_code
   has_merit
 
   searchkick highlight: %i[first_name last_name], callbacks: :async
@@ -19,8 +19,6 @@ class User < ApplicationRecord
   # :lastseenable (Create own events instead?)
   # :confirmable, TODO: Activate when we don't invite specific users
   # :trackable (Create own events instead?)
-
-  attr_accessor :invite_code
 
   validate :invite_code_valid, on: :create
   validates :email, email: true

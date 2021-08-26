@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: 'sidekiq'
   end
 
+  mount API => '/'
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   get 'discourse/sso' => 'discourse_sso#sso'

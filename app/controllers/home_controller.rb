@@ -22,8 +22,18 @@ class HomeController < ApplicationController
                    .page(params[:page]).per(50)
     end
     @user = current_user
-    user_ids = Merit::Score.top_scored(since: Date.yesterday).map { |s| s['user_id'] }
-    @leaderboard_users = User.includes([:sash]).find user_ids
+
+    top_scores = Merit::Score.top_scored(since: Date.yesterday)
+    users = User.includes([:sash]).find(top_scores.map { |s| s['user_id'] })
+
+    items = top_scores.map do |ts|
+      user = users.find { |u| u.id.to_s == ts['user_id'].to_s }
+      avatar = user.avatar.attached? ? Rails.application.routes.url_helpers.rails_blob_url(user.avatar, Rails.application.config.action_mailer.default_url_options) : ""
+      LeaderboardItem.new(id: user.id, position: 0, name: user.name, avatar: avatar, sum_points: ts['sum_points'])
+    end
+
+    @leaderboard_users = StandardCompetitionRanking.new(items, rank_by: :sum_points, sort_direction: :desc).calculate
+
     @polls = Poll.active.order(:created_at).limit(3).all
     @popular_tags = ActsAsTaggableOn::Tag.most_used(10)
   end

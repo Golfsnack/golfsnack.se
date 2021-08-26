@@ -102,4 +102,11 @@ ActiveSupport::Inflector.inflections(:sv) do |inflect|
 
   inflect.irregular 'golfklapp', 'golfklappar'
   inflect.irregular 'medlem', 'medlemmar'
+
+  inflect.acronym 'API'
+end
+
+
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym 'API'
 end
